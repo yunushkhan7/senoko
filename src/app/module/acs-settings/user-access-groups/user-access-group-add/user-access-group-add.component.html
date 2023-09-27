@@ -1,0 +1,63 @@
+<!-- <p>user-access-group-add works!</p> -->
+
+<div class="green-bg">
+    <section class="main-page mom">
+        <div class="container">
+
+
+            <h2>{{ "USER-ACCESS-GROUP.EAG" | translate }}</h2>
+            <form [formGroup]="addForm">
+                <div class="head-form">  
+
+                    <div class="d-flex-input form-fields">
+                      <mat-label class="input-label">{{'USER-ACCESS-GROUP.UGN' | translate}}</mat-label>
+                      <div class="w-100">
+                      <mat-form-field class="example-full-width" appearance="fill">
+                        <input type="text" [formControl]="addForm.controls['userAccessGroupName']"
+                         maxlength="100" matInput placeholder="Text" />
+                      </mat-form-field>
+                      <mat-error class="mt-1"  *ngIf="submitted && addForm.controls['userAccessGroupName'].errors">Access Level Name
+                        {{ "VALIDATE.ERROR9" | translate }}
+                     </mat-error>
+                    </div>
+                    </div>
+    
+                    <div class="d-flex-input form-fields">
+                        <mat-label class="input-label">{{'USER-ACCESS-GROUP.REMARK' | translate}}</mat-label>
+                        <div class="w-100">
+                        <mat-form-field class="example-full-width" appearance="fill">
+                          <input type="text" [formControl]="addForm.controls['remarks']"
+                           maxlength="100" matInput placeholder="Remarks" />
+                        </mat-form-field>
+                        <mat-error class="mt-1"  *ngIf="submitted && addForm.controls['remarks'].errors">Remarks
+                            {{ "VALIDATE.ERROR9" | translate }}
+                         </mat-error>
+                        </div>
+                      </div>
+    
+                    
+                </div>
+    
+                <div class="btn-div">                    
+                    <div>
+                        <button mat-stroked-button type="submit" class="btn-h-w btn-green" (click)="saveUserAccessGroup()">
+                            {{'USER-ACCESS-GROUP.SAVE' | translate}}
+                        </button>
+    
+                        <button mat-stroked-button class="btn-h-w btn-gray" (click)="close()">
+                            {{'USER-ACCESS-GROUP.CLOSE' | translate}}
+                        </button>
+                    </div>
+    
+                </div>
+            </form>
+
+
+
+
+        </div>
+    </section>
+</div>
+<!-- <app-footer></app-footer> -->
+
+

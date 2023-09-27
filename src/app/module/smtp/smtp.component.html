@@ -1,0 +1,186 @@
+<div class="green-bg">
+<section class="visitor-addmision main-page">
+  <div class="container" *ngIf="permissionObject?.list">
+    <div class="visitor-addmission-inner">
+      <section class="visitor-list">
+        <div class="smpt-setting">
+        <h2>{{ "LOGS.SMTP.HEADING" | translate }}</h2>
+        <!-- <button class="add_user" mat-raised-button (click)="testMailConfig()">
+          {{ "LOGS.SMTP.SEND_BUTTON" | translate }}
+        </button> -->
+      </div>
+        <form class="addusers" [formGroup]="addForm">
+          <div class="row">
+            <!-- hostName -->
+            <div class="col-md-6 add-feild">
+              <label>{{ "LOGS.SMTP.HOSTNAME" | translate }}</label>
+              <div class="form-group vmsadd">
+                <mat-form-field class="example-full-width" appearance="outline">
+                  <input  matInput placeholder="{{ 'LOGS.SMTP.HOST_PLACE' | translate }}" [formControl]="addForm.controls['hostName']" />
+                </mat-form-field>
+                <mat-error *ngIf="submitted && addForm.controls['hostName'].errors">Name 
+                  {{ "VALIDATE.ERROR9" | translate }}
+                </mat-error>
+              </div>
+            </div>
+
+             <!-- fromEmail-->
+             <div class="col-md-6 add-feild">
+              <label>{{ "LOGS.SMTP.FROM_EMAIL" | translate }}</label>
+              <div class="form-group vmsadd">
+                <mat-form-field class="example-full-width" appearance="outline">
+                  <input [formControl]="addForm.controls['fromEmail']" matInput placeholder="{{
+                      'LOGS.SMTP.ENQUIRY_SMTP' | translate
+                    }}" />
+                </mat-form-field>
+                <mat-error *ngIf="submitted && addForm.controls['fromEmail'].errors"> 
+                  {{ "VALIDATE.ERROR13" | translate }}
+                </mat-error>
+              </div>
+            </div>
+
+             <!-- portNO -->
+            <div class="col-md-6 add-feild">
+              <label>{{ "LOGS.SMTP.PORT_NO" | translate }}</label>
+              <div class="form-group vmsadd">
+                <mat-form-field  class="example-full-width" appearance="outline">
+                  <input [formControl]="addForm.controls['portNO']" matInput placeholder="{{ 'LOGS.SMTP.EN_PORT_NO' | translate }}" />
+                </mat-form-field>
+                <mat-error *ngIf="submitted && addForm.controls['portNO'].errors">PortNO 
+                  {{ "VALIDATE.ERROR9" | translate }}
+                </mat-error>
+              </div>
+            </div>
+
+                <!-- passwordMail -->
+            <div class="col-md-6 add-feild">
+              <label>{{ "LOGS.SMTP.PASSWORD" | translate }}</label>
+              <div class="form-group vmsadd">
+                <mat-form-field class="example-full-width" appearance="outline">
+                  <input [formControl]="addForm.controls['passwordMail']" matInput [type]="showPassword ? 'text' : 'password'" name="password" placeholder="{{ 'LOGS.SMTP.PASS' | translate }}">
+                  <div class="password-icon">
+                  <mat-icon matSuffix (click)="togglePasswordVisibility()">
+                      {{showPassword?'visibility':'visibility_off'}}
+                  </mat-icon>
+
+                </div>
+                </mat-form-field>
+
+                <mat-error *ngIf="submitted && addForm.controls['passwordMail'].errors">password 
+                  {{ "VALIDATE.ERROR9" | translate }}
+              </mat-error>
+              <ul>
+                  <li>
+                    <mat-error *ngIf="
+                    addForm.get('passwordMail').touched &&  (addForm.get('passwordMail').hasError('hasSmallCase') ||
+                    addForm.get('passwordMail').hasError('required'))
+                    "> 
+                      <mat-icon class="close-icon">close</mat-icon>{{ "PROFILE-NEW.AT_LOWERCE" | translate }}</mat-error>
+                    
+                  </li>
+                  <li> 
+                    <mat-error *ngIf="
+                    addForm.get('passwordMail').touched && (addForm.get('passwordMail').hasError('hasCapitalCase') ||
+                    addForm.get('passwordMail').hasError('required'))
+                    "> 
+                      <mat-icon class="close-icon">close</mat-icon>{{ "PROFILE-NEW.AT_UPPERCASE" | translate }}</mat-error>
+                  </li>
+                  <li>
+                    <mat-error *ngIf="
+                    addForm.get('passwordMail').touched && (addForm.get('passwordMail').hasError('minlength') ||
+                    addForm.get('passwordMail').hasError('required'))
+                    "> 
+                      <mat-icon class="close-icon">close</mat-icon>{{ "PROFILE-NEW.AT_CHARACTERS" | translate }}</mat-error>
+                  </li>
+                  <li>
+                    <mat-error *ngIf="
+                    addForm.get('passwordMail').touched &&  (addForm.get('passwordMail').hasError('hasNumber') ||
+                    addForm.get('passwordMail').hasError('required'))
+                    "> 
+                      <mat-icon>close</mat-icon>{{ "PROFILE-NEW.AT_NUMBER" | translate }}</mat-error>    
+                  </li>
+                  <li>
+                    <mat-error *ngIf="
+                    addForm.get('passwordMail').touched && (addForm.get('passwordMail').hasError('hasSpecialCharacters') ||
+                    addForm.get('passwordMail').hasError('required'))
+                    "> 
+                      <mat-icon class="close-icon">close</mat-icon>{{ "PROFILE-NEW.AT_SYMBOL" | translate }}</mat-error> 
+                  </li>
+                  <li>
+                    <mat-error *ngIf="currentUser?.firstName == addForm.get('passwordMail').value"> 
+                      <mat-icon class="close-icon">close</mat-icon>{{ "PROFILE-NEW.USER_NAME" | translate }}</mat-error>    
+                  </li>
+                </ul>
+
+              </div>
+            </div>
+            
+              <!-- senderName -->
+              <div class="col-md-6 add-feild">
+                <label>{{ "LOGS.SMTP.SEND" | translate }}</label>
+                <div class="form-group vmsadd">
+                  <mat-form-field class="example-full-width" appearance="outline">
+                    <input [formControl]="addForm.controls['senderName']" matInput placeholder="{{ 'LOGS.SMTP.EN_SEND' | translate }}" />
+                  </mat-form-field>
+                  <mat-error *ngIf="submitted && addForm.controls['senderName'].errors">Name 
+                    {{ "VALIDATE.ERROR9" | translate }}
+                  </mat-error>
+                </div>
+              </div>
+
+              <!-- smtpUser -->
+              <!-- <div class="col-md-6 add-feild">
+                <label>SMTP Use</label>
+                <div class="form-group vmsadd">
+                  <mat-form-field class="example-full-width" appearance="outline">
+                    <input [formControl]="addForm.controls['smtpUser']" matInput placeholder="{{ 'LOGS.SMTP.EN_SMTP_HEADER' | translate }}" />
+                  </mat-form-field>
+                  <mat-error *ngIf="submitted && addForm.controls['smtpUser'].errors">smtpUser 
+                    {{ "VALIDATE.ERROR9" | translate }}
+                  </mat-error>
+                </div>
+              </div> -->
+
+               <!-- emailFrom -->
+               <!-- <div class="col-md-6 add-feild">
+                <label>Email From</label>
+                <div class="form-group vmsadd">
+                  <mat-form-field class="example-full-width" appearance="outline">
+                    <input [formControl]="addForm.controls['emailFrom']" matInput placeholder="{{ 'LOGS.SMTP.EN_FROM_EMAIL' | translate }}"/>
+                  </mat-form-field>
+                  <mat-error *ngIf="submitted && addForm.controls['emailFrom'].errors">Email 
+                    {{ "VALIDATE.ERROR9" | translate }}
+                  </mat-error>
+                </div>
+              </div> -->
+
+               <!-- ssl -->
+            <div class="col-md-6 add-feild">
+              <label>SSl</label>
+              <div class="form-group vmsadd">
+                <mat-slide-toggle
+                [formControl]="addForm.controls['ssl']"
+              ></mat-slide-toggle>
+              </div>
+            </div>
+
+
+          </div>
+
+          <div class="row justify-content-end d-flex">
+            <div class="col-md-6 button-save d-flex mt-4 btn-row justify-content-end">
+              <button class="btn-style btn-save" (click)="SaveMailConfig()" mat-raised-button>
+                {{ "LOGS.SUBMIT" | translate }}
+              </button>
+              <button class="btn-style btn-cancel" mat-raised-button (click)="reset()">
+                {{ "LOGS.RESET" | translate }}
+              </button>
+            </div>
+          </div>
+        </form>
+      </section>
+    </div>
+  </div>
+</section>
+</div>
+<!-- <app-footer></app-footer> -->

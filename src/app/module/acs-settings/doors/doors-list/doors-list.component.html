@@ -1,0 +1,108 @@
+<div class="green-bg">
+<section class="main-page">
+            <!-- <div class="row m-0 mt-2">
+                <div class="col-md-3 admin-brdcmb mt-0">
+                    <nav aria-label="breadcrumb">
+                        <ol class="breadcrumb">
+                            <li class="breadcrumb-item">
+                                <a routerLink="/dashboard"> {{'COMMON.HOME' | translate}} </a>
+                            </li>
+                            <li class="breadcrumb-item active" aria-current="page"> {{'ACS_SETTINGS.DOORS' |
+                                translate}} </li>
+                        </ol>
+                    </nav>
+                </div>
+            </div> -->
+            <div class="row m-0 mt-2" class="main-div">
+                <div class="heading">
+                    <div>
+                        <h2 class="form-hadding"> {{'ACS_SETTINGS.DOOR_LIST.DOOR' |  translate}}  </h2>
+                        <div class="show btn-flex">
+                            <button mat-stroked-button color="black" class="btn-back" (click)="goBack()">
+                            <mat-icon>arrow_back</mat-icon>
+                            {{ "BUTTON.BACK" | translate }}
+                          </button>
+                          <div class="btn-flex">
+                            <!-- <button class="add_user" [routerLink]="['/acs-settings/door-add']"  mat-flat-button >
+                              {{'ACS_SETTINGS.ADD' |  translate}}
+                             </button> -->
+                                <button class="add_user" *ngIf="permissionObject?.add"  (click)="testAcsServer()" 
+                                type="submit" mat-flat-button >
+                                   {{'ACS_SETTINGS.DOOR_LIST.IMPORT_DOOR' |  translate}}
+                                  </button>
+                              </div>   
+                          </div>
+
+                    </div>
+                   
+                    
+
+                </div>
+                <section class="Door-list">
+                    <div class="table-responsive">
+                        <table class="table table-striped table-w">
+                            <thead>
+                                <tr>
+                                    <th scope="col">{{"ACS_SETTINGS.DOOR_LIST.ID" | translate }} <img (click)="sortData('id')" src="assets/images/sort.png"></th>
+                                    <th scope="col">{{"ACS_SETTINGS.DOOR_LIST.DOOR_NAME" | translate }} <img (click)="sortData('doorName')" src="assets/images/sort.png"></th>
+                                    <!-- <th scope="col">{{"ACS_SETTINGS.DOOR_LIST.ASC_DOOR_NAME" | translate }}</th> -->
+                                    <th scope="col">{{"ACS_SETTINGS.DOOR_LIST.DOOR_DIRECTION" | translate }} <img (click)="sortData('doorDirection')" src="assets/images/sort.png"></th>
+                                    <th scope="col">{{"ACS_SETTINGS.DOOR_LIST.RELEASE_DOOR" | translate }} <img (click)="sortData('allowsreleasefromVMSStation')" src="assets/images/sort.png"></th>
+                                    <th scope="col">{{"ACS_SETTINGS.DOOR_LIST.REMARKS" | translate }} <img (click)="sortData('remarks')" src="assets/images/sort.png"></th>
+                                    <th scope="col">{{"ACS_SETTINGS.DOOR_LIST.ACTION" | translate }}</th>
+                                </tr>
+                            </thead>
+                            <tbody *ngIf="objectArray?.length && permissionObject?.list">
+                                <tr *ngFor="let door of objectArray;let i=index">
+                                    <td>{{door?.id}}</td>
+                                    <td>{{door?.doorName}}</td>
+                                    <!-- <td>{{door?.acsDoorName}}</td> -->
+                                    <td>{{(door?.doorDirection == 'IN') ? 'Inside Compound' : 'Compound Exit'}}</td>
+                                    <td>{{door?.allowsreleasefromVMSStation ? 'YES':'NO'}}</td>
+                                    <td>{{door?.remarks}}</td>
+                                    <td>
+                                        <button *ngIf="permissionObject?.edit"><mat-icon class="edit" [routerLink]="['/acs-settings/door-edit',door?.id]">edit</mat-icon></button>
+                                        <button *ngIf="permissionObject?.delete"><mat-icon class="delete" (click)="deleteDoor(door)">delete</mat-icon></button>
+                                    </td>
+                                </tr>
+
+                            </tbody>
+                            <ng-container *ngIf="!objectArray?.length">
+                                <tr>
+                                    <td colspan="6">
+                                  <p class="datafound">{{'PROFILE.NO_DATA' | translate}} </p>
+                                </td>
+                              </tr>
+                              </ng-container>
+                        </table>
+                    </div>
+
+                    <div class="all-paginator" *ngIf="objectArray.length && permissionObject?.list">
+                        <pagination [paginationList]="pagination" [selectedPageLimit]="currentPageLimit"
+                        [currentPage]="currentPage" (onPageChange)="getPage($event)" [lastPage]="lastpage"></pagination>
+                      </div>
+
+                    <!-- <div class="pegination">
+                        <div class="showing-entries">
+                            <h5>{{ "VISITOR_LIST.SHOWING" | translate }}</h5>
+                        </div>
+                        <div class="pegination-link">
+                            <ul>
+                                <li>
+                                    <a href="#" class="prev"><img src="assets/images/prev.svg" /></a>
+                                </li>
+                                <li><a href="#">1</a></li>
+                                <li><a href="#">2</a></li>
+                                <li><a href="#">3</a></li>
+                                <li><a href="#">4</a></li>
+                                <li>
+                                    <a href="#" class="next"><img src="assets/images/next.svg" /></a>
+                                </li>
+                            </ul>
+                        </div>
+                    </div> -->
+                </section>
+            </div>     
+</section>
+</div>  
+<!-- <app-footer></app-footer> -->

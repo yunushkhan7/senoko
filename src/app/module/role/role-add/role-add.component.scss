@@ -1,0 +1,122 @@
+::ng-deep .mat-option:before,
+::ng-deep .mat-select:before {
+  position: absolute;
+  width: 20px;
+  height: 10px;
+  left: 120px;
+  content: "";
+}
+
+// mixin start
+@mixin all-input-style {
+  border: 1px solid #efefef;
+  box-sizing: border-box;
+  border-radius: 5px;
+}
+
+.division {
+  margin-top: 15px;
+
+  span {
+    color: var(--color-secondary);
+    font-weight: 500;
+    font-size: 16px;
+  }
+
+  hr {
+    margin-top: 5px;
+    margin-bottom: 8px;
+  }
+}
+
+
+
+.user-block {
+  background: #FFFFFF;
+  border: 1px solid rgba(173, 153, 40, 0.07);
+  box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+  border-radius: 5px;
+  padding: 10px 15px;
+  position: relative;
+  height: 215px;
+  margin-bottom: 30px;
+  margin-top: 30px;
+
+  .example-section {
+    margin-top: 20px;
+
+  }
+
+  .example-section li.checks {
+    color: #878787;
+    font-weight: 500;
+    font-size: 14px;
+    line-height: 21px;
+    margin-left: 15px;
+  }
+
+  .parents-check {
+    position: absolute;
+    top: -11px;
+    background: rgba(173, 153, 40, 0.08);
+    border: 1px solid #AD9928;
+    border-radius: 4px;
+    padding-top: 4px;
+    padding-bottom: 4px;
+    padding-left: 4px;
+    width: 100px;
+
+    ::ng-deep .mat-checkbox-label {
+      font-size: 14px;
+      line-height: 21px;
+      font-weight: 600;
+      color: #102A6C;
+    }
+
+  }
+}
+
+::ng-deep .mat-tab-body-content {
+  @media (max-width: 576px) {
+    margin: 20px 0;
+  }
+
+  li {
+    display: inline-flex;
+    justify-content: center;
+    align-items: center;
+    width: 170px;
+    margin-bottom: 30px;
+    font-size: 12px;
+    line-height: 18px;
+    letter-spacing: 0.5px;
+    color: white;
+    font-weight: 500;
+    background: #AD9928;
+    border-radius: 25px;
+    padding: 8px 12px;
+    margin-left: 5px;
+    cursor: pointer;
+
+    @media (max-width: 576px) {
+      display: initial;
+    }
+
+  }
+
+  .gray {
+    background: #B7B9C0;
+  }
+}
+
+::ng-deep .mat-checkbox-layout .mat-checkbox-label{
+  color: #878787;
+  font-size: 14px;
+}
+
+::ng-deep .mat-checkbox-frame{
+  border-color:#878787;
+}
+::ng-deep .mat-checkbox-checked.mat-accent .mat-checkbox-background {
+  background-color: #EB6D00;
+}

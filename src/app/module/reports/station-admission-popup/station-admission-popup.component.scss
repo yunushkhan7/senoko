@@ -1,0 +1,207 @@
+.station_admission {
+  padding-top: 30px;
+  padding-bottom: 30px;
+
+}
+
+::ng-deep .admission-box {
+  .mat-dialog-container {
+    background: var(--green-dark);
+    border: 2px solid var(--green-light);
+    max-width: 500px;
+  }
+}
+
+
+.register-inner {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  text-align: center;
+  border-bottom: 1px solid var(--green);
+  border-radius: 8px 8px 0px 0px;
+  padding: 5px 8px;
+  background: var(--head-green);
+
+  .registartion {
+    h3 {
+      font-size: 18px;
+      line-height: 25px;
+      letter-spacing: 0.77px;
+      color: var(--white);
+      margin: 0;
+      font-family: "Open Sans", sans-serif;
+      font-weight: 600;
+    }
+  }
+
+  .ex {
+    button {
+      background: transparent;
+      border: none;
+      color: var(--white);
+      font-family: "Open Sans", sans-serif;
+      font-weight: bold;
+    }
+  }
+}
+
+.contactor {
+  padding: 0 30px;
+  height: 80vh;
+  overflow: auto;
+  overflow-x: hidden;
+
+  h4 {
+    margin-top: 20px;
+    color: var(--white);
+    font-size: 16px;
+    line-height: 22px;
+    letter-spacing: 0.7px;
+    font-family: "Open Sans", sans-serif;
+    font-weight: bold;
+    margin-bottom: 0;
+  }
+
+  p {
+    color: var(--white);
+    font-size: 15px;
+    line-height: 22px;
+    font-family: "Open Sans", sans-serif;
+    margin-bottom: 25px;
+  }
+
+  .min {
+    .form-group {
+      ::ng-deep .mat-form-field-infix {
+        padding: 0.5em 0 1em 0;
+      }
+    }
+
+    label {
+      color: var(--white);
+      font-family: "Open Sans", sans-serif;
+      font-size: 14px;
+    }
+
+    .form-control {
+      background-color: var(--bg-box);
+      border: 1px solid var(--border-bg);
+      border-radius: 0;
+      appearance: auto;
+      color: var(--light-till);
+    }
+
+    ::placeholder {
+      color: var(--light-till);
+      font-size: 14px;
+    }
+
+    .ht-15 {
+      height: 15px;
+    }
+
+    h5 {
+      font-size: 20px;
+      line-height: 27px;
+      letter-spacing: 0.64px;
+      color: var(--white);
+      margin-bottom: 30px;
+      font-family: "Open Sans", sans-serif;
+      font-weight: 400;
+    }
+
+    .copy-box {
+      border: 2px solid var(--copy-green);
+      background: var(--copy-border);
+      padding: 11px 22px;
+
+      span p {
+        color: var(--mint-light-green) !important;
+        margin: 0;
+        font-size: 18px;
+        line-height: 27px;
+        letter-spacing: 2.84px;
+        font-family: "Open Sans", sans-serif;
+        font-weight: 600;
+      }
+    }
+
+    .continue {
+      margin: 40px 0;
+      width: 100%;
+      position: relative;
+
+      img {
+        position: absolute;
+        top: 12px;
+        right: 20px;
+        width: 35px;
+      }
+
+      button {
+        border-radius: 5px;
+        width: 100%;
+        background: var(--green);
+        border: 2px solid var(--continue-green);
+        padding: 5px 0;
+        font-size: 21px;
+        line-height: 29px;
+        letter-spacing: 0.9px;
+        color: var(--white);
+        font-family: "Open Sans", sans-serif;
+      }
+    }
+  }
+}
+
+::ng-deep {
+  .mat-dialog-container {
+    padding: 0 !important;
+  }
+
+  .mat-input-element {
+    color: var(--light-till);
+    font-size: 14px;
+    font-weight: 300;
+  }
+
+  .mat-select-value {
+    color: var(--light-till);
+    font-size: 14px;
+    font-weight: 300;
+  }
+
+  .mat-form-field-label {
+    color: var(--white);
+  }
+
+  .mat-select-arrow {
+    color: var(--light-till);
+  }
+
+  .mat-select-placeholder {
+    color: var(--light-till);
+    font-size: 14px;
+    font-weight: 300;
+  }
+
+  .mat-form-field-appearance-outline .mat-form-field-outline {
+    color: rgb(19 112 108);
+  }
+
+  .mat-form-field-appearance-outline .mat-form-field-outline:focus-visible {
+    border: none;
+    outline: green;
+  }
+}
+
+/* width */
+::ng-deep ::-webkit-scrollbar {
+  width: 5px !important;
+}
+
+::ng-deep ::-webkit-scrollbar-thumb {
+  background: var(--green) !important;
+  border-radius: 5px !important;
+}

@@ -1,0 +1,85 @@
+<div class="green-bg">
+    <section class="badge-group-add main-page">
+      <div class="container">
+        <div class="visitor-addmission-inner">
+          <section class="visitor-list">
+            <h2 class="form-hadding"> {{ "BADGE-GROUP.BUDGE_HEADING" | translate }}</h2>
+    
+            <form class="addusers budge-form">
+              <div class="row">
+                <div class="col-md-6 add-feild">
+                    <label>{{ "BADGE-GROUP.CONTRACTORS_BAGE" | translate }}</label>
+                    <div class="form-group">
+                      <mat-form-field appearance="outline" class="w-100">
+                      <mat-select placeholder="Select Type" class="readonly-block">
+                        <mat-option>
+                            1- Contractors
+                        </mat-option>
+                        <mat-option>
+                            2- Contractors
+                        </mat-option>
+                      </mat-select>
+                      </mat-form-field>
+                      
+                    </div>
+                  </div> 
+                <div class="col-md-6 add-feild">
+                  <label>{{ "BADGE-GROUP.CONTRACTORS_MATCH" | translate }}</label>
+                  <div class="form-group">
+                    <mat-form-field class="example-full-width" appearance="outline">
+                      <input matInput 
+                        type="text" maxlength="100"
+                        placeholder="{{ 'BADGE-GROUP.CONTRACTORS_MATCH' | translate }}"
+                      />
+                    </mat-form-field>
+                    <!-- <mat-error>User Name {{ "VALIDATE.ERROR9" | translate }}</mat-error> -->
+                  </div>
+                </div>
+               
+                <div class="col-md-6 add-feild">
+                  <label>{{ "BADGE-GROUP.VISITOR_BADGE" | translate }}</label>
+                  <div class="form-group">
+                    <mat-form-field appearance="outline" class="w-100">
+                      <mat-select class="readonly-block"
+                      placeholder="Select">
+                        <mat-option> SFSDFSDF </mat-option>
+                    </mat-select>
+                    </mat-form-field>
+                    <!-- <mat-error>Role {{ "VALIDATE.ERROR9" | translate }}</mat-error> -->
+                  </div>
+                </div>
+                <div class="col-md-6 add-feild">
+                  <label>{{ "BADGE-GROUP.CONTRACTORS_STRING" | translate }}</label>
+                  <div class="form-group">
+                    <mat-form-field class="example-full-width" appearance="outline">
+                      <input type="email"
+                        matInput
+                        placeholder="{{ 'BADGE-GROUP.CONTRACTORS_STRING' | translate }}"
+                      />
+                    </mat-form-field>
+                    <!-- <mat-error>{{ "VALIDATE.ERROR15" | translate }}</mat-error> -->
+                  </div>
+                </div>
+              </div>
+    
+              <div class="row justify-content-end d-flex">
+                <div class="col-md-6 button-save">
+                  <label>&nbsp;</label>
+                  <div class="justify-content-end d-flex">
+                  <button class="btn-style btn-save" mat-raised-button>
+                    {{ "VISITOR_LIST.SAVE" | translate }}
+                  </button>
+                  <button class="btn-style btn-cancel" mat-raised-button routerLink="/user-account">
+                    {{ "VISITOR_LIST.CLOSE" | translate }}
+                  </button>
+                </div>
+                </div>
+              </div>
+            </form>
+          </section>
+        </div>
+      </div>
+    </section>
+    </div>
+    <!-- <app-footer></app-footer> -->
+    

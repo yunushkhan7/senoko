@@ -1,0 +1,223 @@
+<!-- <div class="wrapper">
+  <div class="main_container">
+    <div class="container">
+      
+      <div class="row main_row">
+        <div class="col-lg-6 col-md-12 txt-center">
+          <div class="left_bg">
+            <img src="assets/images/login-hero.jpg" class="img-fluid img1">
+          </div>
+        </div>
+
+        <div class="col-lg-6 col-md-12">
+          <div class="form_container">
+            <div class="header">
+              <div class="heading">
+                <h1 class="title"> {{'LOGIN.TITLE'|translate}} </h1>
+              </div>
+            </div>
+            <form [formGroup]="loginForm" (ngSubmit)="submitForm()">
+              <div class=" form-group paddingLabel required">
+                <div class="text_field">
+                  <label for="email_id">{{'LOGIN.EMAIL'|translate}}</label>
+                  <mat-form-field appearance="outline" class="w-100 h-60">
+                    <input autocomplete="new-password" type="email" [formControl]="loginForm.controls['emailId']"
+                      matInput placeholder="{{'LOGIN.EMAILPLACEHOLDER'|translate}}">
+                  </mat-form-field>
+                </div>
+                <div class="text_field">
+                  <label for="password">{{'LOGIN.PASSWORD'|translate}}</label>
+                  <mat-form-field appearance="outline" class="w-100 h-60">
+                    <input autocomplete="new-password" type="password" [formControl]="loginForm.controls['password']"
+                      matInput placeholder="{{'LOGIN.PASSWORDPLACEHOLDER'|translate}}" [type]="hide ? 'password' : 'text'">
+                      <mat-icon matSuffix class="eye-icon1" (click)="hide = !hide">{{hide ? 'visibility_off' : 'visibility'}}</mat-icon>
+                  </mat-form-field>
+                </div>
+                <div class="remember_me">
+                  <div class="form-group">
+                    <div class="form-check form-check-inline mr-0">
+
+                    </div>
+                    <a routerLink="/forgot-password" class="forgot_password">{{'LOGIN.FORGOTPASSWORD'|translate}}</a>
+                  </div>
+                </div>
+                <div class="text_field captcha_style" *ngIf="formErrors?.apierror">
+                  <label for="Captcha">{{'LOGIN.CAPTCHA'|translate}}</label>
+                </div>
+                <ng-container *ngIf="formErrors?.apierror">
+                  <div class="text_field">
+                    <span class="captcha">{{loginForm.controls['captcha']?.value}}</span>
+                    <span class="captchabutton m-3" (click)="createCaptcha()">
+                      <mat-icon>cached</mat-icon>
+                    </span>
+                  </div>
+                  <div class="text_field">
+                    <mat-form-field appearance="outline" class="w-100 h-60">
+                      <input type="Captcha" [formControl]="loginForm.controls['reCaptcha']" matInput
+                        placeholder="{{'LOGIN.CAPTCHAPLACEHOLDER'|translate}}">
+                    </mat-form-field>
+                  </div>
+                </ng-container>
+                <div class="button_submit">
+                  <button type="submit" class="loginbutton" [disabled]="showLoader">
+                    {{'LOGIN.LOG_IN'|translate}}
+                  </button>
+                </div>
+              </div>
+            </form>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div> -->
+
+<section class="login-sec">
+  <div class="container-fluid">
+    <div class="row">
+      <div class="col-md-4 d-none d-md-block">
+        <div class="row">
+          <div class="auth-side-wrapper"></div>
+        </div>
+      </div>
+      <div class="col-md-8">
+        <div class="row">
+          <div class="auth-form-wrapper px-4 py-5">
+            <div class="inner-wrap">
+              <div class="logo-sec">
+                <img src="assets/images/senoko-logo.png" alt=".." />
+                <p>{{ "LOGIN.TITLE" | translate }}</p>
+                <h2>{{ "LOGIN.SUB_TITLE" | translate }}</h2>
+                <a>{{ "LOGIN.LOGIN" | translate }}</a>
+              </div>
+
+              <form [formGroup]="loginForm" (ngSubmit)="submitForm()">
+                <div class="form-style form-group paddingLabel required">
+                  <div class="text_field">
+                    <label for="email_id">{{
+                      "LOGIN.USERNAME" | translate
+                    }}</label>
+                    <mat-form-field appearance="outline" class="w-100 h-60">
+                      <div class="input-img">
+                        <img src="assets/images/user.svg" alt=".." />
+                      </div>
+                      <input
+                        autocomplete="new-password"
+                        type="text"
+                        [formControl]="loginForm.controls['userName']"
+                        matInput
+                        placeholder="{{ 'LOGIN.USERNAME' | translate }}"
+                      />
+                    </mat-form-field>
+                    <mat-error *ngIf="submitted && loginForm.controls['userName'].errors">
+                      {{ "VALIDATE.ERROR13" | translate }}
+                    </mat-error>
+                  </div>
+                  <div class="text_field">
+                    <label for="password">{{
+                      "LOGIN.PASSWORD" | translate
+                    }}</label>
+                    <mat-form-field appearance="outline" class="w-100 h-60">
+                      <div class="input-img">
+                        <img src="assets/images/password.png" alt=".." />
+                      </div>
+                      <input
+                        class=""
+                        autocomplete="new-password"
+                        type="password"
+                        [formControl]="loginForm.controls['password']"
+                        matInput
+                        placeholder="{{
+                          'LOGIN.PASSWORDPLACEHOLDER' | translate
+                        }}"
+                        [type]="hide ? 'password' : 'text'"
+                      />
+                      <mat-icon matSuffix class="eye-icon1" (click)="hide = !hide">{{hide ? 'visibility_off' : 'visibility'}}</mat-icon>
+                    </mat-form-field>
+                    <mat-error *ngIf="submitted && loginForm.controls['password'].errors">Password
+                      {{ "VALIDATE.ERROR9" | translate }}
+                    </mat-error>
+                  </div>
+
+                  <div class="form-check mb-2">
+                    <input class="form-check-input" type="checkbox" value=""  (click)="check()">
+                    <label class="form-check-label" for="flexCheckChecked">
+                      {{ "LOGIN.CHECK" | translate }}
+                    </label>
+                  </div>
+                  
+                  <div
+                    class="text_field captcha_style"
+                    *ngIf="formErrors?.apierror"
+                  >
+                    <label for="Captcha">{{
+                      "LOGIN.CAPTCHA" | translate
+                    }}</label>
+                  </div>
+                  <ng-container *ngIf="formErrors?.apierror">
+                    <div class="text_field">
+                      <span class="captcha">{{
+                        loginForm.controls["captcha"]?.value
+                      }}</span>
+                      <span class="captchabutton m-3" (click)="createCaptcha()">
+                        <mat-icon>cached</mat-icon>
+                      </span>
+                    </div>
+                    <div class="text_field captch-div">
+                      <mat-form-field appearance="outline" class="w-100 h-60">
+                        <input
+                          type="Captcha"
+                          [formControl]="loginForm.controls['reCaptcha']"
+                          matInput
+                          placeholder="{{
+                            'LOGIN.CAPTCHAPLACEHOLDER' | translate
+                          }}"
+                        />
+                      </mat-form-field>
+                    </div>
+                  </ng-container>
+                  <div class="button_submit">
+                    <button
+                      type="submit"
+                      class="loginbutton btn btn-primary"
+                      [disabled]="!typedcheck"
+                    >
+                      {{ "LOGIN.CONTINUE" | translate }}
+                      <img
+                        src="assets/images/arrow-white.svg"
+                        alt=".."
+                        class="ml-4"
+                      />
+                    </button>
+                    <div class="remember_me">
+                      <div class="form-group">
+                        <!-- <div class="form-check form-check-inline mr-0"></div> -->
+                        <div class="mb-4 forgot-password">
+                          <a href="/forgot-password"
+                            
+                            class="forgot_password"
+                            >{{ "LOGIN.FORGOTPASSWORD" | translate }}</a
+                          >
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </form>
+
+              <div class="copy-rights">
+                <p>
+                  {{ "LOGIN.COPY_RIGHT" | translate }} &copy;
+                  {{ "LOGIN.SENOKO" | translate }}
+                  <span>{{ "LOGIN.ENERGY" | translate }}</span>
+                  {{ "LOGIN.PVT" | translate }}
+                  {{ "LOGIN.RESERVED" | translate }}
+                </p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>

@@ -1,0 +1,239 @@
+<div class="green-bg">
+<section class="visitor-addmision main-page">
+  <div class="container">
+    <div class="visitor-addmission-inner">
+      <section class="visitor-list">
+        <h2>{{ "ADD_UNRETURNED_PASS.ADD_PASS" | translate }}</h2>
+
+        <form class="addusers" [formGroup]="addForm" (ngSubmit)="submitForm()">
+          <div class="row">
+            <div class="col-md-6 add-feild">
+              <label>{{ "ADD_UNRETURNED_PASS.NAME" | translate }}</label>
+              <div class="form-group">
+                <mat-form-field class="example-full-width" appearance="outline">
+                  <input type="text" maxlength="100"
+                    
+                    [formControl]="addForm.controls['firstName']"  matInput
+                    placeholder="{{ 'ADD-UNRET.NAME' | translate }}"
+                    onkeypress="return String.fromCharCode(event.charCode).match(/[^a-zA-Z0-9]/g) === null"
+                  />
+                </mat-form-field>
+                <mat-error *ngIf="submitted && addForm.controls['firstName'].errors">Name {{ "VALIDATE.ERROR9" | translate }}</mat-error>
+                <mat-error *ngIf="submitted && addForm.controls['firstName'].hasError('invalidName')">
+                  {{ "VALIDATE.ERROR12" | translate }}
+                </mat-error>
+              </div>
+            </div>
+            <!-- <div class="col-md-6 add-feild">
+              <label>{{ "ADD_UNRETURNED_PASS.ID" | translate }}</label>
+              <div class="form-group">
+                <mat-form-field class="example-full-width" appearance="outline">
+                  <input 
+                    [formControl]="addForm.controls['idNumber']"  matInput
+                    placeholder="{{ 'ADD-UNRET.ID' | translate }}"
+                    onkeypress="return String.fromCharCode(event.charCode).match(/[^a-zA-Z0-9]/g) === null"
+                  />
+                </mat-form-field>
+                <mat-error *ngIf="submitted && addForm.controls['idNumber'].errors">idNumber {{ "VALIDATE.ERROR9" | translate }}</mat-error>
+              </div>
+            </div> -->
+            <div class="col-md-6 add-feild">
+              <label>{{ "ADD_UNRETURNED_PASS.CARD" | translate }}</label>
+              <div class="form-group">
+                <mat-form-field class="example-full-width" appearance="outline">
+                  <input type="text"
+                    [formControl]="addForm.controls['cardNo']"  matInput
+                    placeholder="{{ 'ADD-UNRET.CARD' | translate }}"
+                    onkeypress="return String.fromCharCode(event.charCode).match(/[^a-zA-Z0-9]/g) === null"
+                  />
+                </mat-form-field>
+                <mat-error *ngIf="submitted && addForm.controls['cardNo'].errors">cardNo {{ "VALIDATE.ERROR9" | translate }}</mat-error>
+                <mat-error *ngIf="submitted && addForm.controls['cardNo'].hasError('invalidName')">
+                  {{ "VALIDATE.ERROR12" | translate }}
+                </mat-error>
+              </div>
+            </div>
+            <div class="col-md-6 add-feild">
+              <label>{{ "ADD_UNRETURNED_PASS.TYPE" | translate }} </label>
+              <div class="form-group">
+                <!-- <mat-form-field class="example-full-width" appearance="outline">
+                  <input type="text"
+                    [formControl]="addForm.controls['registerType']" onlyCharacters matInput
+                    placeholder="{{ 'VISITOR_LIST.TYPE' | translate }}"
+                  />
+                </mat-form-field> -->
+                <mat-form-field appearance="outline" class="w-100">
+                  <mat-select placeholder="Select Type" [formControl]="addForm.controls['registerType']">
+                      <mat-option value="Visitor">{{'VISITOR_LIST.VISIT' | translate}} </mat-option>
+                      <mat-option value="Contractor"> {{'VISITOR_LIST.CONTRACTOR' | translate}} </mat-option>
+                      <mat-option value="Employee"> {{'VISITOR_LIST.EMPLOYEE' | translate}} </mat-option>
+                  </mat-select>
+                </mat-form-field>
+                <mat-error *ngIf="submitted && addForm.controls['registerType'].errors">Type {{ "VALIDATE.ERROR9" | translate }}</mat-error>
+              </div>
+            </div>
+            <div class="col-md-6 add-feild">
+              <label>{{ "ADD_ATTENDANCE.ORGANISATION_DIV" | translate }} </label>
+              <div class="form-group">
+                <mat-form-field class="example-full-width" appearance="outline">
+                  <!-- <input  maxlength="15"
+                    onkeypress="return String.fromCharCode(event.charCode).match(/[^0-9]/g) === null"
+                    [formControl]="addForm.controls['phoneNumber']"  matInput
+                    placeholder="{{ 'ADD_UNRETURNED_PASS.COMPANY' | translate }}"
+                  /> -->
+                  <input type="text" maxlength="100"
+                  [formControl]="addForm.controls['organizationdivision']" onlyCharacters matInput
+                  placeholder="{{ 'ADD-UNRET.FULL-NAME' | translate }}"
+                  onkeypress="return String.fromCharCode(event.charCode).match(/[^a-zA-Z]/g) === null"
+                />
+                </mat-form-field>
+                <mat-error *ngIf="submitted && addForm.controls['organizationdivision'].errors">organization Name {{ "VALIDATE.ERROR9" | translate }}</mat-error>
+                <mat-error *ngIf="submitted && addForm.controls['organizationdivision'].hasError('invalidName')">
+                  {{ "VALIDATE.ERROR12" | translate }}
+                </mat-error>
+              </div>
+            </div>
+            <div class="col-md-6 add-feild">
+              <label>{{ "ADD_UNRETURNED_PASS.HOST" | translate }} </label>
+              <div class="form-group">
+                <mat-form-field class="example-full-width" appearance="outline">
+                  <input type="text"  
+                    [formControl]="addForm.controls['host']" onlyCharacters matInput
+                    placeholder="{{ 'ADD_UNRETURNED_PASS.HOST' | translate }}"
+                    onkeypress="return String.fromCharCode(event.charCode).match(/[^a-zA-Z]/g) === null"
+                  />
+                </mat-form-field>
+                <mat-error *ngIf="submitted && addForm.controls['host'].errors">host {{ "VALIDATE.ERROR9" | translate }}</mat-error>
+              </div>
+            </div>
+           
+            <div class="col-md-6 add-feild">
+              <label>{{ "ADD_UNRETURNED_PASS.AUTHORIZED_START" | translate }} </label>
+              <div class="form-group">
+                <!-- <mat-form-field class="example-full-width" appearance="outline">
+                  <input type="datetime-local"
+                    matInput onlyCharacters
+                    [formControl]="addForm.controls['athorizedtimestart']"
+                    placeholder="{{ 'VISITOR_LIST.AUTHORIZED_START' | translate }}"
+                  />
+                </mat-form-field> -->
+                <mat-form-field
+                appearance="outline"
+                class="example-full-width"
+                [floatLabel]="'never'"
+              >
+                <input
+                  matInput
+                  [max]="maxDate"
+                  [ngxMatDatetimePicker]="picker"
+                  [formControl]="addForm.controls['athorizedtimestart']"
+                  
+                  matInput
+                  placeholder="{{ 'VISITOR_LIST.AUTHORIZED_START' | translate }}"
+                  
+                  (dateChange)="eDateChangedStart($event)"
+                />
+                <mat-datepicker-toggle
+                  matSuffix
+                  [for]="picker"
+                ></mat-datepicker-toggle>
+                <ngx-mat-datetime-picker
+                  #picker
+                  [showSpinners]="true"
+                  [showSeconds]="false"
+                  [enableMeridian]="true"
+                >
+                  <ng-template>
+                    <span>OK</span>
+                  </ng-template>
+                </ngx-mat-datetime-picker>
+              </mat-form-field>
+                <mat-error *ngIf="submitted && addForm.controls['athorizedtimestart'].errors">startTime {{ "VALIDATE.ERROR9" | translate }}</mat-error>
+              </div>
+            </div>
+            <div class="col-md-6 add-feild">
+              <label>{{ "ADD_UNRETURNED_PASS.AUTHORIZED_END" | translate }}</label>
+              <div class="form-group">
+                <!-- <mat-form-field class="example-full-width" appearance="outline">
+                  <input type="datetime-local" onlyCharacters
+                    [formControl]="addForm.controls['athorizedtimeEnd']" matInput
+                    placeholder="{{ 'VISITOR_LIST.AUTHORIZED_TIME_END' | translate }}"
+                  />
+                </mat-form-field> -->
+
+
+                <mat-form-field
+                  appearance="outline"
+                  class="example-full-width"
+                  [floatLabel]="'never'"
+                >
+                  <input
+                    matInput
+                    [min]="minDate"
+                    [ngxMatDatetimePicker]="pickers"
+                    [formControl]="addForm.controls['athorizedtimeEnd']"
+                    
+                    matInput
+                    placeholder="{{ 'VISITOR_LIST.AUTHORIZED_TIME_END' | translate }}"
+                    
+                  />
+                  <mat-datepicker-toggle
+                    matSuffix
+                    [for]="pickers"
+                  ></mat-datepicker-toggle>
+                  <ngx-mat-datetime-picker
+                    #pickers
+                    [showSpinners]="true"
+                    [showSeconds]="false"
+                    [enableMeridian]="true"
+                  >
+                    <ng-template>
+                      <span>OK</span>
+                    </ng-template>
+                  </ngx-mat-datetime-picker>
+                </mat-form-field>
+
+
+                <mat-error 
+                *ngIf="addForm.controls['athorizedtimeEnd'].touched && addForm.controls['athorizedtimeEnd'].invalid">
+                 {{ "ADD_UNRETURNED_PASS.ERROR" | translate }}
+                </mat-error>
+                <mat-error *ngIf="submitted && addForm.controls['athorizedtimeEnd'].errors">endTime {{ "VALIDATE.ERROR9" | translate }}</mat-error>
+              </div>
+            </div>
+
+            <!-- <div class="col-md-6 add-feild">
+              <label>{{ "ADD_UNRETURNED_PASS.OVERDUETIME" | translate }}  </label>
+              <div class="form-group">
+                <mat-form-field class="example-full-width" appearance="outline">
+                  <input type="datetime-local"
+                    [formControl]="addForm.controls['overduetime']"  matInput
+                    placeholder="{{ 'VISITOR_LIST.OVERDUE_TIME' | translate }}"
+                  />
+                </mat-form-field>
+              </div>
+            </div> -->
+          </div>
+
+          <div class="row justify-content-end d-flex">
+            <div class="col-md-6 button-save">
+              <label>&nbsp;</label>
+              <div class="justify-content-end d-flex">
+              <button class="btn-style btn-save" mat-raised-button>
+                {{ "VISITOR_LIST.SAVE" | translate }}
+              </button>
+              <button class="btn-style btn-cancel" mat-raised-button routerLink="/report/unreturnedpass">
+                {{ "VISITOR_LIST.CLOSE" | translate }}
+              </button>
+            </div>
+            </div>
+          </div>
+
+
+        </form>
+      </section>
+    </div>
+  </div>
+</section>
+</div>
+<!-- <app-footer></app-footer> -->

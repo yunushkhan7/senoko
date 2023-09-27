@@ -1,0 +1,40 @@
+<!-- <style>
+  .search-b .form-control {
+  width: 185px;
+  height: 40px;
+  padding: 5px 40px;
+  background: var(--odd);
+  border-radius: 5px !important;
+  border: 1px solid var(--border-clr);
+  }
+
+  .search-b .mat-icon {
+    position: absolute;
+    left: 8px;
+    /* z-index: 10; */
+    top: 10px;
+  }
+
+
+
+@media (max-width: 575.98px) {
+  .search-b
+    .form-control{
+      box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px !important;
+    }
+  
+}
+
+
+
+
+</style> -->
+
+
+<div class="adbtn search-b">
+  <div class="input-group search-group">
+    <input type="search" class="form-control" #search (search)="searchAction(search?.value)" [placeholder]="placeholder"
+      aria-label="Search" aria-describedby="search-addon" />
+    <mat-icon (click)="searchAction(search?.value)" matSuffix>search</mat-icon>
+  </div>
+</div>

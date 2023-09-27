@@ -1,0 +1,225 @@
+<div class="green-bg">
+    <section class="visitor-addmision main-page">
+      <div class="container">
+        <div class="visitor-addmission-inner">
+          <h2 class="main-heading">{{ "CHECKIN_STATION.FIRST_NAME" | translate }}</h2>
+          <div class="table-entries-header align-items-start">
+            
+            <div class="show">
+              <button mat-stroked-button color="black" class="btn-back" (click)="goBack()">
+                <mat-icon>arrow_back</mat-icon>
+                {{ "BUTTON.BACK" | translate }}
+              </button>
+            </div>
+
+            <div class="w-100">
+              <form [formGroup]="filterForm">
+                <div class="head-form">
+    
+                  <div class="d-flex-input form-fields">
+                    <mat-label class="input-label">{{'UNRET.TYPE' | translate}}</mat-label>
+                    <mat-form-field appearance="fill">                  
+                    <mat-select placeholder="Select" #select multiple 
+                    formControlName="registerType">
+                    <div class="select-all">
+                        <mat-checkbox  class="mat-option"
+                        [(ngModel)]="allSelected"
+                        [ngModelOptions]="{standalone: true}"
+                        (change)="toggleAllSelection()"
+                        >Select All
+                        </mat-checkbox>
+                    </div>
+                    <mat-option (click)="optionClick(list?.value)" *ngFor="let list of listType" [value]="list?.value">
+                      {{list?.viewValue}}
+                    </mat-option>
+                  </mat-select>
+                    </mat-form-field>
+                  </div>
+      
+                  
+      
+      
+                  <div class="d-flex-input form-fields">
+                    <mat-label class="input-label">{{'UNRET.ORGANISATION_DIVIS' | translate}}</mat-label>
+                    <mat-form-field appearance="fill">
+                      <input type="text" maxlength="100" formControlName="organizationdivision" matInput placeholder="Organization Name" />
+                    </mat-form-field>
+                  </div>
+      
+                  <div class="d-flex-input form-fields">
+                    <mat-label class="input-label">{{'UNRET.STATION_NAME' | translate}}</mat-label>
+                    <mat-form-field appearance="fill">
+                      <input type="text" maxlength="100" formControlName="stationname" 
+                       matInput placeholder="Enter Station Name" />
+                    </mat-form-field>
+                  </div>
+      
+                  <div class="d-flex-input form-fields">
+                    <mat-label class="input-label">{{'UNRET.NAME' | translate}}</mat-label>
+                    <mat-form-field appearance="fill">
+                      <input type="text" formControlName="firstName" maxlength="100" 
+                      matInput placeholder="Enter Name" />
+                    </mat-form-field>
+                  </div>
+      
+                  <div class="d-flex-input form-fields">
+                    <mat-label class="input-label">{{'UNRET.EVENT_TYPE' | translate}}</mat-label>
+                    <mat-form-field appearance="fill">
+                      <input type="text" formControlName="eventtype" maxlength="100" 
+                      matInput placeholder="Enter Type" />
+                    </mat-form-field>
+                  </div>
+      
+      
+      
+      
+                  <div class="d-flex-input form-fields">
+                    <mat-label class="input-label">{{'UNRET.AD_HOC' | translate}}</mat-label>
+                    <mat-form-field appearance="fill">
+                      <mat-select placeholder="Ad-Hoc" formControlName="adHoc">
+                        <mat-option value="1">YES</mat-option>
+                        <mat-option value="0">NO</mat-option>
+                    </mat-select>
+                    </mat-form-field>
+                  </div>
+      
+                  
+      
+      
+                  <div class="d-flex-input form-fields">
+                    <mat-label class="input-label">{{'UNRET.EVENT_TIME' | translate}}</mat-label>
+                    <mat-form-field appearance="fill">
+                      <!-- <mat-label>{{ 'LOGS.DATE' | translate }}</mat-label> -->
+                      <input matInput [ngxMatDatetimePicker]="picker" formControlName="eventtime" placeholder="{{ 'LOGS.DATE' | translate }}">
+                      <!-- <mat-hint>MM/DD/YYYY</mat-hint> -->
+                      <!-- <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+                      <mat-datepicker #picker></mat-datepicker> -->
+                      <mat-datepicker-toggle
+                      matSuffix
+                      [for]="picker"
+                    ></mat-datepicker-toggle>
+                    <ngx-mat-datetime-picker
+                      #picker
+                      [showSpinners]="true"
+                      [showSeconds]="false"
+                      [enableMeridian]="true"
+                    >
+                      <ng-template>
+                        <span>OK</span>
+                      </ng-template>
+                    </ngx-mat-datetime-picker>
+                    </mat-form-field>
+                  </div>  
+      
+                  <div class="text-right-dsp item2">
+                    <button mat-stroked-button class="btn-refresh" (click)="clearForm()">
+                      {{'UNRET.REFRESH' | translate}}
+                    </button>
+                    <button mat-stroked-button class="btn-search" [disabled]="!filterForm.dirty" (click)="filterSearch($event)">
+                      {{'UNRET.SEARCH' | translate}}
+                    </button>
+                  </div>
+
+      
+                </div>
+              </form>
+
+
+            <div class="filters">
+              <!-- <button class="d-flex align-items-center" routerLink="/report/add-check-in-station"><mat-icon>add</mat-icon> {{ "ADD_EXCEL.ADD" | translate }} </button> -->
+              <button (click)="DownloadExcel()" *ngIf="checkInStationList?.length">
+                <span><img src="assets/images/excel.svg" /></span>
+                {{ "ADD_EXCEL.EXPORT_TO" | translate }}
+              </button>
+              <form [formGroup]="form">
+                <mat-form-field appearance="fill">
+                  <mat-label><img src="assets/images/filter.svg" /> &nbsp;
+                    {{ "VISITOR_LIST.FILTER" | translate }}</mat-label>
+                  <mat-select placeholder="Filter" formControlName="model" multiple>
+                    <mat-checkbox class="mat-option" 
+                    [indeterminate]="isIndeterminate()" 
+                    [checked]="isChecked()" 
+                    (click)="$event.stopPropagation()"
+                    (change)="toggleSelection($event)">
+                    Select All
+                   </mat-checkbox> <hr>
+                    <ng-container *ngFor="let list of items; index as i">
+                      <mat-option               
+                      (click)="selectCol(list?.viewValue,i)"
+                      [value]="list?.viewValue"
+                      >{{list.viewValue}}</mat-option>                
+                    </ng-container>
+                  </mat-select>
+                </mat-form-field>
+              </form>
+    
+            </div>
+            </div>
+          </div>
+    
+          <section class="visitor-list">
+            <div class="table-responsive" *ngIf="permissionObject?.list">
+            <table class="table table-striped table-w">
+              <thead>
+                <tr>
+                  <th scope="col">{{ "VISITOR_LIST.SN" | translate }}</th>
+                  <th scope="col"  *ngIf="FirstName">{{ "VISITOR_LIST.NAME" | translate }} <img (click)="sortData('firstName')" src="assets/images/sort.png"></th>
+                  <th scope="col" *ngIf="IDNumber">{{ "VISITOR_LIST.ID" | translate }} <img (click)="sortData('IDNumber')" src="assets/images/sort.png"></th>
+                  <th scope="col" *ngIf="CardNo">{{ "VISITOR_LIST.CARDS" | translate }} <img (click)="sortData('CardNo')" src="assets/images/sort.png"></th>
+                  <th scope="col" *ngIf="RegisterType">{{ "VISITOR_LIST.TYPE" | translate }} <img (click)="sortData('RegisterType')" src="assets/images/sort.png"></th>
+                  <th scope="col" *ngIf="organizationdivision">{{ "ATTENDANCE.ORGANISATION" | translate }} <img (click)="sortData('organizationdivision')" src="assets/images/sort.png"></th>
+                  <th scope="col" *ngIf="visitworktype">{{ "VISITOR_LIST.VISIT_WORK_TYPE" | translate }} <img (click)="sortData('visitworktype')" src="assets/images/sort.png"></th>
+                  <th scope="col" *ngIf="approvedstarttime">{{ "ATTENDANCE.APPROVED_START_TIME" | translate }} <img (click)="sortData('approvedstarttime')" src="assets/images/sort.png"> </th>
+                  <th scope="col" *ngIf="approvedendtime">{{ "ATTENDANCE.APPROVE_END_TIME" | translate }} <img (click)="sortData('approvedendtime')" src="assets/images/sort.png"> </th>
+                  <th scope="col" *ngIf="Host">{{ "ATTENDANCE.HOST" | translate }} <img (click)="sortData('Host')" src="assets/images/sort.png"> </th>
+                  <th scope="col" *ngIf="stationname">{{ "VISITOR_LIST.STATION_NAME" | translate }} <img (click)="sortData('stationname')" src="assets/images/sort.png"></th>
+                  <th scope="col" *ngIf="Eventtype">{{ "VISITOR_LIST.EVENT_TYPE" | translate }} <img (click)="sortData('Eventtype')" src="assets/images/sort.png"></th>
+                  <th scope="col" *ngIf="Eventtime">{{ "VISITOR_LIST.EVENT_TIME" | translate }} <img (click)="sortData('Eventtime')" src="assets/images/sort.png"></th>
+                  <th scope="col" *ngIf="SSAmember">{{ "VISITOR_LIST.SSA_MEMBER" | translate }} <img (click)="sortData('SSAmember')" src="assets/images/sort.png"></th>
+                  <th scope="col" *ngIf="MOMverified">{{ "VISITOR_LIST.MOM" | translate }} <img (click)="sortData('MOMverified')" src="assets/images/sort.png"></th>
+                  <th scope="col" *ngIf="overridenby">{{ "VISITOR_LIST.OVERRIDDEN" | translate }} <img (click)="sortData('overridenby')" src="assets/images/sort.png"></th>
+                </tr>
+              </thead>
+              <tbody *ngIf="checkInStationList?.length && permissionObject?.list">
+                <tr *ngFor="let checkInStationList of checkInStationList;let i=index">
+                  <td>{{checkInStationList?.sNo}}</td>
+                  <td *ngIf="FirstName">{{checkInStationList?.firstName}}</td>
+                  <td *ngIf="IDNumber">{{checkInStationList?.idNumber}}</td>
+                  <td *ngIf="CardNo">{{checkInStationList?.cardNo}}</td>
+                  <td *ngIf="RegisterType">{{checkInStationList?.registerType}}</td>
+                  <td *ngIf="organizationdivision">{{checkInStationList?.organizationdivision}}</td>
+                  <td *ngIf="visitworktype">{{checkInStationList?.visitworktype}}</td>
+                  <td *ngIf="approvedstarttime">{{checkInStationList?.approvedstarttime | date:'medium'}}</td>
+                  <td *ngIf="approvedendtime">{{checkInStationList?.approvedendtime | date:'medium'}}</td>
+                  <td *ngIf="Host">{{checkInStationList?.host}}</td>
+                  <td *ngIf="stationname">{{checkInStationList?.stationname}}</td>
+                  <td *ngIf="Eventtype">{{checkInStationList?.eventtype}}</td>
+                  <td *ngIf="Eventtime">{{checkInStationList?.eventtime | date:'medium'}}</td>
+                  <td *ngIf="SSAmember">{{checkInStationList?.ssAmember ? 'YES':'NO'}}</td>
+                  <td *ngIf="MOMverified">{{checkInStationList?.moMverified ? 'YES':'NO'}}</td>
+                  <td *ngIf="overridenby">{{(checkInStationList?.overridenby) ? checkInStationList?.overridenby : 'N/A'}}</td>
+                </tr>
+
+              </tbody>
+              <ng-container *ngIf="!checkInStationList?.length">
+                <tr>
+                  <td colspan="16">
+                <p class="datafound">{{'PROFILE.NO_DATA' | translate}} </p>
+              </td>
+            </tr>
+              </ng-container>
+            </table>
+          </div>
+    
+          <div class="all-paginator" *ngIf="checkInStationList?.length && permissionObject?.list">
+            <pagination [paginationList]="pagination" [selectedPageLimit]="currentPageLimit"
+            [currentPage]="currentPage" (onPageChange)="getPage($event)" [lastPage]="lastpage">
+          </pagination>
+          </div>
+          </section>
+        </div>
+      </div>
+    </section>
+    </div>
+    
+    <!-- <app-footer></app-footer> -->

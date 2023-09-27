@@ -1,0 +1,191 @@
+<div class="green-bg">
+<section class="visitor-addmision main-page">
+    <div class="container">
+      <div class="visitor-addmission-inner">
+        <h2 class="main-heading">{{ "VISITOR_LIST.ROLL_CALL" | translate }}</h2>
+        <div class="table-entries-header align-items-start">
+          <div class="show">
+
+            <button mat-stroked-button color="black" class="btn-back" (click)="goBack()">
+              <mat-icon>arrow_back</mat-icon>
+              {{ "BUTTON.BACK" | translate }}
+            </button>
+          </div>
+
+          <div class="w-100">
+            <form [formGroup]="filterForm">
+              <div class="head-form">
+
+                <div class="d-flex-input form-fields">
+                  <mat-label class="input-label">{{'UNRET.TYPE' | translate}}</mat-label>
+                  <mat-form-field appearance="fill">                  
+                  <mat-select placeholder="Select" #select multiple 
+                  formControlName="registerType">
+                  <div class="select-all">
+                      <mat-checkbox  class="mat-option"
+                      [(ngModel)]="allSelected"
+                      [ngModelOptions]="{standalone: true}"
+                      (change)="toggleAllSelection()"
+                      >Select All
+                      </mat-checkbox>
+                  </div>
+                  <mat-option (click)="optionClick(list?.value)" *ngFor="let list of listType" [value]="list?.value">
+                    {{list?.viewValue}}
+                  </mat-option>
+                </mat-select>
+                  </mat-form-field>
+                </div>
+  
+                
+  
+  
+                <div class="d-flex-input form-fields">
+                  <mat-label class="input-label">{{'UNRET.ORGANISATION_DIVIS' | translate}}</mat-label>
+                  <mat-form-field appearance="fill">
+                    <input type="text" formControlName="organizationdivision" maxlength="100" matInput placeholder="Organization Name" />
+                  </mat-form-field>
+                </div>
+  
+                <div class="d-flex-input form-fields">
+                  <mat-label class="input-label">{{'UNRET.ROLL_CALL_G' | translate}}</mat-label>
+                  <mat-form-field appearance="fill">
+                    <input type="text" formControlName="rollcallgroup" maxlength="100" 
+                    matInput placeholder="Enter Value" />
+                  </mat-form-field>
+                </div>
+  
+                <div class="d-flex-input form-fields">
+                  <mat-label class="input-label">{{'UNRET.NAME' | translate}}</mat-label>
+                  <mat-form-field appearance="fill">
+                    <input type="text" formControlName="firstName" maxlength="100" matInput 
+                    placeholder="Enter Name" />
+                  </mat-form-field>
+                </div>
+  
+                <div class="d-flex-input form-fields">
+                  <mat-label class="input-label">{{'UNRET.BCP_TEAM' | translate}}</mat-label>
+                  <mat-form-field appearance="fill">
+                    <input type="text" formControlName="bcPteam" maxlength="100" matInput placeholder="Enter BCP Team" />
+                  </mat-form-field>
+                </div>
+  
+  
+                <div class="d-flex-input form-fields">
+                  <mat-label class="input-label">{{'UNRET.LAST_EVENT_LOCATION' | translate}}</mat-label>
+                  <mat-form-field appearance="fill">
+                    <input type="text" formControlName="lasteventlocation" maxlength="100" matInput 
+                    placeholder="Location" />
+                  </mat-form-field>
+                </div>
+  
+                <div class="text-right-dsp item2">
+                  <button mat-stroked-button class="btn-refresh" (click)="clearForm()">
+                    {{'UNRET.REFRESH' | translate}}
+                  </button>
+                  <button mat-stroked-button class="btn-search" [disabled]="!filterForm.dirty" (click)="filterSearch($event)">
+                    {{'UNRET.SEARCH' | translate}}
+                  </button>
+                </div>
+
+  
+              </div>
+            </form>
+
+
+          <div class="filters">
+            <!-- <button class="d-flex align-items-center" routerLink="/report/add-roll-call"><mat-icon>add</mat-icon> {{ "ADD_EXCEL.ADD" | translate }}  </button> -->
+            <button (click)="DownloadExcelRollCall()" *ngIf="rollCallList?.length" class="emergency-btn">
+              <span><img src="assets/images/emergency.png" /></span>
+              {{ "ADD_EXCEL.EXPORT_TO_ROLL" | translate }}
+            </button>
+
+            <button (click)="DownloadExcel()" *ngIf="rollCallList?.length">
+              <span><img src="assets/images/excel.svg" /></span>
+              {{ "ADD_EXCEL.EXPORT_TO" | translate }}
+            </button>
+            <form [formGroup]="form">
+              <mat-form-field appearance="fill">
+                <mat-label><img src="assets/images/filter.svg" /> &nbsp;
+                  {{ "VISITOR_LIST.FILTER" | translate }}</mat-label>
+                <mat-select placeholder="Filter" formControlName="model" multiple>
+                  <mat-checkbox class="mat-option" 
+                  [indeterminate]="isIndeterminate()" 
+                  [checked]="isChecked()" 
+                  (click)="$event.stopPropagation()"
+                  (change)="toggleSelection($event)">
+                  Select All
+                 </mat-checkbox> <hr>
+                  <ng-container *ngFor="let list of items; index as i">
+                    <mat-option               
+                    (click)="selectCol(list?.viewValue,i)"
+                    [value]="list?.viewValue"
+                    >{{list.viewValue}}</mat-option>                
+                  </ng-container>
+                </mat-select>
+              </mat-form-field>
+            </form>
+          </div>
+          </div>
+        </div>
+  
+        <section class="visitor-list">
+          <div class="table-responsive" *ngIf="permissionObject?.list">
+          <table class="table table-striped table-w">
+            <thead>
+              <tr>
+                <th scope="col">{{ "VISITOR_LIST.SN" | translate }}</th>
+                <th scope="col" *ngIf="FirstName">{{ "VISITOR_LIST.NAME" | translate }} <img (click)="sortData('firstName')" src="assets/images/sort.png"></th>
+                <th scope="col" *ngIf="CardNo">{{ "VISITOR_LIST.CARDS" | translate }} <img (click)="sortData('CardNo')" src="assets/images/sort.png"></th>
+                <th scope="col" *ngIf="RegisterType">{{ "VISITOR_LIST.TYPE" | translate }} <img (click)="sortData('RegisterType')" src="assets/images/sort.png"></th>
+                <th scope="col" *ngIf="organizationdivision">{{ "ATTENDANCE.ORGANISATION" | translate }} <img (click)="sortData('organizationdivision')" src="assets/images/sort.png"></th>
+                <th scope="col" *ngIf="Section">{{ "ATTENDANCE.SECTION" | translate }} <img (click)="sortData('Section')" src="assets/images/sort.png"> </th>
+                <th scope="col" *ngIf="Host">{{ "ATTENDANCE.HOST" | translate }} <img (click)="sortData('Host')" src="assets/images/sort.png"> </th>
+                <th scope="col" *ngIf="BCPteam">{{ "ATTENDANCE.BCP_TEAM" | translate }} <img (click)="sortData('BCPteam')" src="assets/images/sort.png"> </th>
+                <th scope="col" *ngIf="Rollcallgroup">{{ "ENTRY_REPORT.ROLL_CALL_GROUP" | translate }} <img (click)="sortData('Rollcallgroup')" src="assets/images/sort.png"> </th>
+                <th scope="col" *ngIf="lasteventlocation">{{ "VISITOR_LIST.LAST-EVENT-LOCATION" | translate }} <img (click)="sortData('lasteventlocation')" src="assets/images/sort.png"></th>
+                <th scope="col" *ngIf="lasteventon">{{ "VISITOR_LIST.LAST_EVENT_ON" | translate }} <img (click)="sortData('lasteventon')" src="assets/images/sort.png"></th>
+                <th scope="col">{{ "VISITOR_LIST.ACTION" | translate }}</th>
+              </tr>
+            </thead>
+            <tbody *ngIf="rollCallList?.length && permissionObject?.list">
+              <tr *ngFor="let rollCallList of rollCallList;let i=index">
+                <td>{{rollCallList?.sNo}}</td>
+                <td *ngIf="FirstName">{{rollCallList?.name}}</td>
+                <td *ngIf="CardNo">{{rollCallList?.cardNo}}</td>
+                <td *ngIf="RegisterType">{{rollCallList?.registerType}}</td>
+                <td *ngIf="organizationdivision">{{rollCallList?.organizationdivision}}</td>
+                <td *ngIf="Section">{{rollCallList?.section}}</td>
+                <td *ngIf="Host">{{rollCallList?.host}}</td>
+                <td *ngIf="BCPteam">{{rollCallList?.bcPteam}}</td>
+                <td *ngIf="Rollcallgroup">{{rollCallList?.rollcallgroup}}</td>
+                <td *ngIf="lasteventlocation">{{rollCallList?.lasteventlocation}}</td>
+                <td *ngIf="lasteventon">{{rollCallList?.lasteventon | date:'medium'}}</td>
+                <td>
+                    <button class="checkout" type="button" 
+                     (click)="getRegistrationByIdCheckOut(rollCallList?.id)">
+                      Check-out
+                    </button>
+                </td>
+              </tr>
+
+            </tbody>
+            <ng-container *ngIf="!rollCallList?.length">
+              <tr>
+                <td colspan="12">
+              <p class="datafound">{{'PROFILE.NO_DATA' | translate}} </p>
+            </td>
+          </tr>
+            </ng-container>
+          </table>
+        </div>
+
+        <div class="all-paginator" *ngIf="rollCallList?.length && permissionObject?.list">
+          <pagination [paginationList]="pagination" [selectedPageLimit]="currentPageLimit"
+          [currentPage]="currentPage" (onPageChange)="getPage($event)" [lastPage]="lastpage"></pagination>
+        </div>
+        </section>
+      </div>
+    </div>
+  </section>
+</div> 
+  <!-- <app-footer></app-footer> -->

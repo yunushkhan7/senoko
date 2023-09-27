@@ -1,0 +1,172 @@
+<div class="green-bg">
+<section class="visitor-addmision main-page">
+  <div class="container">
+    <div class="visitor-addmission-inner">
+      <section class="visitor-list">
+        <h2>{{ "ADD_MONTHLY.ADD_MON" | translate }}</h2>
+
+        <form class="addusers" [formGroup]="addForm" (ngSubmit)="submitForm()">
+          <div class="row">
+            <div class="col-md-6 add-feild">
+              <label>{{ "ADD_MONTHLY.FULLNAME" | translate }} </label>
+              <div class="form-group">
+                <mat-form-field class="example-full-width" appearance="outline">
+                  <input type="text" maxlength="100"
+                    onkeypress="return String.fromCharCode(event.charCode).match(/[^a-zA-Z]/g) === null"
+                    [formControl]="addForm.controls['firstName']"  matInput
+                    placeholder="{{ 'ADD-UNRET.NAME' | translate }}"
+                  />
+                </mat-form-field>
+                <mat-error *ngIf="submitted && addForm.controls['firstName'].errors">firstName {{ "VALIDATE.ERROR9" | translate }}</mat-error>
+              </div>
+            </div>
+            <div class="col-md-6 add-feild">
+              <label>{{ "ADD_MONTHLY.NRIC_PASS" | translate }} </label>
+              <div class="form-group">
+                <mat-form-field class="example-full-width" appearance="outline">
+                  <input maxlength="16"
+                    onkeypress="return String.fromCharCode(event.charCode).match(/[^a-zA-Z0-9]/g) === null"
+                    [formControl]="addForm.controls['nric_passportnumber']"  matInput
+                    placeholder="{{ 'ADD-UNRET.PASSNUMBER' | translate }}"
+                    type="text"
+                  />
+                </mat-form-field>
+                <mat-error *ngIf="submitted && addForm.controls['nric_passportnumber'].errors">passportnumber {{ "VALIDATE.ERROR9" | translate }}</mat-error>
+              </div>
+            </div>
+            <div class="col-md-6 add-feild">
+              <label>{{ "ADD_MONTHLY.AGE" | translate }}</label>
+              <div class="form-group">
+                <mat-form-field class="example-full-width" appearance="outline">
+                  <input required  maxlength="3"
+                    onkeypress="return String.fromCharCode(event.charCode).match(/[^0-9]/g) === null"
+                    [formControl]="addForm.controls['age']"  matInput
+                    placeholder="{{ 'ADDMONTHLYENTR.AGE' | translate }}"
+                  />
+                </mat-form-field>
+                <mat-error *ngIf="submitted && addForm.controls['age'].errors">{{ "VALIDATE.ERROR" | translate }}</mat-error>
+              </div>
+            </div>
+            <div class="col-md-6 add-feild">
+              <label>{{ "ADD_MONTHLY.COMPANY_NAME" | translate }}</label>
+              <div class="form-group">
+                <mat-form-field class="example-full-width" appearance="outline">
+                  <input type="text" maxlength="100"
+                    onkeypress="return String.fromCharCode(event.charCode).match(/[^a-zA-Z]/g) === null"
+                    [formControl]="addForm.controls['companyName']" onlyCharacters matInput
+                    placeholder="{{ 'ADD-UNRET.AGE' | translate }}"
+                  />
+                </mat-form-field>
+                <mat-error *ngIf="submitted && addForm.controls['companyName'].errors">companyName {{ "VALIDATE.ERROR9" | translate }}</mat-error>
+              </div>
+            </div>
+
+            <div class="col-md-6 add-feild">
+              <label>{{ "ADD_UNRETURNED_PASS.TYPE" | translate }} </label>
+              <div class="form-group">
+                <mat-form-field appearance="outline" class="w-100">
+                  <mat-select placeholder="Select Type" [formControl]="addForm.controls['registerType']">
+                      <mat-option value="Visitor">{{'VISITOR_LIST.VISIT' | translate}} </mat-option>
+                      <mat-option value="Contractor"> {{'VISITOR_LIST.CONTRACTOR' | translate}} </mat-option>
+                      <mat-option value="Employee"> {{'VISITOR_LIST.EMPLOYEE' | translate}} </mat-option>
+                  </mat-select>
+                </mat-form-field>
+                <mat-error *ngIf="submitted && addForm.controls['registerType'].errors">Type {{ "VALIDATE.ERROR9" | translate }}</mat-error>
+              </div>
+            </div>
+
+            <div class="col-md-6 add-feild">
+              <label>{{ "ADD_MONTHLY.EMA_DATE" | translate }}</label>
+              <div class="form-group">
+                <!-- <mat-form-field class="example-full-width" appearance="outline">
+                  <input type="datetime-local"
+                    [formControl]="addForm.controls['emA_Expiry_Date']"  matInput
+                    placeholder="{{ 'ADDMONTHLYENTR.EMAEXPDATE' | translate }}"
+                  />
+                </mat-form-field> -->
+                <mat-form-field appearance="outline" class="w-100" [floatLabel]="'never'">
+                  <input matInput [ngxMatDatetimePicker]="picker"
+                  [formControl]="addForm.controls['emA_Expiry_Date']"  
+                  placeholder="{{ 'ADDMONTHLYENTR.EMAEXPDATE' | translate }}"
+                    [readonly]="true"
+                    >
+                 <mat-datepicker-toggle matSuffix [for]="picker"
+                  ></mat-datepicker-toggle>
+                 <ngx-mat-datetime-picker #picker
+                 [showSpinners]="true" [showSeconds]="false" [enableMeridian]="true">
+                 <ng-template>
+                  <span >OK</span>
+                </ng-template>
+                 </ngx-mat-datetime-picker>
+                </mat-form-field>
+                <mat-error *ngIf="submitted && addForm.controls['emA_Expiry_Date'].errors">Date {{ "VALIDATE.ERROR9" | translate }}</mat-error>
+              </div>
+            </div>
+            <div class="col-md-6 add-feild">
+              <label>{{ "ADD_MONTHLY.SIC_EXPIRY_DATE" | translate }} </label>
+              <div class="form-group">
+                <!-- <mat-form-field class="example-full-width" appearance="outline">
+                  <input type="datetime-local"
+                    [formControl]="addForm.controls['siC_Expiry_Date']"  matInput
+                    placeholder="{{ 'ADDMONTHLYENTR.SICEXPDATE' | translate }}"
+                  />
+                </mat-form-field> -->
+                <mat-form-field appearance="outline" class="w-100" [floatLabel]="'never'">
+                  <input matInput [ngxMatDatetimePicker]="picker2"
+                  [formControl]="addForm.controls['siC_Expiry_Date']"  
+                  placeholder="{{ 'ADDMONTHLYENTR.SICEXPDATE' | translate }}"
+                    [readonly]="true"
+                    >
+                 <mat-datepicker-toggle matSuffix [for]="picker2"
+                  ></mat-datepicker-toggle>
+                 <ngx-mat-datetime-picker #picker2
+                 [showSpinners]="true" [showSeconds]="false" [enableMeridian]="true">
+                 <ng-template>
+                  <span >OK</span>
+                </ng-template>
+                 </ngx-mat-datetime-picker>
+                </mat-form-field>
+                <mat-error *ngIf="submitted && addForm.controls['siC_Expiry_Date'].errors">Date {{ "VALIDATE.ERROR9" | translate }}</mat-error>
+              </div>
+            </div>
+            <!-- <div class="col-md-6 add-feild">
+              <label>{{ "ADD_MONTHLY.ACTIONS" | translate }} </label>
+              <div class="form-group">
+                <div class="form-group">
+                  <mat-form-field appearance="outline">
+                    <select matNativeControl required>
+                      <option value="volvo">
+                        {{ "ADD_MONTHLY.ACCEPT" | translate }}
+                      </option>
+                      <option value="saab">
+                        {{ "ADD_MONTHLY.REJECT" | translate }}
+                      </option>
+                    </select>
+                  </mat-form-field>
+                </div>
+              </div>
+            </div> -->
+          </div>
+
+          <div class="row justify-content-end d-flex">
+            <div class="col-md-6 button-save">
+              <label>&nbsp;</label>
+              <div class="justify-content-end d-flex">
+              <button class="btn-style btn-save" mat-raised-button>
+                {{ "VISITOR_LIST.SAVE" | translate }}
+              </button>
+              <button class="btn-style btn-cancel" mat-raised-button routerLink="/report/monthly-employee">
+                {{ "VISITOR_LIST.CLOSE" | translate }}
+              </button>
+            </div>
+            </div>
+          </div>
+
+
+        </form>
+      </section>
+    </div>
+  </div>
+</section>
+</div>
+<!-- <app-footer></app-footer> -->

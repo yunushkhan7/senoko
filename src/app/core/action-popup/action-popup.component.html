@@ -1,0 +1,97 @@
+<div class="delet-popup text-center">
+  <!-- Delete -->
+  <ng-container *ngIf="data?.isDelete">
+    <img src="assets/images/delete-icon.svg">
+    <h3> {{"ACTIONPOPUP.DELETE_WARNING" | translate}} <br>{{data?.name ?  data?.name : data?.deletedData}} ? </h3>
+    <div class="text-center double-button">
+      <button (click)="onDelete()" class="blue-btn">{{'COMMON.BUTTON.DELETE' | translate}}</button>
+      <button class="blue-line-btn" (click)="close()" mat-button mat-dialog-close>Cancel</button>
+    </div>
+  </ng-container>
+
+  <!-- Is-Success Popup -->
+  <ng-container *ngIf="data?.isSuccess" class="sucess">
+    <img src="assets/images/successIcon.png">
+    <h3 *ngIf="data.status == 'Ok'">{{"ACTIONPOPUP.DELETE_SUCCESS" | translate}}</h3>
+    <h3 *ngIf="data.status == 'Error'">{{data?.message}}</h3>
+    <div class="text-center">
+      <button class="blue-line-btn" (click)="close()" mat-button mat-dialog-close>{{'COMMON.BUTTON.OK' |
+        translate}}</button>
+    </div>
+  </ng-container>
+
+  <!-- Suspend -->
+  <ng-container *ngIf="data?.isSuspend">
+    <img src="assets/images/errorIcon.png">
+    <h3>Are you sure you want to {{data?.suspendFlag ? 'suspend' : 'activate'}} <br>{{data?.name}} ?</h3>
+    <div class="text-center">
+      <button (click)="onDelete()" class="blue-btn">Yes</button>
+      <button class="blue-line-btn" (click)="close()" mat-button mat-dialog-close>Cancel</button>
+    </div>
+  </ng-container>
+
+  <!-- isSessionTimeOut -->
+  <ng-container *ngIf="data?.isSessionTimeOut" class="session">
+    <img src="assets/images/timer-out.png">
+    <h3>{{"ACTIONPOPUP.SESSIONPOPUP" | translate}} </h3>
+    <div class="text-center">
+      <button (click)="closed()" mat-dialog-close class="blue-btn">OK</button>
+    </div>
+  </ng-container>
+
+  <!-- Forgot-password -->
+ 
+  <ng-container *ngIf="data?.isEmailSent" class="session">
+    <div class="delete-sucess">
+    <img src="assets/images/successIcon.png">
+    <h3>{{"ACTIONPOPUP.GETLINK" | translate}}</h3>
+    <div class="text-center">
+      <button (click)="close()" mat-dialog-close class="blue-btn ok">OK</button>
+    </div>
+  </div>
+  </ng-container>
+
+
+  <!-- Token Expired -->
+  <ng-container *ngIf="data?.TokenExpired" class="session">
+    <img src="assets/images/errorIcon.png">
+    <h3>{{"ACTIONPOPUP.TOKENPOPUP" | translate}}</h3>
+    <div class="text-center">
+      <button (click)="close()" mat-dialog-close class="blue-btn">OK</button>
+    </div>
+  </ng-container>
+
+    <!-- User Blocked-->
+    <ng-container *ngIf="data?.Blocked" class="session">
+      <img src="assets/images/errorIcon.png">
+      <h3>Your account has been Blocked contact your Super Admin</h3>
+      <div class="text-center">
+        <button (click)="close()" mat-dialog-close class="blue-btn">OK</button>
+      </div>
+    </ng-container>
+
+
+
+      <!-- ACS SERVER OFFLINE-->
+    <!-- <ng-container *ngIf="data?.Offline" class="session">
+      <section>
+        <div class="acs-server-popup">
+          <div class="circle bg-red">
+            <mat-icon>close</mat-icon>
+          </div>
+          <div class="content">
+              <h3> {{'USER-ACCESS-GROUP.OFFLINE' | translate}} </h3>
+          </div>
+          <div class="btn-div">
+              <div>
+                <button (click)="closed()" mat-dialog-close class="blue-btn">
+                  {{'USER-ACCESS-GROUP.OK' | translate}}
+                </button>
+              </div>
+          </div>
+      </div>
+      </section>
+    </ng-container> -->
+
+
+</div>

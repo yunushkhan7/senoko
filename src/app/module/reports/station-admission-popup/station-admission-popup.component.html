@@ -1,0 +1,123 @@
+<div class="sation_admission">
+  <section class="popup-box">
+    <div class="register-inner">
+      <div class="registartion">
+        <h3>{{ "STATION.TITLE" | translate }}</h3>
+      </div>
+      <div class="ex">
+        <button mat-button mat-dialog-close>X</button>
+      </div>
+    </div>
+
+    <div class="contactor">
+      <h4>{{ "STATION.ADMISSION" | translate }}</h4>
+      <p>{{ "STATION.SUBTITLE" | translate }}</p>
+
+      <div class="min">
+        <div class="form-group">
+          <label>{{ "STATION.REF_NUMBER" | translate }}</label>
+          <mat-form-field class="w-100" appearance="outline">
+            <input matInput placeholder="Enter Reference Number" />
+          </mat-form-field>
+        </div>
+        <div class="form-group">
+          <label>{{ "STATION.COMPANY_NAME" | translate }}</label>
+          <mat-form-field class="w-100" appearance="outline">
+            <mat-select placeholder="Select Company Name" name="food">
+              <mat-option *ngFor="let food of foods" [value]="food.value">
+                {{ food.viewValue }}
+              </mat-option>
+            </mat-select>
+          </mat-form-field>
+        </div>
+        <div class="form-group">
+          <label>{{ "STATION.ADMISSION_REQUEST" | translate }}</label>
+          <mat-form-field class="w-100" appearance="outline">
+            <mat-select placeholder="Select Admission Request" name="food">
+              <mat-option *ngFor="let food of foods" [value]="food.value">
+                {{ food.viewValue }}
+              </mat-option>
+            </mat-select>
+          </mat-form-field>
+        </div>
+        <div class="form-group">
+          <label>{{ "STATION.AREA_WORK" | translate }}</label>
+          <mat-form-field class="w-100" appearance="outline">
+            <input matInput placeholder="Enter Area Work" />
+          </mat-form-field>
+        </div>
+        <div class="row mb-3">
+          <div class="form-group col-6">
+            <label>{{ "STATION.DATE_WORK" | translate }}</label>
+            <mat-form-field class="w-100" appearance="outline">
+              <mat-select placeholder="Select Start Date Work" name="food">
+                <mat-option *ngFor="let food of foods" [value]="food.value">
+                  {{ food.viewValue }}
+                </mat-option>
+              </mat-select>
+            </mat-form-field>
+          </div>
+          <div class="form-group col-6">
+            <label> &nbsp; </label>
+            <mat-form-field class="w-100" appearance="outline">
+              <mat-select placeholder="Select Start End Work" name="food">
+                <mat-option *ngFor="let food of foods" [value]="food.value" placeholder="Select End date of Work">
+                  {{ food.viewValue }}
+                </mat-option>
+              </mat-select>
+            </mat-form-field>
+          </div>
+        </div>
+        <div class="row mb-3">
+          <div class="form-group col-6">
+            <label>{{ "STATION.DURATION_WORK" | translate }}</label>
+            <mat-form-field class="w-100" appearance="outline">
+              <mat-select placeholder="Select Start Time Work" name="food">
+                <mat-option *ngFor="let food of foods" [value]="food.value">
+                  {{ food.viewValue }}
+                </mat-option>
+              </mat-select>
+            </mat-form-field>
+          </div>
+          <div class="form-group col-6">
+            <label>
+              {{ "STATION.PRESENCE" | translate }}
+            </label>
+            <mat-form-field class="w-100" appearance="outline">
+              <mat-select placeholder="Select End Time Work" name="food">
+                <mat-option *ngFor="let food of foods" [value]="food.value">
+                  {{ food.viewValue }}
+                </mat-option>
+              </mat-select>
+            </mat-form-field>
+          </div>
+        </div>
+        <div class="form-group mb-3">
+          <label>{{ "STATION.CHARGE_EMAIL" | translate }}</label>
+          <mat-form-field class="w-100" appearance="outline">
+            <input matInput placeholder="Enter Charge Email" />
+          </mat-form-field>
+        </div>
+        <div class="row">
+          <div class="form-group col-6">
+            <label>{{ "STATION.HSO" | translate }}</label>
+            <mat-form-field class="w-100" appearance="outline">
+              <input matInput placeholder="Enter Athuorised Officer" />
+            </mat-form-field>
+          </div>
+          <div class="form-group col-6">
+            <label>{{ "STATION.SECTION" | translate }}</label>
+            <mat-form-field class="w-100" appearance="outline">
+              <input matInput placeholder="Enter Section / Department" />
+            </mat-form-field>
+          </div>
+        </div>
+
+        <div class="continue">
+          <button mat-button>{{ "STATION.REGISTER" | translate }}</button>
+          <img class="conti-arrow" src="assets/images/continue-arrow.svg" alt="arrow" />
+        </div>
+      </div>
+    </div>
+  </section>
+</div>

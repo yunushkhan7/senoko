@@ -1,0 +1,64 @@
+<!-- <div class="head-form" *ngIf="testPopUp == 'test'">
+    <form [formGroup]="addForm">
+        <div class="d-flex-input form-fields">
+            <mat-label class="input-label">{{'MOM_API.INPUTTESTCARD' | translate}}</mat-label>
+            <mat-form-field appearance="fill">
+                <input type="text" [formControl]="addForm.controls['cardNo']" maxlength="100"
+                 matInput placeholder="Text" />
+            </mat-form-field>
+        </div>
+    
+        <div class="btn-div">
+            <div>
+                <button mat-stroked-button class="btn-h-w btn-blue" 
+                (click)="testSSAConnection()">
+                    {{'MOM_API.OK' | translate}}
+                </button>
+            </div>
+        </div>
+    </form>
+</div> -->
+
+
+
+
+<ng-container  *ngIf="testPopUp == 'test'">
+    <mat-dialog-content class="dialog-main">
+        <div class="container-fluid">
+
+            <div class="acs-server-popup">
+                <div class="circle bg-green">
+                  <mat-icon>done</mat-icon>
+                </div>
+                <div class="content">
+                    <h3>{{'SSA_INTEGRATION.SSA_DB' | translate}}</h3>
+                </div>
+                <div class="actions">
+                  <button class="btn-h-w btn-green" type="button" mat-dialog-close mat-raised-button> {{'ACS_SETTINGS.POPUP_BUTTON' | translate}} </button>
+                </div>
+              </div>
+
+        </div>
+    </mat-dialog-content>
+
+</ng-container>
+
+<ng-container  *ngIf="testPopUp2 == 'test2'">
+    <mat-dialog-content class="dialog-main">
+        <div class="container-fluid">
+
+            <div class="acs-server-popup">
+                <div class="circle bg-red">
+                  <mat-icon>close</mat-icon>
+                </div>
+                <div class="content">
+                    <h3> {{'SSA_INTEGRATION.SSA_DB_FAIL' | translate}}</h3>
+                </div>
+                <div class="actions">
+                  <button class="btn-h-w btn-green" type="button" mat-dialog-close mat-raised-button> {{'ACS_SETTINGS.POPUP_BUTTON' | translate}} </button>
+                </div>
+              </div>
+
+        </div>
+    </mat-dialog-content>
+</ng-container>

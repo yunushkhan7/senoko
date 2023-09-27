@@ -1,0 +1,216 @@
+
+<div class="green-bg">
+<section class="main-page" *ngIf="permissionObject?.list">
+            <!-- <div class="row m-0 mt-2">
+                <div class="col-md-3 admin-brdcmb mt-0">
+                    <nav aria-label="breadcrumb">
+                        <ol class="breadcrumb">
+                            <li class="breadcrumb-item">
+                                <a routerLink="/dashboard"> {{'COMMON.HOME' | translate}} </a>
+                            </li>
+                            <li class="breadcrumb-item active" aria-current="page"> {{'ACS_SETTINGS.ACS_SERVER' |
+                                translate}} </li>
+                        </ol>
+                    </nav>
+                </div>
+            </div> -->
+            <div class="row m-0 mt-2" class="main-div">
+                <div class="d-flex justify-content-between">
+                    <h2 class="form-hadding"> {{'ACS_SETTINGS.ACS_SERVER' | translate}} </h2>
+                </div>
+
+                <div class="show btn-flex">
+                    <button mat-stroked-button color="black" class="btn-back" (click)="goBack()">
+                    <mat-icon>arrow_back</mat-icon>
+                    {{ "BUTTON.BACK" | translate }}
+                  </button>
+                  <div class="left">
+                    <button class="btn-style btn-test" type="submit" mat-raised-button (click)="testAcsServer()">{{'ACS_SETTINGS.TEST' | translate}} </button>
+                </div>
+                  </div>
+                  
+                <form class="addusers pt-1 row justify-content-between" [formGroup]="addForm">
+                    <div class="form-group w-45  input-fildcl">
+                        <label for="lname" class="control-label"> {{'ACS_SETTINGS.HOSTNAME' | translate}} </label>
+                        <div class="vmsadd">
+                            <mat-form-field appearance="outline" class="w-100">
+                                <input matInput placeholder="{{ 'ADD-UNRET.HOSTNAME' | translate }}"
+                                [formControl]="addForm.controls['hostName']">
+                            </mat-form-field>
+                            <mat-error *ngIf="submitted && addForm.controls['hostName'].errors">HostName 
+                            {{ "VALIDATE.ERROR9" | translate }}
+                            </mat-error>
+                        </div>
+                    </div>
+                    <div class="form-group w-45  input-fildcl">
+                        <label for="lname" class="control-label"> {{'ACS_SETTINGS.PROTOCOL' | translate}} </label>
+                        <div class="vmsadd">
+                            <mat-form-field appearance="outline" class="w-100">
+                                <mat-select placeholder="Select protocol HTTPS | HTTPS" 
+                                 [formControl]="addForm.controls['protocol']">
+                                    <mat-option value="http">{{'ACS_SETTINGS.HTTP' | translate}}  </mat-option>
+                                    <mat-option value="https">{{'ACS_SETTINGS.HTTPS' | translate}}  </mat-option>
+                                </mat-select>
+                            </mat-form-field>
+                            <mat-error *ngIf="submitted && addForm.controls['protocol'].errors">Protocol 
+                                {{ "VALIDATE.ERROR9" | translate }}
+                            </mat-error>
+                        </div>
+                    </div>
+                    <div class="form-group w-45  input-fildcl">
+                        <label for="lname" class="control-label"> {{'ACS_SETTINGS.PORT_NO' | translate}} </label>
+                        <div class="vmsadd">
+                            <mat-form-field appearance="outline" class="w-100">
+                                <input matInput placeholder="{{ 'ACS_SETTINGS.PORT_NO' | translate }}"
+                                [formControl]="addForm.controls['port']">
+                            </mat-form-field>
+                            <mat-error *ngIf="submitted && addForm.controls['port'].errors">Port No 
+                                {{ "VALIDATE.ERROR9" | translate }}
+                            </mat-error>
+                        </div>
+                    </div>
+                    <div class="form-group w-45  input-fildcl">
+                        <label for="lname" class="control-label"> {{'ACS_SETTINGS.USERNAME' | translate}} </label>
+                        <div class="vmsadd">
+                            <mat-form-field appearance="outline" class="w-100">
+                                <input matInput placeholder="{{ 'ADD-UNRET.USERNAME' | translate }}"
+                                [formControl]="addForm.controls['userName']">
+                            </mat-form-field>
+                            <mat-error *ngIf="submitted && addForm.controls['userName'].errors">UserName 
+                                {{ "VALIDATE.ERROR9" | translate }}
+                            </mat-error>
+                        </div>
+                    </div>
+                    <div class="form-group w-45  input-fildcl">
+                        <label for="lname" class="control-label"> {{'ACS_SETTINGS.PASSWORD' | translate}} </label>
+                        <div class="vmsadd">
+                            <mat-form-field appearance="outline" class="w-100">
+                                <input type="password" matInput placeholder="********" 
+                                [formControl]="addForm.controls['password']" [type]="hide ? 'password' : 'text'">
+                                <mat-icon matSuffix class="eye-icon1" (click)="hide = !hide">{{hide ? 'visibility_off' : 'visibility'}}</mat-icon>
+                            </mat-form-field>
+                            <!-- <mat-error *ngIf="submitted && addForm.controls['password'].errors">password 
+                                {{ "VALIDATE.ERROR9" | translate }}
+                            </mat-error> -->
+                            <!-- <ul>
+                                <li>
+                                  <mat-error *ngIf="
+                                  addForm.get('password').touched &&  (addForm.get('password').hasError('hasSmallCase') ||
+                                  addForm.get('password').hasError('required'))
+                                  "> 
+                                    <mat-icon class="close-icon">close</mat-icon>{{ "PROFILE-NEW.AT_LOWERCE" | translate }}</mat-error>
+                                  
+                                </li>
+                                <li>
+                                  <mat-error *ngIf="
+                                  addForm.get('password').touched && (addForm.get('password').hasError('hasCapitalCase') ||
+                                  addForm.get('password').hasError('required'))
+                                  "> 
+                                    <mat-icon class="close-icon">close</mat-icon>{{ "PROFILE-NEW.AT_UPPERCASE" | translate }}</mat-error>
+                                </li>
+                                <li>
+                                  <mat-error *ngIf="
+                                  addForm.get('password').touched && (addForm.get('password').hasError('minlength') ||
+                                  addForm.get('password').hasError('required'))
+                                  "> 
+                                    <mat-icon class="close-icon">close</mat-icon>{{ "PROFILE-NEW.AT_CHARACTERS" | translate }}</mat-error>
+                                </li>
+                                <li>
+                                  <mat-error *ngIf="
+                                  addForm.get('password').touched &&  (addForm.get('password').hasError('hasNumber') ||
+                                  addForm.get('password').hasError('required'))
+                                  "> 
+                                    <mat-icon class="close-icon">close</mat-icon>{{ "PROFILE-NEW.AT_NUMBER" | translate }}</mat-error>    
+                                </li>
+                                <li>
+                                  <mat-error *ngIf="
+                                  addForm.get('password').touched && (addForm.get('password').hasError('hasSpecialCharacters') ||
+                                  addForm.get('password').hasError('required'))
+                                  "> 
+                                    <mat-icon class="close-icon">close</mat-icon>{{ "PROFILE-NEW.AT_SYMBOL" | translate }}</mat-error> 
+                                </li>
+                                  <li>
+                                  <mat-error *ngIf="currentUser?.firstName == addForm.get('password').value"> 
+                                    <mat-icon class="close-icon">close</mat-icon>{{ "PROFILE-NEW.USER_NAME" | translate }}</mat-error>    
+                                </li>
+                              </ul> -->
+                        </div>
+                    </div>
+                    <div class="form-group w-45  input-fildcl">
+                        <label for="lname" class="control-label"> {{'ACS_SETTINGS.BUFFER_START_TIME' | translate}} </label>
+                        <div class="vmsadd">
+                            <mat-form-field appearance="outline" class="w-100">
+                                <input matInput placeholder="30"
+                                [formControl]="addForm.controls['contractorsBufferStarttime']"
+                                onkeypress="return String.fromCharCode(event.charCode).match(/[^0-9]/g) === null">
+                            </mat-form-field>
+                            <mat-error *ngIf="submitted && addForm.controls['contractorsBufferStarttime'].errors">ContractorsBufferStartTime 
+                                {{ "VALIDATE.ERROR9" | translate }}
+                            </mat-error>
+                        </div>
+                    </div>
+                    <div class="form-group w-45  input-fildcl">
+                        <label for="lname" class="control-label"> {{'ACS_SETTINGS.BUFFER_END_TIME' | translate}} </label>
+                        <div class="vmsadd">
+                            <mat-form-field appearance="outline" class="w-100">
+                                <input matInput placeholder="30"
+                                [formControl]="addForm.controls['contractorsBufferEndtime']"
+                                onkeypress="return String.fromCharCode(event.charCode).match(/[^0-9]/g) === null">
+                            </mat-form-field>
+                            <mat-error *ngIf="submitted && addForm.controls['contractorsBufferEndtime'].errors">ContractorsBufferEndTime 
+                                {{ "VALIDATE.ERROR9" | translate }}
+                            </mat-error>
+                        </div>
+                    </div>
+                    <!-- <div class="form-group w-45  input-fildcl">
+                        <label for="lname" class="control-label"> {{'ACS_SETTINGS.UAG' | translate}} </label>
+                        <div class="vmsadd">
+                            <mat-form-field appearance="outline" class="w-100">
+                                <input type="text" matInput placeholder="{{ 'ADD-UNRET.AUG' | translate }}"
+                                [formControl]="addForm.controls['uag']">
+                            </mat-form-field>
+                            <mat-error *ngIf="submitted && addForm.controls['uag'].errors">UAG 
+                                {{ "VALIDATE.ERROR9" | translate }}
+                            </mat-error>
+                        </div>
+                    </div> -->
+
+                    <div class="form-group w-45  input-fildcl">
+                        <label for="lname" class="control-label"> {{'ACS_SETTINGS.APPLICATION_ID' | translate}} </label>
+                        <div class="vmsadd">
+                            <mat-form-field appearance="outline" class="w-100">
+                                <input matInput placeholder="{{ 'ADD-UNRET.APPLICATION_ID' | translate }}"
+                                [formControl]="addForm.controls['applicationId']">
+                            </mat-form-field>
+                            <mat-error *ngIf="submitted && addForm.controls['applicationId'].errors">Application Id 
+                                {{ "VALIDATE.ERROR9" | translate }}
+                            </mat-error>
+                        </div>
+                    </div>
+                    <div class="form-group w-45  input-fildcl">
+                        <label for="lname" class="control-label"> {{'ACS_SETTINGS.DIRECTOR_ID' | translate}} </label>
+                        <div class="vmsadd">
+                            <mat-form-field appearance="outline" class="w-100">
+                                <input matInput placeholder="{{ 'ADD-UNRET.DIRECTOR_ID' | translate }}"
+                                [formControl]="addForm.controls['directoryId']">
+                            </mat-form-field>
+                            <mat-error *ngIf="submitted && addForm.controls['directoryId'].errors">Directory Id 
+                                {{ "VALIDATE.ERROR9" | translate }}
+                            </mat-error>
+                        </div>
+                    </div>
+
+                    <div class="d-flex justify-content-end margin-y acs-btn-outer">
+                       
+                        <div class="right">
+                            <button class="btn-style btn-save" type="submit" mat-raised-button (click)="SaveAcsServer()"> {{'ACS_SETTINGS.SAVE' | translate}} </button>
+                            <!-- <button class="btn-style btn-cancel" type="button" mat-raised-button> Cancel </button> -->
+                        </div>
+                    </div>
+                </form>
+            </div>
+
+   
+</section>
+</div>
+<!-- <app-footer></app-footer> -->

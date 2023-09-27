@@ -1,0 +1,85 @@
+<section class="side_container">
+  <div class="container-fluid">
+    <div class="main-page">
+      <div class="row 0">
+        <div class="col add-brdcmb">
+          <nav aria-label="breadcrumb">
+            <ol class="breadcrumb">
+              <li class="breadcrumb-item"><a routerLink="/dashboard"> {{'COMMON.HOME' | translate}} </a></li>
+              <li class="breadcrumb-item active" routerLink="/user" aria-current="page"> {{'COMMON.BREADCUM.USER' |
+                translate}} </li>
+              <li class="breadcrumb-item active" aria-current="page"> {{isEditing ? 'Update':'Add'}}
+                {{'COMMON.BREADCUM.USER' | translate}} </li>
+            </ol>
+          </nav>
+        </div>
+      </div>
+      <div class="main-div padding-x">
+        <div class="d-flex justify-content-between">
+          <h3 class="form-hadding">{{isEditing ? 'Update':'Add'}} User</h3>
+        </div>
+        <form [formGroup]="addForm" (ngSubmit)="submitForm()" class="pt-5 row justify-content-between">
+          <div class="form-group w-45  input-fildcl">
+            <label for="lname" class="control-label"> {{'USER.ADD.FORM.FIRST_NAME'|translate}} <em>*</em></label>
+            <div class="inpu-t">
+              <mat-form-field appearance="outline" class="w-100">
+                <input [formControl]="addForm.controls['firstName']" onlyCharacters matInput
+                  placeholder="Ex : Jhon Snow">
+              </mat-form-field>
+            </div>
+          </div>
+          <div class="form-group w-45 input-fildcl">
+            <label for="lname" class="control-label"> {{'USER.ADD.FORM.LAST_NAME'|translate}} </label>
+            <div class="">
+              <mat-form-field appearance="outline" class="w-100">
+                <input matInput (keypress)="validateAddress($event)" [formControl]="addForm.controls['lastName']"
+                  placeholder=" Ex : D’souza">
+              </mat-form-field>
+            </div>
+          </div>
+          <div class="form-group w-45 input-fildcl">
+            <label for="lname" class="control-label"> {{'USER.ADD.FORM.E-MAIL'|translate}} <em>*</em></label>
+            <div [ngClass]="{'disable': isEditing}">
+              <mat-form-field appearance="outline" class="w-100">
+                <input [readonly]="isEditing" matInput [formControl]="addForm.controls['emailId']" placeholder=" Ex : John.snow@gmail.com" (change)="verifyEmail()">
+              </mat-form-field>
+              <mat-error *ngIf="formErrors?.emailId">{{formErrors?.emailId}}</mat-error>
+            </div>
+          </div>
+
+
+          <div class="form-group w-45 input-fildcl">
+            <label for="lname" class="control-label">{{'USER.ADD.FORM.ROLE'|translate}} <em>*</em></label>
+            <div>
+              <mat-form-field appearance="outline" class="w-100">
+                <mat-select placeholder="Select" [formControl]="addForm.controls['roleId']">
+                  <mat-option *ngFor="let role of roleList" [value]="role.id"> {{role.roleName}} </mat-option>
+                </mat-select>
+              </mat-form-field>
+            </div>
+          </div>
+
+
+          <div class="form-group w-45 input-fildcl">
+            <label for="lname" class="control-label">Profile Picture <em>*</em> </label>
+            <div class="imageoverlap">
+              <mat-form-field appearance="outline" class="w-100" (click)="fileInputProfile.click()">
+                <input [formControl]="addForm.controls['profilePicture']" matInput readonly placeholder="Upload" />
+                <img class="upload-icon" src="assets/images/Upload.svg" />
+                <input hidden #fileInputProfile accept="image/x-png,image/jpeg" (change)="profileChangeEvent($event)"
+                  type="file" file-model="myFile" />
+              </mat-form-field>
+            </div>
+          </div>
+          <div class="d-flex justify-content-center margin-y">
+            <button type="button" mat-raised-button routerBack>
+              {{'COMMON.BUTTON.CANCEL' | translate}}
+            </button>
+            <button type="submit" mat-raised-button color="primary">{{'COMMON.BUTTON.SAVE' | translate}}</button>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+</section>
+<app-footer></app-footer>

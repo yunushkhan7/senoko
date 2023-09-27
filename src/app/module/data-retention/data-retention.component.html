@@ -1,0 +1,94 @@
+<div class="green-bg">
+<section class="main-page">
+            <div class="row m-0 mt-2" class="main-div">
+                <div class="d-flex justify-content-between">
+                    <h2 class="form-hadding"> {{'DATA_RETENTION.NAME' | translate}} </h2>
+                </div>
+
+                <div class="show">
+                    <button mat-stroked-button color="black" class="btn-back" (click)="goBack()">
+                    <mat-icon>arrow_back</mat-icon>
+                    {{ "BUTTON.BACK" | translate }}
+                  </button>
+                </div>
+
+                <form class="addusers pt-1 row justify-content-between" [formGroup]="addForm">
+                    <div class="form-group w-100  input-fildcl">
+                        <label for="lname" class="control-label"> {{'DATA_RETENTION.REPORTS_DATA' | translate}} </label>
+                        <div class="vmsadd">
+                            <mat-form-field appearance="outline" class="w-100">
+                                <input  [formControl]="addForm.controls['reportsDataKeepDays']" matInput
+                                required  maxlength="3" min="7" type="number"
+                               
+                                placeholder="30">
+
+                            </mat-form-field>
+                            <mat-error *ngIf="submitted && addForm.controls['reportsDataKeepDays'].errors">
+                                {{ "VALIDATE.ERROR10" | translate }}
+                            </mat-error>
+                            <mat-error *ngIf="submitted && addForm.controls['reportsDataKeepDays'].errors">
+                                {{ "VALIDATE.ERROR1" | translate }}
+                            </mat-error>
+                        </div>
+                    </div>
+                    <div class="form-group w-100  input-fildcl">
+                        <label for="lname" class="control-label"> {{'DATA_RETENTION.USER_AUDIT' | translate}} </label>
+                        <div class="vmsadd">
+                            <mat-form-field appearance="outline" class="w-100">
+                                <input   required  maxlength="3" min="7" type="number"
+                                
+                                [formControl]="addForm.controls['userAuditKeepDays']"
+                                matInput placeholder="30">
+
+                            </mat-form-field>
+                            <mat-error *ngIf="submitted && addForm.controls['userAuditKeepDays'].errors">
+                                {{ "VALIDATE.ERROR10" | translate }}</mat-error>
+                            <mat-error *ngIf="submitted && addForm.controls['userAuditKeepDays'].errors">
+                                {{ "VALIDATE.ERROR1" | translate }}</mat-error>
+                        </div>
+                    </div>
+                    <div class="form-group w-100  input-fildcl">
+                        <label for="lname" class="control-label"> {{'DATA_RETENTION.SYSTEM_LOGS' | translate}} </label>
+                        <div class="vmsadd">
+                            <mat-form-field appearance="outline" class="w-100">
+                                <input  
+                                [formControl]="addForm.controls['systemLogsKeepDays']"
+                                matInput placeholder="30"
+                                required  maxlength="3" min="7" type="number"
+                                >
+ 
+                            </mat-form-field>
+                            <mat-error *ngIf="submitted && addForm.controls['systemLogsKeepDays'].errors">
+                                {{ "VALIDATE.ERROR10" | translate }}
+                            </mat-error>
+                            <mat-error *ngIf="submitted && addForm.controls['systemLogsKeepDays'].errors">
+                                {{ "VALIDATE.ERROR1" | translate }}
+                            </mat-error>
+                        </div>
+                    </div>
+                    <div class="form-group w-100  input-fildcl">
+                        <label for="lname" class="control-label"> {{'DATA_RETENTION.PASSWORD_EXPIRY' | translate}} </label>
+                        <div class="vmsadd">
+                            <mat-form-field appearance="outline" class="w-100">
+                                <input  [formControl]="addForm.controls['passwordExpirationDays']"
+                                matInput placeholder="30" required  maxlength="2" min="7" type="number"
+                                onkeypress="return String.fromCharCode(event.charCode).match(/[^0-9]/g) === null">
+
+                            </mat-form-field>
+                            <mat-error *ngIf="submitted && addForm.controls['passwordExpirationDays'].errors">
+                                {{ "VALIDATE.ERROR11" | translate }}</mat-error>
+                            <mat-error *ngIf="submitted && addForm.controls['passwordExpirationDays'].errors">
+                                {{ "VALIDATE.ERROR1" | translate }}</mat-error>
+                        </div>
+                    </div>
+
+                    <div class="d-flex justify-content-end margin-y">
+                        <button class="btn-style btn-save" type="submit" (click)="SaveDataRetention()" mat-raised-button> {{'SUBMIT_RESET.SUBMIT' | translate}} </button>
+                        <button class="btn-style btn-cancel" type="button" mat-raised-button (click)="addFormReset()"> {{'SUBMIT_RESET.RESET' | translate}} </button>
+                    </div>
+                </form>
+            </div>
+       
+</section>
+</div>
+<!-- <app-footer></app-footer> -->

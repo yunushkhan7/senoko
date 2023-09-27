@@ -1,0 +1,177 @@
+<div class="green-bg">
+<section class="main-page">
+            <div class="row m-0 mt-2" class="main-div">
+                <div class="mb-3">
+                    <h3 class="form-hadding">{{isEditing ? 'Update':'Add'}} {{'ACS_SETTINGS.VMS_STATION.VMS_STATION' | translate}} </h3>
+                </div>
+                <form class="addusers pt-1 row justify-content-between" [formGroup]="addForm">
+                  <div class="form-group w-45  input-fildcl">
+                        <label for="lname" class="control-label"> {{'ACS_SETTINGS.VMS_ADD.NAME' | translate}}
+                        </label>
+                        <div class="vmsadd">
+                            <mat-form-field appearance="outline" class="w-100">
+                                <input matInput placeholder="{{'ACS_SETTINGS.VMS_ADD.NAME' | translate}}"   
+                                type="text" maxlength="100"  [formControl]="addForm.controls['stationName']">
+                            </mat-form-field>
+                            <mat-error *ngIf="submitted && addForm.controls['stationName'].errors">
+                                {{ "VALIDATE.ERROR7" | translate }}</mat-error>
+                        </div>
+                    </div>
+
+                    <div class="form-group w-45  input-fildcl">
+                        <label for="lname" class="control-label"> {{'ACS_SETTINGS.VMS_ADD.VMS_USER_NAME' | translate}}
+                        </label>
+                        <div class="vmsadd">
+                            <mat-form-field appearance="outline" class="w-100">
+                                <input matInput placeholder="{{'ACS_SETTINGS.VMS_ADD.USER_NAME' | translate}}" 
+                                [formControl]="addForm.controls['userName']">
+                            </mat-form-field>
+                            <mat-error *ngIf="submitted && addForm.controls['userName'].errors">
+                                {{ "VALIDATE.ERROR13" | translate }}</mat-error>
+                        </div>
+                    </div>
+                    <div class="form-group w-45  input-fildcl">
+                        <label>{{ "VISITOR_LIST.EMAIL" | translate }}</label>
+                        <div class="vmsadd">
+                            <mat-form-field appearance="outline" class="w-100">
+                                <input type="email"
+                                  [formControl]="addForm.controls['email']"  matInput
+                                  placeholder="{{ 'ADD-UNRET.MAIL-ADDRESS' | translate }}"
+                                />
+                              </mat-form-field>
+                              <mat-error *ngIf="submitted && addForm.controls['email'].errors">
+                                {{ "VALIDATE.ERROR15" | translate }}
+                              </mat-error>
+                        </div>
+                    </div>
+                    <div class="form-group w-45  input-fildcl">
+                        <label for="lname" class="control-label"> {{'ACS_SETTINGS.VMS_ADD.PASSWORD' | translate}}
+                        </label>
+                        <div class="vmsadd">
+                            <mat-form-field appearance="outline" class="w-100">
+                                <input type="password" matInput placeholder="********" [type]="hide ? 'password' : 'text'"  
+                                [formControl]="addForm.controls['password']">
+                                <mat-icon matSuffix class="eye-icon1" (click)="hide = !hide">{{hide ? 'visibility_off' : 'visibility'}}</mat-icon>
+                            </mat-form-field>
+                            <mat-error *ngIf="submitted && addForm.controls['password'].errors">password 
+                                {{ "VALIDATE.ERROR9" | translate }}
+                            </mat-error>
+                            <ul>
+                                <li>
+                                  <mat-error *ngIf="
+                                  addForm.get('password').touched &&  (addForm.get('password').hasError('hasSmallCase') ||
+                                  addForm.get('password').hasError('required'))
+                                  "> 
+                                    <mat-icon class="close-icon">close</mat-icon>{{ "PROFILE-NEW.AT_LOWERCE" | translate }}</mat-error>
+                                  
+                                </li>
+                                <li> 
+                                  <mat-error *ngIf="
+                                  addForm.get('password').touched && (addForm.get('password').hasError('hasCapitalCase') ||
+                                  addForm.get('password').hasError('required'))
+                                  "> 
+                                    <mat-icon class="close-icon">close</mat-icon>{{ "PROFILE-NEW.AT_UPPERCASE" | translate }}</mat-error>
+                                </li>
+                                <li>
+                                  <mat-error *ngIf="
+                                  addForm.get('password').touched && (addForm.get('password').hasError('minlength') ||
+                                  addForm.get('password').hasError('required'))
+                                  "> 
+                                    <mat-icon class="close-icon">close</mat-icon>{{ "PROFILE-NEW.AT_CHARACTERS" | translate }}</mat-error>
+                                </li>
+                                <li>
+                                  <mat-error *ngIf="
+                                  addForm.get('password').touched &&  (addForm.get('password').hasError('hasNumber') ||
+                                  addForm.get('password').hasError('required'))
+                                  "> 
+                                    <mat-icon>close</mat-icon>{{ "PROFILE-NEW.AT_NUMBER" | translate }}</mat-error>    
+                                </li>
+                                <li>
+                                  <mat-error *ngIf="
+                                  addForm.get('password').touched && (addForm.get('password').hasError('hasSpecialCharacters') ||
+                                  addForm.get('password').hasError('required'))
+                                  "> 
+                                    <mat-icon class="close-icon">close</mat-icon>{{ "PROFILE-NEW.AT_SYMBOL" | translate }}</mat-error> 
+                                </li>
+                                  <li>
+                                  <mat-error *ngIf="currentUser?.firstName == addForm.get('password').value"> 
+                                    <mat-icon class="close-icon">close</mat-icon>{{ "PROFILE-NEW.USER_NAME" | translate }}</mat-error>    
+                                </li>
+                              </ul>
+                        </div>
+                    </div>
+
+                    <div class="form-group w-45  input-fildcl">
+                        <label>{{ "VISITOR_LIST.CONTACT" | translate }}</label>
+                        <div class="vmsadd">
+                            <div class="form-group">
+                                <div class="input-phone" [ngClass]="{'red-border-class': submitted && addForm.controls['mobileNo'].errors}">
+                                  <ng-container>
+                                    <ngx-intl-tel-input class="example-full-width" appearance="outline"
+                                    [preferredCountries]="['sg']" 
+                                    [onlyCountries]="['sg']"
+                                    [selectedCountryISO]="selectedCountryISO"
+                                    [maxLength]="8"
+                                    [enableAutoCountrySelect]="false"
+                                    [selectFirstCountry]="false"
+                                    [enablePlaceholder]="true"
+                                    [searchCountryPlaceholder]="
+                                      'PLACE_HOLDER.PHONE_SEARCH_COUNTRY' | translate
+                                    "
+                                    [searchCountryFlag]="false"
+                                    [separateDialCode]="true"
+                                    [phoneValidation]="true"
+                                    name="mobileNo"
+                                    formControlName="mobileNo"
+                                    customPlaceholder="65XXXXXX"
+                                    class="tel-input"
+                                  >
+                                  </ngx-intl-tel-input>
+                                  </ng-container>
+                                </div>
+                                  <mat-error *ngIf="submitted && addForm.controls['mobileNo'].errors">MobileNo {{ "VALIDATE.ERROR9" | translate }}</mat-error>
+                                </div>
+                        </div>
+
+                    </div>
+
+                    <!-- <div class="form-group w-45  input-fildcl">
+                        <label for="lname" class="control-label"> {{'ACS_SETTINGS.VMS_ADD.REMARKS' | translate}}
+                        </label>
+                        <div class="vmsadd">
+                            <mat-form-field appearance="outline" class="w-100">
+                                <input type="text" matInput placeholder="Remarks"   [formControl]="addForm.controls['remarks']">
+                            </mat-form-field>
+                        </div>
+                    </div> -->
+                    <!--status-->
+                    <!-- <div class="form-group w-45  input-fildcl">
+                      <label for="lname" class="control-label">Status
+                      </label>
+                      <div class="vmsadd">
+                          <mat-form-field appearance="outline" class="w-100">
+                            <mat-select placeholder="Select Type" [formControl]="addForm.controls['status']">
+                                <mat-option value="active">{{'ACS_SETTINGS.ACTIVE' | translate}} </mat-option>
+                                <mat-option value="inactive"> {{'ACS_SETTINGS.IN_ACTIVE' | translate}} </mat-option>
+                            </mat-select>
+                          </mat-form-field>
+                          <mat-error *ngIf="submitted && addForm.controls['status'].errors">
+                            {{ "VALIDATE.ERROR8" | translate }}</mat-error>
+                      </div>
+                  </div> -->
+
+                    <div class="form-group w-45  input-fildcl">
+                        <label for="lname" class="control-label"> {{'ACS_SETTINGS.VMS_ADD.SHOW' | translate}} </label>
+                        <div class="slide_toggle">
+                            <mat-slide-toggle   [formControl]="addForm.controls['show_T_C']"></mat-slide-toggle>
+                        </div>
+                    </div>
+                    <div class="d-flex justify-content-end margin-y">
+                        <button class="btn-style btn-save" type="submit" mat-raised-button (click)="submitForm()"> {{'ACS_SETTINGS.DOOR_ADDS.SAVE' | translate}} </button>
+                        <button class="btn-style btn-cancel" type="button" mat-raised-button routerLink="/vms-station"> {{'ACS_SETTINGS.DOOR_ADDS.CANCEL' | translate}} </button>
+                    </div>
+                </form>
+            </div>
+</section>
+</div>
+<!-- <app-footer></app-footer> -->

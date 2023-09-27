@@ -1,0 +1,55 @@
+<div class="green-bg">
+    <section class="main-page mom" *ngIf="permissionObject?.list">
+        <div class="container">
+
+            <h2>{{ "MOM_API.MOM" | translate }}</h2>
+
+            <div class="show mb-4 btn-flex">
+                <button mat-stroked-button color="black" class="btn-back" (click)="goBack()">
+                <mat-icon>arrow_back</mat-icon>
+                {{ "BUTTON.BACK" | translate }}
+              </button>
+              <div>
+                <button (click)="testPopUp()" mat-stroked-button class="btn-h-w btn-blue">
+                    {{'MOM_API.TEST' | translate}}
+                </button>
+            </div>
+            </div>
+
+
+            <div class="head-form">  
+                <form [formGroup]="addForm">
+                    <div class="d-flex-input form-fields">
+                        <mat-label class="input-label">{{'MOM_API.MOM_TEXTBOX' | translate}}</mat-label>
+                        <div class="api-fill">
+                        <mat-form-field appearance="fill">
+                          <input type="text" [formControl]="addForm.controls['momapiEndpoint']" maxlength="100" matInput placeholder="Text" />
+                        </mat-form-field>
+                        <mat-error *ngIf="submitted && addForm.controls['momapiEndpoint'].errors">MOM Api Endpoint 
+                            {{ "VALIDATE.ERROR9" | translate }}
+                          </mat-error>
+                        </div>
+                      </div>
+               
+
+
+                <div class="btn-div">
+                    <div>
+                        <button mat-stroked-button type="submit" class="btn-h-w btn-green" (click)="SaveMomGateway()">
+                            {{'MOM_API.SAVE' | translate}}
+                        </button>
+
+                        <button mat-stroked-button class="btn-h-w btn-gray" (click)="goBack()">
+                            {{'MOM_API.CLOSE' | translate}}
+                        </button>
+                    </div>
+
+                </div>
+            </form>
+            </div>
+
+
+        </div>
+    </section>
+</div>
+<!-- <app-footer></app-footer> -->

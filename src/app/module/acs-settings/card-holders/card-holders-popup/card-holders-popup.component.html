@@ -1,0 +1,34 @@
+<div class="card-holders-popup">
+    <mat-icon class="cloes-btn"  (click)="closeDialog()">clear</mat-icon>
+    <h2 *ngIf="!isLoading">SYNCING...</h2>
+<p *ngIf="!isLoading">Please wait while the process completes</p>
+<p *ngIf="isLoading">SYNCING process completed</p>
+<mat-spinner class="spinner-main" *ngIf="!isLoading"></mat-spinner>
+<div class="popup-flex">
+    <span>{{syncCardList}}</span>
+    <p>Cardholders Synced</p>
+</div>
+<div>
+    <button mat-stroked-button class="btn-refresh mt-3" *ngIf="isLoading" (click)="load()">
+        load
+      </button>
+      <!-- <button mat-stroked-button class="btn-search" (click)="closeDialog()">
+        close
+      </button> -->
+</div>
+
+</div>
+
+<!-- <div class="acs-server-popup" *ngIf="testPopUp == 'server'">
+    <div class="circle bg-red">
+      <mat-icon>close</mat-icon>
+    </div>
+    <div class="content">
+        <h3> {{'USER-ACCESS-GROUP.OFFLINE' | translate}} </h3>
+    </div>
+        <div class="actions">
+            <button mat-stroked-button class="btn-h-w btn-green" matDialogClose>
+                {{'USER-ACCESS-GROUP.OK' | translate}}
+            </button>
+        </div>
+</div> -->

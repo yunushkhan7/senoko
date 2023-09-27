@@ -1,0 +1,101 @@
+<div class="green-bg">
+<section class="main-page">
+   
+            <!-- <div class="row m-0 mt-2">
+                <div class="col-md-6 admin-brdcmb mt-0">
+                    <nav aria-label="breadcrumb">
+                        <ol class="breadcrumb">
+                            <li class="breadcrumb-item">
+                                <a routerLink="/dashboard"> {{'COMMON.HOME' | translate}} </a>
+                            </li>
+                            <li class="breadcrumb-item active" aria-current="page"> <a routerLink="/vms-station">
+                                    {{'ACS_SETTINGS.DOORS' |
+                                    translate}} </a> </li>
+                            <li class="breadcrumb-item active" aria-current="page"> <a routerLink="/vms-station/add">
+                                    {{'ACS_SETTINGS.DOOR_ADD' |
+                                    translate}} </a>
+                        </ol>
+                    </nav>
+                </div>
+            </div> -->
+            <div class="row m-0 mt-2" class="main-div">
+                <div class="mb-3">
+                    <h3 class="form-hadding"> {{'ACS_SETTINGS.DOOR_ADDS.EDIT' | translate}} </h3>
+                </div>
+                <form class="addusers pt-1 row justify-content-between" [formGroup]="addForm">
+                    <div class="form-group w-45  input-fildcl">
+                        <label for="lname" class="control-label"> {{'ACS_SETTINGS.DOOR_ADDS.DOOR_NAME' | translate}}
+                        </label>
+                        <div class="vmsadd">
+                            <mat-form-field appearance="outline" class="w-100">
+                                <input matInput placeholder="Turnstile-Main-Entrance" [formControl]="addForm.controls['doorName']">                                
+                            </mat-form-field>
+                            <mat-error *ngIf="submitted && addForm.controls['doorName'].errors">{{ "VALIDATE.ERROR4" | translate }}</mat-error>
+                        </div>
+                    </div>
+                    <!-- <div class="form-group w-45  input-fildcl">
+                        <label for="lname" class="control-label"> {{'ACS_SETTINGS.DOOR_ADDS.ASC_DOOR_NAME' | translate}}
+                        </label>
+                        <div class="vmsadd">
+                            <mat-form-field appearance="outline" class="w-100">
+                                <input matInput placeholder="Turnstile-01-IN" [formControl]="addForm.controls['acsDoorName']">                                
+                            </mat-form-field>
+                            <mat-error *ngIf="submitted && addForm.controls['acsDoorName'].errors">{{ "VALIDATE.ERROR5" | translate }}</mat-error>
+                        </div>
+                    </div> -->
+                    <div class="form-group w-45  input-fildcl">
+                        <label for="lname" class="control-label"> {{'ACS_SETTINGS.DOOR_LIST.DOOR_DIRECTION' |
+                            translate}}
+                        </label>
+                        <div class="vmsadd">
+                            <mat-form-field appearance="outline" class="w-100">
+                                <!-- <input type="text" matInput placeholder="Select Door Direction" 
+                                   [formControl]="addForm.controls['doorDirection']"> -->
+                                <mat-select placeholder="Select Door Direction" [formControl]="addForm.controls['doorDirection']">
+                                    <mat-option value="IN">{{'ACS_SETTINGS.DOOR_ADDS.INSIDE_COMPOUND' | translate}} </mat-option>
+                                    <mat-option value="OUT"> {{'ACS_SETTINGS.DOOR_ADDS.COMPOND_EXIT' | translate}} </mat-option>
+                                </mat-select>                                
+                            </mat-form-field>
+                            <mat-error *ngIf="submitted && addForm.controls['doorDirection'].errors">{{ "VALIDATE.ERROR6" | translate }}</mat-error>
+                        </div>
+                    </div>
+                    <div class="form-group w-45  input-fildcl">
+                        <label for="lname" class="control-label"> {{'ACS_SETTINGS.DOOR_ADDS.RELEASE_DOOR' |
+                            translate}}
+                        </label>
+                        <div class="vmsadd">
+                            <mat-form-field appearance="outline" class="w-100">
+                                <!-- <mat-select placeholder="Select Door Direction" [formControl]="addForm.controls['allowsreleasefromVMSStation']">
+                                    <mat-option value="true">{{'ACS_SETTINGS.DOOR_ADDS.TRUE' | translate}} </mat-option>
+                                    <mat-option value="false"> {{'ACS_SETTINGS.DOOR_ADDS.FALSE' | translate}} </mat-option>
+                                </mat-select>   -->
+                                <mat-select placeholder="Select Door Direction"
+                                [formControl]="addForm.controls['allowsreleasefromVMSStation']"
+                                >
+                                <mat-option *ngFor="let status of StatusList" [value]="status.StatusCode">
+                                  {{status.Status}}
+                                </mat-option>
+                              </mat-select>
+                            </mat-form-field>
+                            <mat-error *ngIf="submitted && addForm.controls['allowsreleasefromVMSStation'].errors">{{ "VALIDATE.ERROR6" | translate }}</mat-error>
+                        </div>
+                    </div>
+                    <div class="form-group w-45  input-fildcl">
+                        <label for="lname" class="control-label"> {{'ACS_SETTINGS.DOOR_ADDS.REMARKS' | translate}}
+                        </label>
+                        <div class="vmsadd">
+                            <mat-form-field appearance="outline" class="w-100">
+                                <input type="text" matInput placeholder="Main Entrance" [formControl]="addForm.controls['remarks']">
+                            </mat-form-field>
+                        </div>
+                    </div>
+                    <div class="d-flex justify-content-end margin-y">
+                        <button class="btn-style btn-save" type="submit" mat-raised-button (click)="submitForm()"> {{'ACS_SETTINGS.DOOR_ADDS.SAVE' | translate}}  </button>
+                        <button class="btn-style btn-cancel" type="button" mat-raised-button mat-dialog-close routerLink="/acs-settings/doors-list"> {{'ACS_SETTINGS.DOOR_ADDS.CANCEL' | translate}} </button>
+                    </div>
+                </form>
+            </div>
+ 
+</section>
+</div>
+<!-- <app-footer></app-footer> -->

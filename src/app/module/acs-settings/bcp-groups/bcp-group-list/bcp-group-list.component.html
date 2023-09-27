@@ -1,0 +1,68 @@
+<div class="green-bg">
+    <section class="main-page mom">
+        <div class="container">
+            <div class="bcp-group-list">
+              <h2 class="form-hadding">{{ "BCB_GROUPS.BCP_GROUPS" | translate }}</h2>
+                <div class="table-entries-header mb-3">
+                 
+                  <div class="filters">
+                    <div class="show">
+                      <button mat-stroked-button color="black" class="btn-back" (click)="goBack()">
+                      <mat-icon>arrow_back</mat-icon>
+                      {{ "BUTTON.BACK" | translate }}
+                    </button>
+                    </div>
+                    <!-- <button mat-raised-button class="add_user" (click)="getBCPList()">
+                        {{ "BCB_GROUPS.IMPORTANT_BCP_GROUPS" | translate }}
+                  </button> -->
+                  <button mat-raised-button class="add_user" (click)="openDialog()">
+                    {{ "BCB_GROUPS.SYNC_BCP" | translate }}
+              </button>
+                  </div>
+                </div>
+          
+                <section class="visitor-list">
+                  <div class="table-responsive">
+                    <table class="table table-striped table-w bcp-group-table">
+                      <thead>
+                        <tr>
+                          <th scope="col">{{'BADGE-GROUP.ID' | translate}} <img (click)="sortData('id')" src="assets/images/sort.png"></th>
+                          <th scope="col">{{"BCB_GROUPS.BCP_GROUP_NAME" | translate }} <img (click)="sortData('name')" src="assets/images/sort.png"></th>
+                          <th scope="col">{{'BADGE-GROUP.ACTION' | translate}}</th>
+                        </tr>
+                      </thead>
+                      <tbody *ngIf="bcpList?.length && permissionObject?.list">
+                          <tr *ngFor="let bcpList of bcpList;let i=index">
+                            <td>{{bcpList?.id}}</td>
+                            <td>{{bcpList?.name}}</td>
+                            <td>
+                              <button>
+                                <mat-icon class="delete" (click)="deleteBcpGroup(bcpList)">
+                                 delete
+                                </mat-icon>
+                              </button>
+                            </td>
+                          </tr>
+                      </tbody>
+                      <ng-container>
+                        <tr>
+                          <td colspan="4" *ngIf="!bcpList?.length">
+                        <p class="datafound">{{'PROFILE.NO_DATA' | translate}} </p>
+                      </td>
+                    </tr>
+                      </ng-container>
+                    </table>
+                  </div>
+          
+                  <div class="all-paginator" *ngIf="bcpList?.length && permissionObject?.list">
+                    <pagination [paginationList]="pagination" [selectedPageLimit]="currentPageLimit"
+                    [currentPage]="currentPage" (onPageChange)="getPage($event)" [lastPage]="lastpage">
+                  </pagination>
+                  </div>
+                </section>
+              </div>
+
+
+        </div>
+    </section>
+</div>                          

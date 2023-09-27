@@ -1,0 +1,77 @@
+<div class="green-bg">
+    <section class="main-page mom">
+        <div class="container">
+            <!-- <p>user-access-group-list works!</p> -->
+            <div class="user-access-group">
+              <h2 class="form-hadding">{{ "USER-ACCESS-GROUP.ACCESS_LEVEL" | translate }}</h2>
+                <div class="table-entries-header mb-3">
+                 
+                  <div class="filters">
+                   
+                    <!-- <div class="search-box">
+                      <search-box  (text)="searchObject($event)"  [placeholder]="'Search here...'"></search-box>
+                    </div> -->
+
+                    <div class="show">
+                      <button mat-stroked-button color="black" class="btn-back" (click)="goBack()">
+                      <mat-icon>arrow_back</mat-icon>
+                      {{ "BUTTON.BACK" | translate }}
+                    </button>
+                    </div>
+                    <button class="add_user" *ngIf="permissionObject?.add" (click)="testAcsServer()">
+                      {{ "USER-ACCESS-GROUP.IMPORT_ACCESS" | translate }}
+                    </button>
+                   
+          
+                  </div>
+                </div>
+          
+                <section class="visitor-list">
+                 
+          
+                  <div class="table-responsive">
+                    <table class="table table-striped table-w">
+                      <thead>
+                        <tr>
+                          <th scope="col">{{ "USER-ACCESS-GROUP.ID" | translate }} <img (click)="sortData('id')" src="assets/images/sort.png"></th>
+                          <th scope="col">{{ "USER-ACCESS-GROUP.TITEL2" | translate }} <img (click)="sortData('userAccessGroupName')" src="assets/images/sort.png"></th>
+                          <th scope="col">{{"USER-ACCESS-GROUP.REMARKS" | translate }} <img (click)="sortData('remarks')" src="assets/images/sort.png"></th>
+                          <th scope="col">{{ "USER-ACCESS-GROUP.ACTIONS" | translate }}</th>
+                        </tr>
+                      </thead>
+                      <tbody *ngIf="userAccessGroupList?.length && permissionObject?.list">
+                          <tr *ngFor="let userAccessGroupList of userAccessGroupList;let i=index">
+                            <td>{{userAccessGroupList?.id}}</td>
+                            <td>{{userAccessGroupList?.userAccessGroupName}}</td>
+                            <td>{{userAccessGroupList?.remarks}}</td>
+                            <td>
+                              <button *ngIf="permissionObject?.edit"><mat-icon class="edit" [routerLink]="['/acs-settings/access-levels', userAccessGroupList?.id]">edit</mat-icon></button>
+                              <button *ngIf="permissionObject?.delete"><mat-icon class="delete" (click)="deleteUserAccessGroup(userAccessGroupList)">delete</mat-icon></button>
+                            </td>
+                          </tr>
+                        
+
+                      </tbody>
+                      <ng-container *ngIf="!userAccessGroupList?.length">
+                        <tr>
+                          <td colspan="4">
+                        <p class="datafound">{{'PROFILE.NO_DATA' | translate}} </p>
+                      </td>
+                    </tr>
+                      </ng-container>
+                    </table>
+                  </div>
+          
+                  <div class="all-paginator" *ngIf="userAccessGroupList.length && permissionObject?.list">
+                    <pagination [paginationList]="pagination" [selectedPageLimit]="currentPageLimit"
+                    [currentPage]="currentPage" (onPageChange)="getPage($event)" [lastPage]="lastpage">
+                  </pagination>
+                  </div>
+                </section>
+              </div>
+
+
+        </div>
+    </section>
+</div>
+<!-- <app-footer></app-footer> -->

@@ -1,0 +1,247 @@
+<div class="green-bg">
+
+<div class="side_container main-page p-m-0">
+  <div class="card p-m-0" *ngIf="permissionObject?.list"> 
+      <h2 class="main-head">{{ "PROFILE-NEW.PROFILE-TITLE" | translate }}</h2>
+      <form class="addusers" [formGroup]="addProfileForm">
+        <div class="row imaged">
+          <div class="col-lg-2  text-lg-center" *ngIf="role == 'SuperAdmin'">
+            <div class="profile-img-outer2">
+              <img 
+              [src]="base64textString ? base64textString : editImageUrl"
+               alt="" width="100%">
+            </div>
+            <button  color="primary" class="mat-raised-button btn-uplo btn_upload"
+               (click)="fileInputProfile.click()" *ngIf="permissionObject?.edit"><span
+                class="mat-button-wrapper">{{ "PROFILE-NEW.UP_PRO" | translate }} </span><span class="mat-ripple mat-button-ripple"></span><span
+                class="mat-button-focus-overlay"></span>
+                <input hidden #fileInputProfile  accept="image/x-png,image/jpeg" (change)="fileChangeEvent($event)"
+                type="file" file-model="myFile" />
+            </button>
+          </div>
+          <div class="col-lg-2  text-lg-center" *ngIf="currentUser?.roleName == 'Admin' || 'User' && role !== 'SuperAdmin'">
+            <div class="profile-img-outer">
+              <img 
+              [src]="base64textString ? base64textString : editImageUrl"
+               alt="" width="100%">
+            </div>
+            <button  color="primary" class="mat-raised-button btn-uplo btn_upload" disabled
+               (click)="fileInputProfile.click()" *ngIf="permissionObject?.edit"><span
+                class="mat-button-wrapper">{{ "PROFILE-NEW.UP_PRO" | translate }} </span><span class="mat-ripple mat-button-ripple"></span><span
+                class="mat-button-focus-overlay"></span>
+                <input hidden #fileInputProfile  accept="image/x-png,image/jpeg" (change)="fileChangeEvent($event)"
+                type="file" file-model="myFile" />
+            </button>
+          </div>
+
+          <div class="col-10 form-field inputdisabl">
+            <div class="row">
+              <div class="col-md-6">
+                <div class="form_field">
+                  <label for="lname" class="control-label">{{ "PROFILE-NEW.US_ACCO" | translate }}</label>
+                  <div class="inpu-t" disabled>
+                    <mat-form-field appearance="outline" class="w-100 gray-color">
+                      <input 
+                      [formControl]="addProfileForm.controls['userName']" readonly matInput placeholder="{{ 'ADD-UNRET.USERNAME' | translate }}">
+                    </mat-form-field>
+                  </div>
+                </div>
+              </div>
+              <!-- <div class="col-md-6" *ngIf="currentUser?.roleName == 'Admin' || 'User' && role !== 'SuperAdmin'">
+                <div class="form_field">
+                  <label for="lname" class="control-label">{{ "PROFILE-NEW.USER-NAME" | translate }}</label>
+                  <div class="inpu-t">
+                    <mat-form-field appearance="outline" class="w-100 gray-color">
+                      <input 
+                      [formControl]="addProfileForm.controls['firstName']" readonly matInput placeholder="{{ 'ADD-UNRET.USERNAME' | translate }}">
+                    </mat-form-field>
+                  </div>
+                </div>
+              </div> -->
+              <div class="col-md-6">
+                <div class="form_field">
+                  <label for="lname" class="control-label">{{ "PROFILE-NEW.EMAIL" | translate }}</label>
+                  <div class="inpu-t">
+                    <mat-form-field appearance="outline" class="w-100">
+                      <input [formControl]="addProfileForm.controls['email']" matInput placeholder="{{ 'ADD-UNRET.EMAIL' | translate }}">
+                    </mat-form-field>
+                  </div>
+                </div>
+              </div>
+              <div class="col-md-6">
+                <!-- <div *ngIf="currentUser?.primaryContact" class="col-md-6">
+                  <label class="control-label mb-1">Phone</label>
+                  <div class="bg-light p-2"> {{currentUser?.primaryContact}}</div>
+                </div> -->
+                <div class="form_field">
+                  <label for="lname" class="control-label">{{ "PROFILE-NEW.PHONE" | translate }}</label>
+                  <div class="inpu-t">
+                    <mat-form-field appearance="outline" class="w-100">
+                      <input [formControl]="addProfileForm.controls['mobileNo']" maxlength="15"
+                      onkeypress="return String.fromCharCode(event.charCode).match(/[^0-9]/g) === null" 
+                      matInput placeholder="{{ 'ADD-UNRET.PHONENO' | translate }}">
+                    </mat-form-field>
+                  </div>
+                </div>
+              </div>
+              <!-- <div class="col-md-6">
+                <div *ngIf="currentUser?.firstName" class="col-md-6">
+                  <label class="control-label mb-1">First Name</label>
+                  <div class="bg-light p-2">{{currentUser?.firstName}}</div>
+                </div> 
+                <div class="form_field">
+                  <label for="lname" class="control-label">{{ "PROFILE-NEW.NAME" | translate }}</label>
+                  <div class="inpu-t">
+                    <mat-form-field appearance="outline" class="w-100">
+                      <input [formControl]="addProfileForm.controls['fullName']" matInput placeholder="{{ 'ADD-UNRET.NAME' | translate }}">
+                    </mat-form-field>
+                  </div>
+                </div>
+              </div> -->
+              
+              <!-- <div *ngIf="currentUser?.lastName" class="col-md-6">
+                <label class="control-label mb-1">Last Name</label>
+                <div class="bg-light p-2">{{currentUser?.lastName}}</div>
+              </div> -->
+              <!-- <div class="col-md-6" *ngIf="role == 'SuperAdmin'">
+                <div class="form_field">
+                  <label for="lname" class="control-label">{{ "PROFILE-NEW.ROL" | translate }}</label>
+                  <div class="inpu-t">
+                    <mat-form-field appearance="outline" class="w-100">
+                      <mat-select
+                      placeholder="Select"
+                      [formControl]="addProfileForm.controls['roleId']">
+                        <mat-option *ngFor="let role of roleList" [value]="role?.id"> {{role?.roleName}} </mat-option>
+                    </mat-select>
+                    </mat-form-field>
+                    
+                  </div>
+                </div>
+              </div> -->
+              <div class="col-md-6 inputdisabl">
+                <div class="form_field">
+                  <label for="lname" class="control-label">{{ "PROFILE-NEW.ROL" | translate }}</label>
+                  <div class="inpu-t">
+                    <mat-form-field appearance="outline" class="w-100 gray-color">
+                      <mat-select disabled
+                      placeholder="Select"
+                      [formControl]="addProfileForm.controls['roleId']">
+                        <mat-option *ngFor="let role of roleList" [value]="role?.id"> {{role?.roleName}} </mat-option>
+                    </mat-select>
+                    </mat-form-field>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="savebtn-outer d-flex justify-content-end">
+            <button (click)="submitProfileForm()" color="primary"
+            class="mat-focus-indicator mat-raised-button mat-button-base btn-save" ng-reflect-color="primary"><span
+              class="mat-button-wrapper"> {{ "PROFILE-NEW.SAVE" | translate }} </span></button>
+              </div>
+          </div>
+        </div>
+      </form>
+
+    
+    <!-- <form  [formGroup]="addForm" (ngSubmit)="submitForm()">
+      <div class="card_details mt-4 p-m-0">
+        <div class="buttons">
+          <h2 class="main-head">{{ "PROFILE-NEW.MYPASSWORD" | translate }}</h2>
+        </div>
+        <div class="row imaged">
+          <div class="col-md-4">
+            <div class="card error-list h-100">
+              <h3>
+                <mat-icon>notifications</mat-icon>{{ "PROFILE-NEW.MYPASSWORD" | translate }} Password Rules
+              </h3>
+              <ul>
+                <li>
+                  <mat-error *ngIf="
+                  addForm.get('new_password').touched &&  (addForm.get('new_password').hasError('hasSmallCase') ||
+                  addForm.get('new_password').hasError('required'))
+                  "> 
+                    <mat-icon>close</mat-icon>{{ "PROFILE-NEW.AT_LOWERCE" | translate }}</mat-error>
+                  
+                </li>
+                <li>
+                  <mat-error *ngIf="
+                  addForm.get('new_password').touched && (addForm.get('new_password').hasError('hasCapitalCase') ||
+                  addForm.get('new_password').hasError('required'))
+                  "> 
+                    <mat-icon>close</mat-icon>{{ "PROFILE-NEW.AT_UPPERCASE" | translate }}</mat-error>
+                </li>
+                <li>
+                  <mat-error *ngIf="
+                  addForm.get('new_password').touched && (addForm.get('new_password').hasError('minlength') ||
+                  addForm.get('new_password').hasError('required'))
+                  "> 
+                    <mat-icon>close</mat-icon>{{ "PROFILE-NEW.AT_CHARACTERS" | translate }}</mat-error>
+                </li>
+                <li>
+                  <mat-error *ngIf="
+                  addForm.get('new_password').touched &&  (addForm.get('new_password').hasError('hasNumber') ||
+                  addForm.get('new_password').hasError('required'))
+                  "> 
+                    <mat-icon>close</mat-icon>{{ "PROFILE-NEW.AT_NUMBER" | translate }}</mat-error>    
+                </li>
+                <li>
+                  <mat-error *ngIf="
+                  addForm.get('new_password').touched && (addForm.get('new_password').hasError('hasSpecialCharacters') ||
+                  addForm.get('new_password').hasError('required'))
+                  "> 
+                    <mat-icon>close</mat-icon>{{ "PROFILE-NEW.AT_SYMBOL" | translate }}</mat-error> 
+                </li>
+              </ul>
+            </div>
+          </div>
+          <div class="col-md-8 form-field">
+            <div class="row ">
+              <div class="col-md-6 mb-4">
+                <label class="control-label mb-1">{{ "PROFILE-NEW.CUR_PASSWORD" | translate }}</label>
+                <div class="inpu-t">
+                  <mat-form-field appearance="outline" class="w-100">
+                    <input autocomplete="new-password"  [formControl]="addForm.controls['old_password']" matInput [type]="hide ? 'password' : 'text'"
+                      placeholder="{{ 'PROFILE.OLD_PASS' | translate }}">
+                      <mat-icon matSuffix class="eye-icon1" (click)="hide = !hide">{{hide ? 'visibility_off' : 'visibility'}}</mat-icon>
+                  </mat-form-field>
+                </div>
+              </div>
+              <div class="col-md-6 mb-4">
+                <label class="control-label mb-1">{{ "PROFILE-NEW.NEW_PASSWORD" | translate }}</label>
+                <div class="inpu-t">
+                  <mat-form-field appearance="outline" class="w-100">
+                    <input autocomplete="new-password"  [formControl]="addForm.controls['new_password']" matInput [type]="hide1 ? 'password' : 'text'"
+                      placeholder="{{ 'PROFILE.NEW_PASS' | translate }}">
+                      <mat-icon matSuffix class="eye-icon2" (click)="hide1 = !hide1">{{hide1 ? 'visibility_off' : 'visibility'}}</mat-icon>
+                  </mat-form-field>
+                </div>
+              </div>
+              <div class="col-md-6 mb-4">
+                <label class="control-label mb-1">{{ "PROFILE-NEW.CON_PASS" | translate }}</label>
+                <div class="inpu-t">
+                  <mat-form-field appearance="outline" class="w-100 h-60">
+                    <input [formControl]="addForm.controls['confirm_password']" [type]="hide2 ? 'password' : 'text'" matInput
+                      placeholder="{{ 'PROFILE.CONFIRM_PASS' | translate }}">
+                      <mat-icon matSuffix class="eye-icon3" (click)="hide2 = !hide2">{{hide2 ? 'visibility_off' : 'visibility'}}</mat-icon>
+                  </mat-form-field>
+                </div>
+              </div>
+            </div>
+            <div class="savebtn-outer d-flex justify-content-end">
+              <button type="submit" color="primary"
+                class="mat-focus-indicator mat-raised-button mat-button-base btn-save" ng-reflect-color="primary"><span
+                  class="mat-button-wrapper">{{ "PROFILE-NEW.SAVE" | translate }}  </span><span class="mat-ripple mat-button-ripple"></span><span
+                  class="mat-button-focus-overlay"></span></button>
+            </div>
+          </div>
+        </div>
+  
+  
+      </div>
+    </form> -->
+
+  </div>
+
+</div>
+</div>
+<!-- <app-footer></app-footer> -->

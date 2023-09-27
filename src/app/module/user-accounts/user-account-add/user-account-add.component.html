@@ -1,0 +1,237 @@
+<div class="green-bg">
+<section class="visitor-addmision main-page">
+  <div class="container">
+    <div class="visitor-addmission-inner">
+      <section class="visitor-list">
+        <h2 class="form-hadding">{{isEditing ? 'Update':'Add'}} {{ "VISITOR_LIST.UPDATE_USERS" | translate }}</h2>
+
+        <form class="addusers" [formGroup]="addForm" (ngSubmit)="submitForm()">
+          <div class="row">
+            <div class="col-md-6 add-feild">
+              <label>{{ "VISITOR_LIST.USERNAME" | translate }}</label>
+              <div class="form-group" [ngClass]="{'disable': isEditing}">
+                <mat-form-field class="example-full-width" appearance="outline">
+                  <input [formControl]="addForm.controls['userName']" matInput 
+                    type="text" maxlength="100" [readonly]="currentUser?.roleName == role"
+                    placeholder="{{ 'ADD-UNRET.NAME' | translate }}"
+                  />
+                </mat-form-field>
+                <mat-error *ngIf="submitted && addForm.controls['userName'].errors">User Name {{ "VALIDATE.ERROR9" | translate }}</mat-error>
+              </div>
+            </div>
+            <!-- <div class="col-md-6 add-feild" *ngIf="role == 'Admin' || 'User' && role !== 'SuperAdmin'">
+              <label>{{ "VISITOR_LIST.USERNAME" | translate }}</label>
+              <div class="form-group" [ngClass]="{'disable': isEditing}">
+                <mat-form-field class="example-full-width" appearance="outline">
+                  <input [formControl]="addForm.controls['firstName']" matInput 
+                    type="text" maxlength="100" [readonly]="isEditing"
+                    placeholder="{{ 'ADD-UNRET.USERNAME' | translate }}"
+                  />
+                </mat-form-field>
+                <mat-error *ngIf="submitted && addForm.controls['firstName'].errors">firstName {{ "VALIDATE.ERROR9" | translate }}</mat-error>
+              </div>
+            </div> -->
+            <div class="col-md-6 add-feild">
+              <label>{{ "VISITOR_LIST.ROLE" | translate }}</label>
+              <div class="form-group">
+                <mat-form-field appearance="outline" class="w-100">
+                  <mat-select class="readonly-block"  [disabled]="currentUser?.roleName == role"
+                  placeholder="Select"
+                  [(ngModel)]="selectedroleList"
+                  [formControl]="addForm.controls['roleId']">
+                    <mat-option *ngFor="let role of roleList" [value]="role?.id" (click)="roleSelect(role)"> {{role?.roleName}} </mat-option>
+                </mat-select>
+                </mat-form-field>
+                <mat-error *ngIf="submitted && addForm.controls['roleId'].errors">Role {{ "VALIDATE.ERROR9" | translate }}</mat-error>
+              </div>
+            </div>
+            <!-- <div class="col-md-6 add-feild">
+              <label>{{ "VISITOR_LIST.MAIL_USERS" | translate }}</label>
+              <div class="form-group">
+                <mat-form-field class="example-full-width" appearance="outline">
+                  <input type="email"
+                    [formControl]="addForm.controls['email']"  matInput
+                    placeholder="{{ 'ADD-UNRET.MAIL-ADDRESS' | translate }}"
+                  />
+                </mat-form-field>
+                <mat-error *ngIf="submitted && addForm.controls['email'].errors">{{ "VALIDATE.ERROR13" | translate }}</mat-error>
+              </div>
+            </div> -->
+            <div class="col-md-6 add-feild">
+              <label>{{ "VISITOR_LIST.EMAIL" | translate }}</label>
+              <div class="form-group" [ngClass]="{'disable': isEditing}">
+                <mat-form-field class="example-full-width" appearance="outline">
+                  <input type="email" [readonly]="currentUser?.roleName == role"
+                    [formControl]="addForm.controls['email']"  matInput
+                    placeholder="{{ 'ADD-UNRET.MAIL-ADDRESS' | translate }}"
+                  />
+                </mat-form-field>
+                <mat-error *ngIf="submitted && addForm.controls['email'].errors">{{ "VALIDATE.ERROR15" | translate }}</mat-error>
+              </div>
+            </div>
+            
+            <div class="col-md-6 add-feild" *ngIf="!isEditing">
+              <label>{{ "VISITOR_LIST.PASSWORD" | translate }}</label>
+              <div class="form-group" [ngClass]="{'disable': isEditing}">
+                <mat-form-field class="example-full-width" appearance="outline">
+                  <input autocomplete="new-password" [type]="hide ? 'password' : 'text'"
+                  [formControl]="addForm.controls['password']"  matInput
+                    placeholder="{{ 'ADD-UNRET.PASSWORD' | translate }}"
+                    type="password"
+                  />
+                  <mat-icon matSuffix class="eye-icon1" (click)="hide = !hide">{{hide ? 'visibility_off' : 'visibility'}}</mat-icon>
+                  <!-- <mat-icon matSuffix class="eye-icon1" *ngIf="isEditing" (click)="hideShow()">{{hide ? 'visibility_off' : 'visibility'}}</mat-icon> -->
+                </mat-form-field>
+                <mat-error *ngIf="submitted && addForm.controls['password'].errors">{{ "VALIDATE.ERROR16" | translate }}</mat-error>
+                <ul>
+                  <li>
+                    <mat-error *ngIf="
+                    addForm.get('password').touched &&  (addForm.get('password').hasError('hasSmallCase') ||
+                    addForm.get('password').hasError('required'))
+                    "> 
+                      <mat-icon class="close-icon">close</mat-icon>{{ "PROFILE-NEW.AT_LOWERCE" | translate }}</mat-error>
+                    
+                  </li>
+                  <li>
+                    <mat-error *ngIf="
+                    addForm.get('password').touched && (addForm.get('password').hasError('hasCapitalCase') ||
+                    addForm.get('password').hasError('required'))
+                    "> 
+                      <mat-icon class="close-icon">close</mat-icon>{{ "PROFILE-NEW.AT_UPPERCASE" | translate }}</mat-error>
+                  </li>
+                  <li>
+                    <mat-error *ngIf="
+                    addForm.get('password').touched && (addForm.get('password').hasError('minlength') ||
+                    addForm.get('password').hasError('required'))
+                    "> 
+                      <mat-icon class="close-icon">close</mat-icon>{{ "PROFILE-NEW.AT_CHARACTERS" | translate }}</mat-error>
+                  </li>
+                  <li>
+                    <mat-error *ngIf="
+                    addForm.get('password').touched &&  (addForm.get('password').hasError('hasNumber') ||
+                    addForm.get('password').hasError('required'))
+                    "> 
+                      <mat-icon class="close-icon">close</mat-icon>{{ "PROFILE-NEW.AT_NUMBER" | translate }}</mat-error>    
+                  </li>
+                  <li>
+                    <mat-error *ngIf="
+                    addForm.get('password').touched && (addForm.get('password').hasError('hasSpecialCharacters') ||
+                    addForm.get('password').hasError('required'))
+                    "> 
+                      <mat-icon class="close-icon">close</mat-icon>{{ "PROFILE-NEW.AT_SYMBOL" | translate }}</mat-error> 
+                  </li>
+                  <li>
+                    <mat-error *ngIf="currentUser?.firstName == addForm.get('password').value"> 
+                      <mat-icon class="close-icon">close</mat-icon>{{ "PROFILE-NEW.USER_NAME" | translate }}</mat-error>    
+                  </li>
+                </ul>
+              </div>
+            </div>
+
+            <div class="col-md-6 add-feild">
+              <label>{{ "VISITOR_LIST.CONTACT" | translate }}</label>
+              <div class="form-group">
+                <!-- <mat-form-field class="example-full-width" appearance="outline">
+                  <div class="div">
+                    <ngx-mat-intl-tel-input  formControlName="mobileNo"
+                    [onlyCountries]="['sg']" 
+                    [enablePlaceholder]="true"
+                    name="mobileNo" #mobileNo>
+                   </ngx-mat-intl-tel-input>
+                  </div>
+
+
+
+                </mat-form-field> -->
+              <div class="input-phone" [ngClass]="{'red-border-class': submitted && addForm.controls['mobileNo'].errors}">
+                <ng-container>
+                  <ngx-intl-tel-input class="example-full-width" appearance="outline"
+                  [preferredCountries]="['sg']" 
+                  [onlyCountries]="['sg']"
+                  [selectedCountryISO]="selectedCountryISO"
+                  [maxLength]="8"
+                  [enableAutoCountrySelect]="false"
+                  [selectFirstCountry]="false"
+                  [enablePlaceholder]="true"
+                  [searchCountryPlaceholder]="
+                    'PLACE_HOLDER.PHONE_SEARCH_COUNTRY' | translate
+                  "
+                  [searchCountryFlag]="false"
+                  [separateDialCode]="true"
+                  [phoneValidation]="true"
+                  name="mobileNo"
+                  formControlName="mobileNo"
+                  customPlaceholder="65XXXXXX"
+                  class="tel-input"
+                >
+                </ngx-intl-tel-input>
+                </ng-container>
+              </div>
+                <mat-error *ngIf="submitted && addForm.controls['mobileNo'].errors">MobileNo {{ "VALIDATE.ERROR9" | translate }}</mat-error>
+              </div>
+            </div>
+
+            <!-- <div class="col-md-6 add-feild" *ngIf="currentUser?.roleName == 'Super Admin' && isEditing">
+              <label>Status</label>
+              <div class="form-group">
+                <mat-form-field appearance="outline" class="w-100">
+                <mat-select placeholder="Select Type" class="readonly-block" 
+                  
+                  [formControl]="addForm.controls['userStatus']"
+                  >
+                  <mat-option *ngFor="let status of StatusList" [value]="status.StatusCode">
+                    {{status.Status}}
+                  </mat-option>
+                </mat-select>
+                </mat-form-field>
+                
+              </div>
+            </div> -->
+            <div class="col-md-6 add-feild" *ngIf="isEditing">
+              <label>Status</label>
+              <div class="form-group">
+                <mat-form-field appearance="outline" class="w-100">
+                <mat-select placeholder="Select Type" class="readonly-block" 
+                  [disabled]="currentUser?.roleName == role"
+                  [formControl]="addForm.controls['userStatus']"
+                  >
+                  <mat-option *ngFor="let status of StatusList" [value]="status.StatusCode">
+                    {{status.Status}}
+                  </mat-option>
+                </mat-select>
+                </mat-form-field>
+                
+              </div>
+            </div>
+
+            <div class="form-group w-45  input-fildcl" *ngIf="role == 'WorkStation' || selectedRoleName == 'Work Station'">
+              <label for="lname" class="control-label"> {{'ACS_SETTINGS.VMS_ADD.SHOW' | translate}} </label>
+              <div class="slide_toggle">
+                  <mat-slide-toggle   [formControl]="addForm.controls['show_T_C']"></mat-slide-toggle>
+              </div>
+          </div>
+
+          </div>
+
+          <div class="row justify-content-end d-flex">
+            <div class="col-md-6 button-save">
+              <label>&nbsp;</label>
+              <div class="justify-content-end d-flex">
+              <button class="btn-style btn-save" mat-raised-button [disabled]="currentUser?.roleName == role">
+                {{ "VISITOR_LIST.SAVE" | translate }}
+              </button>
+              <button class="btn-style btn-cancel" mat-raised-button routerLink="/user-account">
+                {{ "VISITOR_LIST.CLOSE" | translate }}
+              </button>
+            </div>
+            </div>
+          </div>
+
+
+        </form>
+      </section>
+    </div>
+  </div>
+</section>
+</div>
+<!-- <app-footer></app-footer> -->

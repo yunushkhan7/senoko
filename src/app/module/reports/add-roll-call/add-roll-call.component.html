@@ -1,0 +1,330 @@
+<div class="green-bg">
+<section class="visitor-addmision main-page">
+  <div class="container">
+    <div class="visitor-addmission-inner">
+      <section class="visitor-list">
+        <h2>{{ "ADD_ROLL_CALL.ADD_ROLL" | translate }} </h2>
+
+        <form class="addusers" [formGroup]="addForm" (ngSubmit)="submitForm()">
+          <div class="row">
+            <div class="col-md-6 add-feild">
+              <label>{{ "ADD_ROLL_CALL.NAME" | translate }}</label>
+              <div class="form-group">
+                <mat-form-field class="example-full-width" appearance="outline">
+                  <input type="text" maxlength="100"
+                    [formControl]="addForm.controls['firstName']"  matInput
+                    placeholder="{{ 'ADD-UNRET.FULL-NAME' | translate }}"
+                    onkeypress="return String.fromCharCode(event.charCode).match(/[^a-zA-Z0-9]/g) === null"
+                  />
+                </mat-form-field>
+                <mat-error *ngIf="submitted && addForm.controls['firstName'].errors">firstName {{ "VALIDATE.ERROR9" | translate }}</mat-error>
+                <mat-error *ngIf="submitted && addForm.controls['firstName'].hasError('invalidName')">
+                  {{ "VALIDATE.ERROR12" | translate }}
+                </mat-error>
+              </div>
+            </div>
+
+            <div class="col-md-6 add-feild">
+              <label>{{ "ADD_ROLL_CALL.CARD" | translate }}</label>
+              <div class="form-group">
+                <mat-form-field class="example-full-width" appearance="outline">
+                  <input type="text"
+                    [formControl]="addForm.controls['cardNo']"  matInput
+                    placeholder="{{ 'ADD-UNRET.CARD' | translate }}"
+                    onkeypress="return String.fromCharCode(event.charCode).match(/[^a-zA-Z0-9]/g) === null"
+                  />
+                </mat-form-field>
+                <mat-error *ngIf="submitted && addForm.controls['cardNo'].errors">cardNo {{ "VALIDATE.ERROR9" | translate }}</mat-error>
+                <mat-error *ngIf="submitted && addForm.controls['cardNo'].hasError('invalidName')">
+                  {{ "VALIDATE.ERROR12" | translate }}
+                </mat-error>
+              </div>
+            </div>
+
+            <!-- <div class="col-md-6 add-feild">
+              <label>{{ "ADD_ROLL_CALL.ID" | translate }}</label>
+              <div class="form-group">
+                <mat-form-field class="example-full-width" appearance="outline">
+                  <input
+                    [formControl]="addForm.controls['idNumber']"  matInput
+                    placeholder="{{ 'ADD-UNRET.ID' | translate }}"
+                    onkeypress="return String.fromCharCode(event.charCode).match(/[^a-zA-Z0-9]/g) === null"
+                  />
+                </mat-form-field>
+                <mat-error *ngIf="submitted && addForm.controls['idNumber'].errors">idNumber {{ "VALIDATE.ERROR9" | translate }}</mat-error>
+              </div>
+            </div>
+            <div class="col-md-6 add-feild">
+              <label>{{ "ADD_ROLL_CALL.AGE" | translate }}</label>
+              <div class="form-group">
+                <mat-form-field class="example-full-width" appearance="outline">
+                  <input required  maxlength="3"
+                    onkeypress="return String.fromCharCode(event.charCode).match(/[^0-9]/g) === null"
+                    [formControl]="addForm.controls['age']"  matInput
+                    placeholder="{{ 'ADD-UNRET.AGE' | translate }}"
+                  />
+                </mat-form-field>
+                <mat-error *ngIf="submitted && addForm.controls['age'].errors">{{ "VALIDATE.ERROR" | translate }}</mat-error>
+              </div>
+            </div> -->
+            <div class="col-md-6 add-feild">
+              <label>{{ "ADD_ROLL_CALL.TYPE" | translate }}</label>
+              <div class="form-group">
+                <mat-form-field appearance="outline" class="w-100">
+                  <mat-select placeholder="Select Type" [formControl]="addForm.controls['registerType']">
+                    <mat-option value="Visitor">{{'VISITOR_LIST.VISIT' | translate}} </mat-option>
+                    <mat-option value="Contractor"> {{'VISITOR_LIST.CONTRACTOR' | translate}} </mat-option>
+                    <mat-option value="Employee"> {{'VISITOR_LIST.EMPLOYEE' | translate}} </mat-option>
+                  </mat-select>
+                </mat-form-field>
+                <mat-error *ngIf="submitted && addForm.controls['registerType'].errors">Type {{ "VALIDATE.ERROR9" | translate }}</mat-error>
+              </div>
+            </div>
+
+
+            <div class="col-md-6 add-feild">
+              <label>{{ "ADD_ATTENDANCE.ORGANISATION_DIV" | translate }}</label>
+              <div class="form-group">
+                <mat-form-field class="example-full-width" appearance="outline">
+                  <input type="text" maxlength="100"
+                    [formControl]="addForm.controls['organizationdivision']"  matInput
+                    placeholder="{{ 'ADD-UNRET.FULL-NAME' | translate }}"
+                    onkeypress="return String.fromCharCode(event.charCode).match(/[^a-zA-Z0-9]/g) === null"
+                  />
+                </mat-form-field>
+                <mat-error *ngIf="submitted && addForm.controls['organizationdivision'].errors">organization {{ "VALIDATE.ERROR9" | translate }}</mat-error>
+                <mat-error *ngIf="submitted && addForm.controls['organizationdivision'].hasError('invalidName')">
+                  {{ "VALIDATE.ERROR12" | translate }}
+                </mat-error>
+              </div>
+            </div>
+
+
+            <div class="col-md-6 add-feild">
+              <label>{{ "ADD_ROLL_CALL.SECTION" | translate }}</label>
+              <div class="form-group">
+                <mat-form-field class="example-full-width" appearance="outline">
+                  <input type="text" maxlength="100"
+                    [formControl]="addForm.controls['section']"  matInput
+                    placeholder="{{ 'ADD-UNRET.FULL-NAME' | translate }}"
+                  />
+                </mat-form-field>
+                <mat-error *ngIf="submitted && addForm.controls['section'].errors">section {{ "VALIDATE.ERROR9" | translate }}</mat-error>
+              </div>
+            </div>
+
+
+            <div class="col-md-6 add-feild">
+              <label>{{ "ADD_ROLL_CALL.HOST" | translate }}</label>
+              <div class="form-group">
+                <mat-form-field class="example-full-width" appearance="outline">
+                  <input type="text" maxlength="100"
+                    [formControl]="addForm.controls['host']"  matInput
+                    placeholder="{{ 'ADD-UNRET.FULL-NAME' | translate }}"
+                  />
+                </mat-form-field>
+                <mat-error *ngIf="submitted && addForm.controls['host'].errors">host {{ "VALIDATE.ERROR9" | translate }}</mat-error>
+              </div>
+            </div>
+
+
+            <div class="col-md-6 add-feild">
+              <label>{{ "ADD_ROLL_CALL.BCP_TEAM" | translate }}</label>
+              <div class="form-group">
+                <mat-form-field class="example-full-width" appearance="outline">
+                  <input type="text" maxlength="100"
+                    [formControl]="addForm.controls['bcPteam']"  matInput
+                    placeholder="{{ 'ADD-UNRET.FULL-NAME' | translate }}"
+                  />
+                </mat-form-field>
+                <mat-error *ngIf="submitted && addForm.controls['bcPteam'].errors">BCP Team {{ "VALIDATE.ERROR9" | translate }}</mat-error>
+              </div>
+            </div>
+
+
+            <div class="col-md-6 add-feild">
+              <label>{{ "ADD_ROLL_CALL.ROLL_CALL_G" | translate }}</label>
+              <div class="form-group">
+                <mat-form-field class="example-full-width" appearance="outline">
+                  <input type="text" maxlength="100"
+                    [formControl]="addForm.controls['rollcallgroup']"  matInput
+                    placeholder="{{ 'ADD-UNRET.FULL-NAME' | translate }}"
+                  />
+                </mat-form-field>
+                <mat-error *ngIf="submitted && addForm.controls['rollcallgroup'].errors">rollcallgroup {{ "VALIDATE.ERROR9" | translate }}</mat-error>
+              </div>
+            </div>
+
+
+            <div class="col-md-6 add-feild">
+              <label>{{ "ADD_ROLL_CALL.LAST_EVENT_LOCA" | translate }}</label>
+              <div class="form-group">
+                <mat-form-field class="example-full-width" appearance="outline">
+                  <input type="text" maxlength="100"
+                    onkeypress="return String.fromCharCode(event.charCode).match(/[^a-zA-Z]/g) === null"
+                    [formControl]="addForm.controls['lasteventlocation']" onlyCharacters matInput
+                    placeholder="{{ 'ADD-UNRET.LVENLOCATION' | translate }}"
+                  />
+                </mat-form-field>
+                <mat-error *ngIf="submitted && addForm.controls['lasteventlocation'].errors">lasteventlocation {{ "VALIDATE.ERROR9" | translate }}</mat-error>
+              </div>
+            </div>
+
+
+
+            <div class="col-md-6 add-feild">
+              <label>{{ "ADD_ROLL_CALL.LAST_EVENT_ON" | translate }}</label>
+              <div class="form-group">
+                <!-- <mat-form-field class="example-full-width" appearance="outline">
+                  <input type="datetime-local"
+                    [formControl]="addForm.controls['lasteventon']" onlyCharacters matInput
+                    placeholder="{{ 'ADDROLLCALL.LAST_EVENT_LOCA_ON' | translate }}"
+                  />
+                </mat-form-field> -->
+
+                <mat-form-field
+                appearance="outline"
+                class="example-full-width"
+                [floatLabel]="'never'"
+              >
+                <input
+                  matInput
+                  [max]="maxDate"
+                  [ngxMatDatetimePicker]="picker"
+                  [formControl]="addForm.controls['lasteventon']"
+                  
+                  matInput
+                  placeholder="{{ 'VISITOR_LIST.AUTHORIZED_START' | translate }}"
+                  
+                  (dateChange)="eDateChangedStart($event)"
+                />
+                <mat-datepicker-toggle
+                  matSuffix
+                  [for]="picker"
+                ></mat-datepicker-toggle>
+                <ngx-mat-datetime-picker
+                  #picker
+                  [showSpinners]="true"
+                  [showSeconds]="false"
+                  [enableMeridian]="true"
+                >
+                  <ng-template>
+                    <span>OK</span>
+                  </ng-template>
+                </ngx-mat-datetime-picker>
+              </mat-form-field>
+                <mat-error *ngIf="submitted && addForm.controls['lasteventon'].errors">lasteventon {{ "VALIDATE.ERROR9" | translate }}</mat-error>
+              </div>
+            </div>
+
+
+            
+
+
+            <!-- <div class="col-md-6 add-feild">
+              <label>{{ "ADD_ROLL_CALL.ORGANIZATION" | translate }}</label>
+              <div class="form-group">
+                <mat-form-field class="example-full-width" appearance="outline">
+                  <input type="text" maxlength="100"
+                    onkeypress="return String.fromCharCode(event.charCode).match(/[^a-zA-Z]/g) === null"
+                    [formControl]="addForm.controls['companyName']" onlyCharacters matInput
+                    placeholder="{{ 'ADDROLLCALL.ORGANIZATION' | translate }}"
+                  />
+                </mat-form-field>
+                <mat-error *ngIf="submitted && addForm.controls['companyName'].errors">companyName {{ "VALIDATE.ERROR9" | translate }}</mat-error>
+              </div>
+            </div>
+            <div class="col-md-6 add-feild">
+              <label>{{ "ADD_ROLL_CALL.PHONE" | translate }}</label>
+              <div class="form-group">
+                <mat-form-field class="example-full-width" appearance="outline">
+                  <input maxlength="15"
+                    onkeypress="return String.fromCharCode(event.charCode).match(/[^0-9]/g) === null"
+                    [formControl]="addForm.controls['phoneNumber']" onlyCharacters matInput
+                    placeholder="{{ 'ADD-UNRET.PHONE' | translate }}"
+                  />
+                </mat-form-field>
+                <mat-error *ngIf="submitted && addForm.controls['phoneNumber'].errors">phoneNumber {{ "VALIDATE.ERROR9" | translate }}</mat-error>
+              </div>
+            </div>
+            <div class="col-md-6 add-feild">
+              <label>{{ "ADD_ROLL_CALL.LAST_EVENT" | translate }}</label>
+              <div class="form-group">
+                <mat-form-field class="example-full-width" appearance="outline">
+                  <input type="text" maxlength="100"
+                    onkeypress="return String.fromCharCode(event.charCode).match(/[^a-zA-Z]/g) === null"
+                    [formControl]="addForm.controls['lasteventlocation']" onlyCharacters matInput
+                    placeholder="{{ 'ADD-UNRET.LVENLOCATION' | translate }}"
+                  />
+                </mat-form-field>
+                <mat-error *ngIf="submitted && addForm.controls['lasteventlocation'].errors">lasteventlocation {{ "VALIDATE.ERROR9" | translate }}</mat-error>
+              </div>
+            </div> -->
+            <!-- <div class="col-md-6 add-feild">
+              <label>{{ "ADD_ROLL_CALL.LAST_ON" | translate }}</label>
+              <div class="form-group">
+                <mat-form-field class="example-full-width" appearance="outline">
+                  <input type="datetime-local"
+                    [formControl]="addForm.controls['lasteventon']" onlyCharacters matInput
+                    placeholder="{{ 'ADDROLLCALL.LAST_EVENT_LOCA_ON' | translate }}"
+                  />
+                </mat-form-field>
+                <mat-form-field appearance="outline" class="w-100" [floatLabel]="'never'">
+                  <input matInput [ngxMatDatetimePicker]="picker"
+                  [formControl]="addForm.controls['lasteventon']" onlyCharacters matInput
+                  placeholder="{{ 'ADDROLLCALL.LAST_EVENT_LOCA_ON' | translate }}"
+                    [readonly]="true"
+                    >
+                 <mat-datepicker-toggle matSuffix [for]="picker"
+                  ></mat-datepicker-toggle>
+                 <ngx-mat-datetime-picker #picker
+                 [showSpinners]="true" [showSeconds]="false" [enableMeridian]="true">
+                 <ng-template>
+                  <span >OK</span>
+                </ng-template>
+                 </ngx-mat-datetime-picker>
+                </mat-form-field>
+                <mat-error *ngIf="submitted && addForm.controls['lasteventon'].errors">lasteventon {{ "VALIDATE.ERROR9" | translate }}</mat-error>
+              </div>
+            </div> -->
+            <!-- <div class="col-md-6 add-feild">
+              <label>{{ "ADD_ROLL_CALL.ACTIONS" | translate }}</label>
+              <div class="form-group">
+                <div class="form-group">
+                  <mat-form-field appearance="outline">
+                    <select matNativeControl required>
+                      <option value="volvo">
+                        {{ "ADD_ROLL_CALL.CHECK_IN" | translate }} 
+                      </option>
+                      <option value="saab">
+                        {{ "ADD_ROLL_CALL.CHECK_OUT" | translate }} 
+                      </option>
+                    </select>
+                  </mat-form-field>
+                </div>
+              </div>
+            </div> -->
+          </div>
+
+          <div class="row justify-content-end d-flex">
+            <div class="col-md-6 button-save">
+              <label>&nbsp;</label>
+              <div class="justify-content-end d-flex">
+              <button class="btn-style btn-save" mat-raised-button>
+                {{ "VISITOR_LIST.SAVE" | translate }}
+              </button>
+              <button class="btn-style btn-cancel" mat-raised-button routerLink="/report/roll-call">
+                {{ "VISITOR_LIST.CLOSE" | translate }}
+              </button>
+            </div>
+            </div>
+          </div>
+
+
+        </form>
+      </section>
+    </div>
+  </div>
+</section>
+</div>
+<!-- <app-footer></app-footer> -->

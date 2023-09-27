@@ -1,0 +1,19 @@
+<section>
+    <div class="employee-section-popup">
+        <mat-icon class="cloes-btn"  (click)="closeDialog()">clear</mat-icon>
+        <h2 *ngIf="!isLoading" class="card-holder-word"> {{ "BCB_GROUPS.SYNCING" | translate }}</h2>
+    <p *ngIf="!isLoading">{{ "BCB_GROUPS.PROCESS" | translate }}</p>
+    <p *ngIf="isLoading">{{ "BCB_GROUPS.SYNC_COMPLETED" | translate }}</p>
+    <mat-spinner class="spinner-main" *ngIf="!isLoading"></mat-spinner>
+    <div class="popup-flex">
+        <span>{{syncCardList}}</span>
+        <p>{{ "BCB_GROUPS.SYNC_EMP_SECTIONS" | translate }}</p>
+    </div>
+    <div>
+        <button mat-stroked-button class="btn-refresh mt-3" *ngIf="isLoading" (click)="load()">
+            {{ "BCB_GROUPS.LOAD" | translate }}
+          </button>
+    </div>
+    
+    </div>
+</section>

@@ -1,0 +1,88 @@
+
+<!-- <div class="acs-server-popup" *ngIf="testPopUp2 == 'server'">
+    <div class="circle bg-red">
+      <mat-icon>close</mat-icon>
+    </div>
+    <div class="content">
+        <h3> {{'USER-ACCESS-GROUP.OFFLINE' | translate}} </h3>
+    </div>
+    
+       <div class="actions">
+            <button mat-stroked-button class="btn-h-w btn-green" matDialogClose>
+                {{'USER-ACCESS-GROUP.OK' | translate}}
+            </button>
+        </div>
+   
+</div>
+<ng-container *ngIf="testPopUp == 'tabletest'">
+<section class="badge-group-pop">
+    <div class="table-scroll">
+    <div class="heading">
+        <h2> {{"BADGE-GROUP.BADGE_GROUP_POPHEADING" | translate }}</h2>
+    </div>
+    <div class="table-responsive">
+        <table class="table table-striped table-bordered table-w">
+            <thead>
+                <tr>
+                    <th scope="col">{{"ACS_SETTINGS.DOOR_POPUP.ID" | translate }}</th>
+                    <th scope="col">{{"BADGE-GROUP.BADGE_TABLE_TD" | translate }}</th>
+                </tr>
+            </thead>
+            <tbody *ngIf="userAccessGroupList">
+                <ng-container *ngFor="let user of userAccessGroupList;let i=index">
+                    <tr>
+                        <td>
+                            <div>
+                             <section  class="example-section">
+                              <mat-checkbox (change)="onSelect(user,i)" class="example-margin"
+                              [checked]="user?.isSelected"></mat-checkbox>
+                             </section>
+                            </div>
+                        </td>
+                        <td>{{user?.property_value_map.name}}</td>
+                    </tr>
+                </ng-container>
+
+            </tbody>
+        </table>
+    </div>
+</div>
+<div class="all-paginator">
+    <pagination [paginationList]="pagination" [selectedPageLimit]="currentPageLimit"
+    [currentPage]="currentPage" (onPageChange)="getPage($event)" [lastPage]="lastpage">
+  </pagination>
+</div>
+    <div class="btn-div">
+        <div>
+            <button mat-stroked-button class="btn-h-w btn-green" (click)="saveBadgeGroup()">
+                {{'ACS_SETTINGS.DOOR_POPUP.SAVE' | translate}} 
+            </button>
+
+            <button mat-stroked-button class="btn-h-w btn-gray" mat-dialog-close (click)="close()">
+                {{'ACS_SETTINGS.DOOR_POPUP.CANCEL' | translate}} 
+            </button>
+        </div>
+    </div>
+</section>
+</ng-container> -->
+
+
+<section>
+    <div class="card-holders-popup">
+        <mat-icon class="cloes-btn"  (click)="closeDialog()">clear</mat-icon>
+        <h2 *ngIf="!isLoading" class="card-holder-word"> {{ "BCB_GROUPS.SYNCING" | translate }}</h2>
+    <p *ngIf="!isLoading">{{ "BCB_GROUPS.PROCESS" | translate }}</p>
+    <p *ngIf="isLoading">{{ "BCB_GROUPS.SYNC_COMPLETED" | translate }}</p>
+    <mat-spinner class="spinner-main" *ngIf="!isLoading"></mat-spinner>
+    <div class="popup-flex">
+        <span>{{syncCardList}}</span>
+        <p>{{ "BADGE-GROUP.SYNC_BADGE_GROUP" | translate }}</p>
+    </div>
+    <div>
+        <button mat-stroked-button class="btn-refresh mt-3" *ngIf="isLoading" (click)="load()">
+            {{ "BCB_GROUPS.LOAD" | translate }}
+          </button>
+    </div>
+    
+    </div>
+</section>

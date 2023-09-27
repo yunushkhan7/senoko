@@ -1,0 +1,71 @@
+<div class="green-bg">
+<section class="main-page" *ngIf="permissionObject?.list">
+            <div class="row m-0 mt-2" class="main-div">
+                <div class="heading">
+                    <div>
+                        <h2> {{'ACS_SETTINGS.HEAD' | translate}}</h2>
+                       
+                    </div>
+
+                    <div class="show mb-4 btn-flex">
+                        <button mat-stroked-button color="black" class="btn-back" (click)="goBack()">
+                            <mat-icon>arrow_back</mat-icon>
+                            {{ "BUTTON.BACK" | translate }}
+                          </button>
+                          <button class="add_user" *ngIf="permissionObject?.add" [routerLink]="['add']" type="submit" mat-flat-button >
+                            {{'ACS_SETTINGS.VMS_STATION.VMS_ADD' | translate}}
+                           </button>
+                      </div>
+                        
+                </div>
+                
+                <section class="Door-list">
+                    <div class="table-responsive">
+                        <table class="table table-striped">
+                            <thead>
+                                <tr>
+                                    <th scope="col">{{ "VISITOR_LIST.SN" | translate }}</th>
+                                    <th scope="col">{{ "ACS_SETTINGS.VMS_STATION_LIST.ID" | translate }} <img (click)="sortData('id')" src="assets/images/sort.png"></th>
+                                    <th scope="col">{{ "ACS_SETTINGS.VMS_STATION_LIST.USER_NAME" | translate }} <img (click)="sortData('userName')" src="assets/images/sort.png"></th>
+                                    <th scope="col">{{'ACS_SETTINGS.VMS_ADD.NAME' | translate}} <img (click)="sortData('FirstName')" src="assets/images/sort.png"></th>
+                                    <th scope="col">{{ "ACS_SETTINGS.VMS_STATION_LIST.SHOW" | translate }} <img (click)="sortData('show_T_C')" src="assets/images/sort.png"></th>
+                                    <th scope="col">{{ "ACS_SETTINGS.VMS_STATION_LIST.STATUS" | translate }} <img (click)="sortData('StationStatus')" src="assets/images/sort.png"></th>
+                                    <th scope="col">{{ "ACS_SETTINGS.VMS_STATION_LIST.ACTIONS" | translate }}</th>
+                                </tr>
+                            </thead>
+                            <tbody *ngIf="objectArray?.length && permissionObject?.list">
+                              <tr *ngFor="let station of objectArray;let i=index">
+                                   <td>{{station?.sNo}}</td>
+                                   <td>{{station?.id}}</td>
+                                   <td>{{station?.userName}}</td>
+                                   <td>{{station?.stationName}}</td>
+                                   <td>{{station?.show_T_C? 'Yes':'No'}}</td>
+                                   <td [ngClass]="station?.status == 'ONLINE' ? 'online' : 'offline'">{{station?.status}}</td>
+                                    <td>
+                                        <button *ngIf="permissionObject?.edit"><mat-icon class="edit" [routerLink]="['edit',station?.id]">edit</mat-icon></button>
+                                        <button *ngIf="permissionObject?.delete"><mat-icon class="delete" (click)="deleteStation(station)">delete</mat-icon></button>
+                                    </td>
+                                </tr>
+
+                            </tbody>
+                            <ng-container *ngIf="!objectArray?.length && permissionObject?.list">
+                                <tr>
+                                    <td colspan="7">
+                                  <p class="datafound">{{'PROFILE.NO_DATA' | translate}} </p>
+                                </td>
+                              </tr>
+                              </ng-container>
+                        </table>
+                    </div>
+
+                    <div class="all-paginator" *ngIf="objectArray?.length && permissionObject?.list">
+                        <pagination [paginationList]="pagination" [selectedPageLimit]="currentPageLimit"
+                        [currentPage]="currentPage" (onPageChange)="getPage($event)" [lastPage]="lastpage">
+                      </pagination>
+                      </div>
+                </section>
+            </div>
+      
+</section>
+</div>
+<!-- <app-footer></app-footer> -->

@@ -1,0 +1,84 @@
+
+
+.mr-5 {
+  margin-right: 5px;
+}
+
+
+// responsive code start
+
+// Extra small devices (portrait phones, less than 576px)
+@media (max-width: 575.98px) {
+}
+
+// Small devices (landscape phones, less than 768px)
+@media (max-width: 767.98px) {
+}
+
+// Medium devices (tablets, less than 992px)
+@media (max-width: 991.98px) {
+}
+
+// Large devices (desktops, less than 1200px)
+@media (max-width: 1199.98px) {
+}
+
+.integration-checklist__copy-button {
+  position: relative;
+
+  &:before {
+    content: "";
+    display: none;
+    position: absolute;
+    z-index: 88888888;
+    top: -9px;
+    left: 15px;
+    width: 0;
+    height: 0;
+
+    border-left: 5px solid transparent;
+    border-right: 5px solid transparent;
+    border-top: 5px solid rgba(0, 0, 0, 0.72);
+  }
+
+  &:after {
+    content: "Copy to Clipboard";
+    display: none;
+    position: absolute;
+    z-index: 9999;
+    top: -45px;
+    left: -37px;
+    width: 114px;
+    height: 36px;
+
+    color: #fff;
+    font-size: 10px;
+    line-height: 36px;
+    text-align: center;
+
+    background: rgba(0, 0, 0, 0.72);
+    border-radius: 3px;
+  }
+
+  &:hover {
+    background-color: #eee;
+
+    &:before,
+    &:after {
+      display: block;
+    }
+  }
+
+  &:active,
+  &:focus {
+    outline: none;
+
+    &:after {
+      content: "Copied!";
+    }
+  }
+}
+
+::ng-deep .table > :not(:first-child) {
+  border-top:none!important;
+}

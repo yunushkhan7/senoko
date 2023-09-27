@@ -1,0 +1,241 @@
+
+<div class="green-bg" *ngIf="permissionObject?.list">
+    <div class="main-page">
+      <h2 class="main-heading mb-0">{{ "DASHBOARD-NEW.DASHBAORD" | translate }}</h2>
+      <h4>{{ "DASHBOARD-NEW.SENOKO" | translate }} </h4>
+      <div class="row">        
+        <section class="visitor-block">
+          <div class="">
+            <div class="row">
+              <div class="col-md-4">
+                <div class="visitors">
+                  <div class="visitor-inner">
+                    <div class="visitors-icon">
+                      <img src="assets/images/visitors-icon.svg" />
+                    </div>
+                    <div class="visitors-details">
+                      <h2>{{ "DASHBOARD.URGENT_ENTRIES" | translate }}</h2>
+                      <p>
+                        {{ registerCountList?.urgentEntries }} 
+                        <!-- / {{ registerCountList?.todayTotalRegisterCount }} -->
+                      </p>
+                    </div>
+                  </div>
+                  <!-- <div class="progress-block">
+                    <div class="progress-inner">
+                      <div class="today">
+                        <p>{{ "DASHBOARD.TODAY" | translate }}</p>
+                      </div>
+                      <div class="persent">
+                        <p>
+                          {{registerCountList?.todayVisitorRegisterCount==0 ? registerCountList?.todayVisitorRegisterCount: (registerCountList?.todayVisitorRegisterCount / registerCountList?.todayTotalRegisterCount) *100}}%
+                        </p>
+                      </div>
+                    </div>
+                    <div class="progress">
+                      <mat-progress-bar
+                        class="progress"
+                        value="{{registerCountList?.todayVisitorRegisterCount==0 ? registerCountList?.todayVisitorRegisterCount: (registerCountList?.todayVisitorRegisterCount / registerCountList?.todayTotalRegisterCount) *100}}"
+                      ></mat-progress-bar>
+                    </div>
+                  </div> -->
+                </div>
+              </div>
+              <div class="col-md-4">
+                <div class="visitors">
+                  <div class="visitor-inner">
+                    <div class="visitors-icon contractor">
+                      <img
+                        class="contractor"
+                        src="assets/images/contractor-icon.png"
+                      />
+                    </div>
+                    <div class="visitors-details">
+                      <h2>{{ "DASHBOARD.AD_HOC" | translate }}</h2>
+                      <p>
+                        {{ registerCountList?.adHocRegistrations }} 
+                       <!-- / {{ registerCountList?.todayTotalRegisterCount }} -->
+                      </p>
+                    </div>
+                  </div>
+                  <!-- <div class="progress-block">
+                    <div class="progress-inner">
+                      <div class="today">
+                        <p>{{ "DASHBOARD.TODAY" | translate }}</p>
+                      </div>
+                      <div class="persent">
+                        <p>
+                          {{
+                            registerCountList?.todayContractorRegisterCount==0 ? registerCountList?.todayContractorRegisterCount:(registerCountList?.todayContractorRegisterCount /
+                              registerCountList?.todayTotalRegisterCount) *
+                              100
+                          }}%
+                        </p>
+                      </div>
+                    </div>
+                    <div class="progress">
+                      <mat-progress-bar
+                        class="progress"
+                        value="{{
+                          registerCountList?.todayContractorRegisterCount==0 ? registerCountList?.todayContractorRegisterCount:(registerCountList?.todayContractorRegisterCount /
+                            registerCountList?.todayTotalRegisterCount) *
+                            100
+                        }}"
+                      ></mat-progress-bar>
+                    </div>
+                  </div> -->
+                </div>
+              </div>
+              <div class="col-md-4">
+                <div class="visitors">
+                  <div class="visitor-inner">
+                    <div class="visitors-icon contractor">
+                      <img class="black" src="assets/images/list-icon.png" />
+                    </div>
+                    <div class="visitors-details">
+                      <h2>{{ "DASHBOARD.AVG" | translate }}</h2>
+                      <p>{{ registerCountList?.avgCheckintime }}</p>
+                    </div>
+                  </div>
+                  <!-- <div class="progress-block">
+                    <div class="progress-inner">
+                      <div class="today">
+                        <p>{{ "DASHBOARD.TODAY" | translate }}</p>
+                      </div>
+                      <div class="persent">
+                        <p>100%</p>
+                      </div>
+                    </div>
+                    <div class="progress">
+                      <mat-progress-bar
+                        class="progress"
+                        value="100"
+                      ></mat-progress-bar>
+                    </div>
+                  </div> -->
+                </div>
+              </div>
+            </div>
+          </div>
+        </section>
+      </div>
+
+      <div class="row">
+        <div class="col-lg-4">
+          <div class="card">
+            <div class="card-header">
+              <div>
+                <h4>{{ "DASHBOARD-NEW.SITE" | translate }}</h4>
+                <!-- <h5>{{ "DASHBOARD-NEW.UPDATEED" | translate }}</h5> -->
+              </div>
+              <!-- <i class="material-icons ng-scope text-syan">pie_chart</i> -->
+            </div>
+
+            <div>
+
+              <app-doughnut></app-doughnut>
+
+              <!-- <circle-progress
+                [percent]="todayRegisterCountPer"
+                [radius]="100"
+                [outerStrokeWidth]="15"
+                [space]="-15"
+                [innerStrokeWidth]="0"
+                [outerStrokeColor]="'blue'"
+                [innerStrokeColor]="'orange'"
+                [animation]="true"
+                [animationDuration]="300"
+                [maxPercent]="100"
+                [showZeroOuterStroke]="false"
+                [backgroundStroke]="'green'"
+                [innerStrokeWidth]="15"
+              ></circle-progress> -->
+            </div>
+          </div>
+
+          <div class="card">
+            <div class="card-header">
+              <div>
+                <h4>{{ "DASHBOARD-NEW.TODAY_REGISTRATION" | translate }}</h4>
+              </div>
+              <!-- <i class="material-icons ng-scope">more_vert</i> -->
+            </div>
+            <!-- <div class="d-flex justify-content-between align-items-center">
+              <div class="col card-div">
+                <div class="row no-gutters align-items-center">
+                  <div class="col-auto">
+                    <div class="icons bg-syan-light text-syan">
+                      <mat-icon>people</mat-icon>
+                    </div>
+                  </div>
+                  <div class="col mr-2">
+                    <div class="font-weight-bold top-text">
+                      {{ "DASHBOARD-NEW.TODAY_REGISTRATION" | translate }}
+                    </div>
+                    <div class="mb-0 font-weight-bold bottum-text text-syan">
+                      {{ "DASHBOARD-NEW.ONETO" | translate }}
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <mat-icon class="text-syan">{{
+                "DASHBOARD-NEW.keyboard_arrow_right" | translate
+              }}</mat-icon>
+            </div> -->
+            <div>
+              <p>{{ todayCount }}</p>
+              <canvas
+                baseChart
+                chartType="line"
+                [datasets]="lineChartData?.dataSets"
+                [labels]="lineChartData?.labels"
+                [options]="chartLine.options"
+                legend="true"
+              >
+              </canvas>
+            </div>
+          </div>
+        </div>
+
+        <div class="col-lg-8">
+          <div class="card">
+            <div class="card-header">
+              <div>
+                <h4>{{ "DASHBOARD-NEW.TRAFF" | translate }}</h4>
+                <h5>{{ "DASHBOARD-NEW.VISITOR_CON" | translate }}</h5>
+              </div>
+
+              <div style="display: flex">
+                <button class="mob-btn" mat-raised-button
+                 [ngClass]="weekOrMonthOrYear === 'week' ? 'green-color' : ''"
+                 (click)="getDsahboardMonthlyWise('week')"
+                 >Week</button>
+                &nbsp;&nbsp;
+                <button class="mob-btn" mat-raised-button
+                [ngClass]="weekOrMonthOrYear === 'month' ? 'green-color' : ''"
+                (click)="getDsahboardMonthlyWise('month')"
+                >Month</button>
+                &nbsp;&nbsp;
+                <button class="mob-btn" mat-raised-button
+                [ngClass]="weekOrMonthOrYear === 'year' ? 'green-color' : ''"
+                (click)="getDsahboardMonthlyWise('year')"
+                >Year</button>
+              </div>
+            </div>
+            <div>
+              <canvas
+                baseChart
+                chartType="bar"
+                [datasets]="barChartData?.dataSets"
+                [labels]="barChartData?.labels"
+                [options]="chart.options"
+                legend="true"
+              >
+              </canvas>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+</div>
+<!-- <app-footer></app-footer> -->

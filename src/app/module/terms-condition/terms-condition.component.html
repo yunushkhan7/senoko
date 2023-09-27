@@ -1,0 +1,74 @@
+<div class="green-bg">
+<section class="visitor-addmision main-page" *ngIf="permissionObject?.list">
+    <div class="container">
+      <div class="visitor-addmission-inner">
+        <section class="visitor-list">
+          <h2 class="form-hadding">{{ "VISITOR_LIST.TERMS-CONDITION" | translate }}</h2>
+
+          <div class="show mb-3">
+            <button mat-stroked-button color="black" class="btn-back" (click)="goBack()">
+            <mat-icon>arrow_back</mat-icon>
+            {{ "BUTTON.BACK" | translate }}
+          </button>
+        </div>
+  
+          <form class="addusers" [formGroup]="addForm">
+            <div class="row">
+              
+              <div class="add-feild row">
+                <label class="col-md-2 mt-17">{{ "VISITOR_LIST.HEADER_TEXT" | translate }}</label>
+                <div class="col-md-10 form-group vmsadd">
+                  <mat-form-field class="example-full-width" appearance="outline">
+                    <input maxlength="150"
+                    [formControl]="addForm.controls['headerText']"  matInput
+                      placeholder="{{ 'VISITOR_LIST.EN_HEADER_TEXT' | translate }}"
+                    />
+                  </mat-form-field>
+                </div>
+              </div>
+              
+              
+
+                <div class="row add-feild">
+                    <label class="col-md-2 mt-17">{{ "VISITOR_LIST.BODY_TEXT" | translate }}</label>
+                    <div class="col-md-10 form-group vmsadd">
+                      <mat-form-field class="example-full-width" appearance="outline">
+                        <textarea [formControl]="addForm.controls['bodyText']" maxlength="5000"
+                         matInput placeholder='{{ "VISITOR_LIST.EN_BODY_TEXT" | translate }}'></textarea>
+                      </mat-form-field>
+                    </div>
+                </div>
+
+                <div class="row add-feild">
+                  <label class="col-md-2 mt-17">{{ "VISITOR_LIST.CHECK_BOX_TEXT" | translate }}</label>
+                  <div class="col-md-10  form-group vmsadd">
+                    <mat-form-field class="example-full-width" appearance="outline">
+                      <input maxlength="150"
+                      [formControl]="addForm.controls['checkboxText']"  matInput
+                        placeholder="{{ 'VISITOR_LIST.EN_CHECK_BOX_TEXT' | translate }}"
+                        
+                      />
+                    </mat-form-field>
+                  
+                  </div>
+                </div>
+             
+            </div>
+            <div class="row justify-content-end d-flex mt-4">
+              <div class="col-md-6 button-save d-flex justify-content-end">
+                <button class="btn-style btn-save" mat-raised-button
+                (click)="saveTermsCondition()">
+                  {{ "VISITOR_LIST.SAVE" | translate }}
+                </button>
+                <!-- <button class="save" mat-raised-button>
+                  {{ "VISITOR_LIST.CLOSE" | translate }}
+                </button> -->
+              </div>
+            </div>
+          </form>
+        </section>
+      </div>
+    </div>
+  </section>
+  </div>
+  <!-- <app-footer></app-footer> -->

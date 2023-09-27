@@ -1,0 +1,257 @@
+<mat-card class="side-navbar active-nav" id="sidebar" [class.full]="sidenavshow" [class.half]="!sidenavshow">
+  <div class="nav-logo" [class.w-0]="!sidenavshow">
+    <img src="assets/images/senoko-logo.png" routerLink="/dashboard" />
+  </div>
+  <div class="float-right">
+    <button class="btn_toggle mob" (click)="ShowsidebarMob()">
+      <mat-icon [class.icon_rotate]="!sidenavshow">keyboard_double_arrow_left</mat-icon>
+    </button>
+    <!-- <button class="btn_toggle" (click)="toggleShowsidebar()">
+      <mat-icon [class.icon_rotate]="!sidenavshow">keyboard_double_arrow_left</mat-icon>
+    </button> -->
+  </div>
+
+
+  <div class="ul_wrap">
+    <ul class="">
+      <div class="nav-link" *ngIf="permissionObject?.Dashboards?.list">
+        <li routerLink="/dashboard" routerLinkActive="active">
+          <mat-icon>dashboard </mat-icon>
+          <span class="mx-2" [class.none]="!sidenavshow">{{'SIDEBAR.DASHBOARD'|translate}}</span>
+        </li>
+      </div>
+      <!-- <div class="nav-link" *ngIf="permissionObject?.Users?.list || permissionObject?.Role?.list">
+        <li (click)="toggleShow()" routerLinkActive="active">
+          <mat-icon>person</mat-icon>
+          <span class="mx-2" [class.none]="!sidenavshow">{{'SIDEBAR.ADMIN'|translate}}</span>
+          <mat-icon *ngIf="!isShown">keyboard_arrow_up</mat-icon>
+          <mat-icon *ngIf="isShown">keyboard_arrow_down</mat-icon>
+        </li>
+      </div>
+      <div *ngIf="isShown && permissionObject?.Users?.list" class="nav-link sublink">
+        <li routerLink="/user" routerLinkActive="active" class="subnav_link" (click)="ShowsidebarMob()">
+          <div class="dot"></div>
+          <span class="mx-2" [class.none]="!sidenavshow">{{'SIDEBAR.USER'|translate}}</span>
+        </li>
+      </div>
+      <div *ngIf="isShown && permissionObject?.Role?.list" class="nav-link sublink">
+        <li routerLink="/role" routerLinkActive="active" class="subnav_link" (click)="ShowsidebarMob()">
+          <div class="dot"></div>
+          <span class="mx-2" [class.none]="!sidenavshow">{{'SIDEBAR.ROLE'|translate}}</span>
+        </li>
+      </div> -->
+      <!-- <div *ngIf="isShown " class="nav-link sublink">
+        <li routerLink="/role-permission" routerLinkActive="active" class="subnav_link" (click)="ShowsidebarMob()">
+          <div class="dot"></div>
+          <span class="mx-2" [class.none]="!sidenavshow">Permission</span>
+        </li>
+      </div> -->
+      <div class="nav-link" *ngIf="permissionObject?.Report?.list">
+        <li (click)="isShown2 = !isShown2" routerLinkActive="active">
+          <mat-icon> insert_drive_file </mat-icon>
+          <span class="mx-2" [class.none]="!sidenavshow">Reports</span>
+          <mat-icon *ngIf="!isShown2" class="ml-auto">keyboard_arrow_down</mat-icon>
+          <mat-icon *ngIf="isShown2" class="ml-auto">keyboard_arrow_up</mat-icon>
+        </li>
+      </div>
+
+      <div *ngIf="isShown2 && permissionObject?.Report?.list" class="nav-link sublink">
+        <li routerLink="/report/Unreturned-Passes" routerLinkActive="active" class="subnav_link">
+          <div class="dot"></div>
+          <span class="mx-2" [class.none]="!sidenavshow">Unreturned Passes</span>
+        </li>
+      </div>
+      <div *ngIf="isShown2 && permissionObject?.Report?.list" class="nav-link sublink">
+        <li routerLink="/report/Individual-Attendance" routerLinkActive="active" class="subnav_link">
+          <div class="dot"></div>
+          <span class="mx-2" [class.none]="!sidenavshow">Individual Attendance</span>
+        </li>
+      </div>
+      <div *ngIf="isShown2 && permissionObject?.Report?.list" class="nav-link sublink">
+        <li routerLink="/report/daily-entry" routerLinkActive="active" class="subnav_link">
+          <div class="dot"></div>
+          <span class="mx-2" [class.none]="!sidenavshow">Daily Entry</span>
+        </li>
+      </div>
+      <div *ngIf="isShown2 && permissionObject?.Report?.list" class="nav-link sublink">
+        <li routerLink="/report/roll-call" routerLinkActive="active" class="subnav_link">
+          <div class="dot"></div>
+          <span class="mx-2" [class.none]="!sidenavshow">Roll Call</span>
+        </li>
+      </div>
+      <div *ngIf="isShown2 && permissionObject?.Report?.list" class="nav-link sublink">
+        <li routerLink="/report/access-log" routerLinkActive="active" class="subnav_link">
+          <div class="dot"></div>
+          <span class="mx-2" [class.none]="!sidenavshow">Access Log</span>
+        </li>
+      </div>
+      <div *ngIf="isShown2 && permissionObject?.Report?.list" class="nav-link sublink">
+        <li routerLink="/report/check-in-station" routerLinkActive="active" class="subnav_link">
+          <div class="dot"></div>
+          <span class="mx-2" [class.none]="!sidenavshow">Check In Station</span>
+        </li>
+      </div>
+      <div *ngIf="isShown2 && permissionObject?.Report?.list" class="nav-link sublink">
+        <li routerLink="/report/door-release" routerLinkActive="active" class="subnav_link">
+          <div class="dot"></div>
+          <span class="mx-2" [class.none]="!sidenavshow">Door Release</span>
+        </li>
+      </div>
+
+      <div class="nav-link sublink" *ngIf="permissionObject?.UserAccounts?.list">
+        <li routerLink="/user-account" routerLinkActive="active" class="subnav_link">
+          <mat-icon> person </mat-icon>
+          <span class="mx-2" [class.none]="!sidenavshow">{{'USER_ACCOUNTS.USERACCOUNT'|translate}}</span>
+        </li>
+      </div>
+      <div class="nav-link sublink" *ngIf="permissionObject?.DataRetention?.list">
+        <li routerLink="/data-retention" routerLinkActive="active" class="subnav_link">
+          <mat-icon>restore_page </mat-icon>
+          <span class="mx-2" [class.none]="!sidenavshow">{{'DATA_RETENTION.NAME'|translate}}</span>
+        </li>
+      </div>
+
+
+      <div class="nav-link" *ngIf="permissionObject?.ACSSettings?.list">
+        <li (click)="toggleAcsSettings()" routerLinkActive="active">
+          <mat-icon> settings </mat-icon>
+          <span class="mx-2" [class.none]="!sidenavshow">ACS Settings</span>
+          <mat-icon *ngIf="!isAcs" class="ml-auto">keyboard_arrow_down</mat-icon>
+          <mat-icon *ngIf="isAcs" class="ml-auto">keyboard_arrow_up</mat-icon>
+        </li>
+      </div>
+      <div *ngIf="isAcs && permissionObject?.ACSSettings?.list" class="nav-link sublink">
+        <li routerLink="/acs-settings/acs-server-list" routerLinkActive="active" class="subnav_link">
+          <div class="dot"></div>
+          <span class="mx-2" [class.none]="!sidenavshow">{{'ACS_SETTINGS.ACS_SERVER'|translate}}</span>
+        </li>
+      </div>
+      <div *ngIf="isAcs && permissionObject?.ACSSettings?.list" class="nav-link sublink">
+        <li routerLink="/acs-settings/access-levels" routerLinkActive="active" class="subnav_link" >
+          <div class="dot"></div>
+          <span class="mx-2" [class.none]="!sidenavshow">{{'ACS_SETTINGS.ACCESS_LEVEL'|translate}}</span>
+        </li>
+      </div>
+      <div *ngIf="isAcs && permissionObject?.ACSSettings?.list" class="nav-link sublink">
+        <li routerLink="/acs-settings/doors-list" routerLinkActive="active" class="subnav_link">
+          <div class="dot"></div>
+          <span class="mx-2" [class.none]="!sidenavshow">{{'ACS_SETTINGS.DOORS'|translate}}</span>
+        </li>
+      </div>
+
+      <div *ngIf="isAcs && permissionObject?.ACSSettings?.list" class="nav-link sublink">
+        <li routerLink="/acs-settings/card-holder" routerLinkActive="active" class="subnav_link">
+          <div class="dot"></div>
+          <span class="mx-2" [class.none]="!sidenavshow">{{'ACS_SETTINGS.CARD_HOLDERS'|translate}}</span>
+        </li>
+      </div>
+      <div *ngIf="isAcs && permissionObject?.ACSSettings?.list" class="nav-link sublink">
+        <li routerLink="/acs-settings/badge-group" routerLinkActive="active" class="subnav_link">
+          <div class="dot"></div>
+          <span class="mx-2" [class.none]="!sidenavshow">{{'ACS_SETTINGS.BADGE_GROUPS'|translate}}</span>
+        </li>
+      </div>
+      <div *ngIf="isAcs && permissionObject?.ACSSettings?.list" class="nav-link sublink">
+        <li routerLink="/acs-settings/bcp-group" routerLinkActive="active" class="subnav_link">
+          <div class="dot"></div>
+          <span class="mx-2" [class.none]="!sidenavshow">{{'ACS_SETTINGS.BCP_GROUPS'|translate}}</span>
+        </li>
+      </div>
+      <div *ngIf="isAcs && permissionObject?.ACSSettings?.list" class="nav-link sublink">
+        <li routerLink="/acs-settings/roll-call-group" routerLinkActive="active" class="subnav_link">
+          <div class="dot"></div>
+          <span class="mx-2" [class.none]="!sidenavshow">{{'ACS_SETTINGS.ROLL_CALL_GROUPS'|translate}}</span>
+        </li>
+      </div>
+      <div *ngIf="isAcs && permissionObject?.ACSSettings?.list" class="nav-link sublink">
+        <li routerLink="/acs-settings/employee-divisions" routerLinkActive="active" class="subnav_link">
+          <div class="dot"></div>
+          <span class="mx-2" [class.none]="!sidenavshow">{{'ACS_SETTINGS.EMPLOYEE_DIVISIONS'|translate}}</span>
+        </li>
+      </div>
+      <div *ngIf="isAcs && permissionObject?.ACSSettings?.list" class="nav-link sublink">
+        <li routerLink="/acs-settings/employee-sections" routerLinkActive="active" class="subnav_link">
+          <div class="dot"></div>
+          <span class="mx-2" [class.none]="!sidenavshow">{{'ACS_SETTINGS.EMPLOYEE_SECTION'|translate}}</span>
+        </li>
+      </div>
+
+
+      <div class="nav-link sublink" *ngIf="permissionObject?.VMSStation?.list">
+        <li routerLink="/vms-station" routerLinkActive="active" class="subnav_link">
+          <mat-icon>  transfer_within_a_station </mat-icon>
+          <span class="mx-2" [class.none]="!sidenavshow">{{'VMS_STATION.NAME'|translate}}</span>
+        </li>
+      </div>
+
+      <div class="nav-link sublink" *ngIf="permissionObject?.SSAIntegration?.list">
+        <li routerLink="/ssaintegration" routerLinkActive="active" class="subnav_link">
+          <mat-icon> bubble_chart </mat-icon>
+          <span class="mx-2" [class.none]="!sidenavshow">SSA Integration</span>
+        </li>
+      </div>
+
+      <div class="nav-link" *ngIf="permissionObject?.APIIntegration?.list">
+        <li (click)="toggleApiIntegrationSettings()" routerLinkActive="active">
+          <mat-icon> gradient </mat-icon>
+          <span class="mx-2" [class.none]="!sidenavshow">{{'API_INTEGRATION.NAME'|translate}}</span>
+          <mat-icon *ngIf="!apiIntegration" class="ml-auto">keyboard_arrow_down</mat-icon>
+          <mat-icon *ngIf="apiIntegration" class="ml-auto">keyboard_arrow_up</mat-icon>
+        </li>
+      </div>
+      <div *ngIf="apiIntegration && permissionObject?.APIIntegration?.list" class="nav-link sublink">
+        <li routerLink="/api-integration/Mom-Api" routerLinkActive="active" class="subnav_link">
+          <div class="dot"></div>
+          <span class="mx-2" [class.none]="!sidenavshow">{{'API_INTEGRATION.MOM'|translate}}</span>
+        </li>
+      </div>
+      <div *ngIf="apiIntegration && permissionObject?.APIIntegration?.list" class="nav-link sublink">
+        <li routerLink="/api-integration/Sms-Api" routerLinkActive="active" class="subnav_link">
+          <div class="dot"></div>
+          <span class="mx-2" [class.none]="!sidenavshow">{{'API_INTEGRATION.SMS'|translate}}</span>
+        </li>
+      </div>
+
+      <div class="nav-link sublink" *ngIf="permissionObject?.Termsandconditions?.list">
+        <li routerLink="/terms-condition" routerLinkActive="active" class="subnav_link">
+          <mat-icon> report </mat-icon>
+          <span class="mx-2" [class.none]="!sidenavshow">{{'TERMS_CONDITION.NAME'|translate}}</span>
+        </li>
+      </div>
+      <div class="nav-link" *ngIf="permissionObject?.Logs?.list">
+        <li (click)="toggleLogs()" routerLinkActive="active">
+          <mat-icon> file_copy </mat-icon>
+          <span class="mx-2" [class.none]="!sidenavshow">Logs</span>
+          <mat-icon *ngIf="!isLogs" class="ml-auto">keyboard_arrow_down</mat-icon>
+          <mat-icon *ngIf="isLogs" class="ml-auto">keyboard_arrow_up </mat-icon>
+        </li>
+      </div>
+
+      <div *ngIf="isLogs && permissionObject?.Logs?.list" class="nav-link sublink">
+        <li routerLink="/logs/system-logs" routerLinkActive="active" class="subnav_link">
+          <div class="dot"></div>
+          <span class="mx-2" [class.none]="!sidenavshow">{{'LOGS.SYSTEM_LOGS'|translate}}</span>
+        </li>
+      </div>
+      <div *ngIf="isLogs && permissionObject?.Logs?.list" class="nav-link sublink">
+        <li routerLink="/logs/user-audit" routerLinkActive="active" class="subnav_link">
+          <div class="dot"></div>
+          <span class="mx-2" [class.none]="!sidenavshow">{{'LOGS.USER_AUDIT'|translate}}</span>
+        </li>
+      </div>
+      <!-- <div *ngIf="isLogs" class="nav-link sublink">
+        <li routerLink="/smtp" routerLinkActive="active" class="subnav_link" (click)="ShowsidebarMob()">
+          <div class="dot"></div>
+          <span class="mx-2" [class.none]="!sidenavshow">{{ "LOGS.SMTP_HEADER" | translate }}</span>
+        </li>
+      </div> -->
+      <!-- <div class="nav-link sublink">
+        <li routerLink="/smtp" routerLinkActive="active" class="subnav_link" (click)="ShowsidebarMob()">
+          <div class="dot"></div>
+          <span class="mx-2" [class.none]="!sidenavshow">{{'SMTP.NAME'|translate}}</span>
+        </li>
+      </div> -->
+
+    </ul>
+  </div>
+</mat-card>

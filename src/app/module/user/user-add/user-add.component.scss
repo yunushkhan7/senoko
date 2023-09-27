@@ -1,0 +1,44 @@
+::ng-deep .mat-option:before,
+::ng-deep .mat-select:before {
+  position: absolute;
+  width: 20px;
+  height: 10px;
+  left: 120px;
+  content: "";
+}
+// mixin start
+@mixin all-input-style {
+  border: 1px solid #efefef;
+  box-sizing: border-box;
+  border-radius: 5px;
+}
+
+.main-div{
+  .disable{
+    cursor: no-drop;
+    .cdk-text-field-autofill-monitored:not(:-webkit-autofill) {
+      color: var(--color-gray);
+      font-size: 14px;
+      cursor: no-drop;
+    }
+    ::ng-deep .mat-form-field-outline {
+      background-color: var(--color-light-gray);
+      border-radius: 4px;
+    }
+  }
+}
+
+.division{
+  margin-top: 15px;
+  span{
+    color: var(--color-secondary);
+    font-weight: 500;
+    font-size: 16px;
+  }
+  hr{
+    margin-top: 5px;
+    margin-bottom: 8px;
+  }
+}
+
+

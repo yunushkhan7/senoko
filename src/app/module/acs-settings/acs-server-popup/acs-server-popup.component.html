@@ -1,0 +1,69 @@
+  <!-- <div class="acs-server-popup">
+    <div class="circle">
+        <mat-icon>check</mat-icon>
+    </div>
+    <div class="circle" style="display: none;">
+        <mat-icon>cancel</mat-icon>
+    </div>
+    <div class="content">
+        <h3> {{'ACS_SETTINGS.ACS_POPUP_CONTENT' | translate}} </h3>
+    </div>
+    <div class="actions">
+      <button type="button" mat-dialog-close mat-raised-button> {{'ACS_SETTINGS.POPUP_BUTTON' | translate}} </button>
+    </div>
+  </div> -->
+
+  <!-- <div class="acs-server-popup">
+    <div class="circle bg-red">
+      <mat-icon>close</mat-icon>
+    </div>
+    <div class="content">
+        <h3> {{'ACS_SETTINGS.ACS_POPUP_CONTENT2' | translate}} </h3>
+    </div>
+    <div class="actions">
+      <button type="button" mat-dialog-close mat-raised-button> {{'ACS_SETTINGS.POPUP_BUTTON' | translate}} </button>
+    </div>
+  </div> -->
+
+
+
+  <ng-container  *ngIf="testPopUp == 'test'">
+    <mat-dialog-content class="dialog-main">
+        <div class="container-fluid">
+
+            <div class="acs-server-popup">
+                <div class="circle bg-green">
+                  <mat-icon>done</mat-icon>
+                </div>
+                <div class="content">
+                    <h3> {{'ACS_SETTINGS.ACS_POPUP_CONTENT' | translate}} </h3>
+                </div>
+                <div class="actions">
+                  <button class="btn-h-w btn-green" type="button" mat-dialog-close mat-raised-button> {{'ACS_SETTINGS.POPUP_BUTTON' | translate}} </button>
+                </div>
+              </div>
+
+        </div>
+    </mat-dialog-content>
+
+</ng-container>
+
+<ng-container  *ngIf="testPopUp2 == 'test2'">
+    <mat-dialog-content class="dialog-main">
+        <div class="container-fluid">
+
+            <div class="acs-server-popup">
+                <div class="circle bg-red">
+                  <mat-icon>close</mat-icon>
+                </div>
+                <div class="content">
+                    <h3>{{'ACS_SETTINGS.ACS_POPUP_CONTENT2' | translate}}</h3>
+                </div>
+                <div class="actions">
+                  <button class="btn-h-w btn-green" type="button" mat-dialog-close mat-raised-button> {{'ACS_SETTINGS.POPUP_BUTTON' | translate}} </button>
+                </div>
+              </div>
+
+        </div>
+    </mat-dialog-content>
+</ng-container>
